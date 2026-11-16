@@ -1,0 +1,2828 @@
+[
+ {
+  "path": "nodes/CON",
+  "data": {
+   "code": "CON",
+   "level": 0,
+   "parentId": null,
+   "name": "Construction",
+   "description": "Core on-site delivery: the physical build.",
+   "owner": "Chief Operations Officer",
+   "status": "Active",
+   "order": 0,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/CSP",
+  "data": {
+   "code": "CSP",
+   "level": 0,
+   "parentId": null,
+   "name": "Construction Support",
+   "description": "Site-level control, excellence and shared services for delivery.",
+   "owner": "Chief Operations Officer",
+   "status": "Active",
+   "order": 1,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/PMG",
+  "data": {
+   "code": "PMG",
+   "level": 0,
+   "parentId": null,
+   "name": "Project Management",
+   "description": "Run projects: controls, delivery and performance.",
+   "owner": "Head of PMO",
+   "status": "Active",
+   "order": 2,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/PMS",
+  "data": {
+   "code": "PMS",
+   "level": 0,
+   "parentId": null,
+   "name": "Project Management Support",
+   "description": "Project-level commercial, technical and support functions.",
+   "owner": "Head of PMO",
+   "status": "Active",
+   "order": 3,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/COS",
+  "data": {
+   "code": "COS",
+   "level": 0,
+   "parentId": null,
+   "name": "Corporate Support",
+   "description": "Enterprise-wide support services for the whole group.",
+   "owner": "Chief Financial Officer",
+   "status": "Active",
+   "order": 4,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/CMG",
+  "data": {
+   "code": "CMG",
+   "level": 0,
+   "parentId": null,
+   "name": "Corporate Management & Governance",
+   "description": "Strategy, governance, growth and assurance.",
+   "owner": "Chief Executive Officer",
+   "status": "Active",
+   "order": 5,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/CSP-01",
+  "data": {
+   "code": "CSP-01",
+   "level": 1,
+   "parentId": "CSP",
+   "name": "Construction Control",
+   "description": "Budget, cost, planning and production control of construction.",
+   "owner": "Construction Control Director",
+   "status": "Active",
+   "order": 6,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/CBC",
+  "data": {
+   "code": "CBC",
+   "level": 2,
+   "parentId": "CSP-01",
+   "name": "Construction Budget and Cost Control",
+   "description": "Budget baselines and execution cost control per Cell and VBOQ.",
+   "owner": "Construction Cost Control Manager",
+   "status": "Active",
+   "order": 7,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/CPM",
+  "data": {
+   "code": "CPM",
+   "level": 2,
+   "parentId": "CSP-01",
+   "name": "Construction Planning and Monitoring",
+   "description": "Schedules, progress and Pulse planning.",
+   "owner": "Planning Manager",
+   "status": "Active",
+   "order": 8,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/SCM",
+  "data": {
+   "code": "SCM",
+   "level": 1,
+   "parentId": "CSP",
+   "name": "Supply Chain Management",
+   "description": "Sourcing, purchasing, logistics and warehousing.",
+   "owner": "Supply Chain Director",
+   "status": "Active",
+   "order": 9,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/PRO",
+  "data": {
+   "code": "PRO",
+   "level": 2,
+   "parentId": "SCM",
+   "name": "Procurement Operations",
+   "description": "Sourcing, purchasing and supplier delivery.",
+   "owner": "Head of Procurement Operations",
+   "status": "Active",
+   "order": 10,
+   "sample": true
+  }
+ },
+ {
+  "path": "nodes/15-028",
+  "data": {
+   "code": "15-028",
+   "level": 3,
+   "parentId": "PRO",
+   "name": "Manage RFx & Bidding & Technical Evaluation",
+   "description": "From an approved sourcing need to an awarded supplier.",
+   "owner": "Head of Procurement Operations",
+   "status": "Active",
+   "order": 20,
+   "bus": [
+    "HQ",
+    "Infrastructure BU",
+    "Equipment BU",
+    "Production BU"
+   ],
+   "systems": "Oracle Fusion Sourcing, Supplier Portal",
+   "criticality": "High",
+   "sample": true,
+   "processType": "Manage RFx & Bidding Administration & Technical Evaluation (Scoring) \u2014 Material & services",
+   "sequence": "",
+   "jobFamily": "Procurement",
+   "subJobFamily": "Procurement Operations & Sourcing",
+   "startTrigger": "Approved sourcing need / category plan",
+   "applicableDomains": "CSP \u00b7 PMS \u00b7 COS",
+   "modellingStandard": "BPMN 2.0",
+   "maxLevel": "",
+   "centralization": "",
+   "shoring": "",
+   "avgCycleTobe": "RFx cycle: 6 d",
+   "residualBottlenecks": "2",
+   "annualVolume": "~1,800 RFx events",
+   "reviewMonths": 6,
+   "risks": [
+    {
+     "id": "R-028-01",
+     "title": "Single-source award without valid justification",
+     "step": "T-028-SS",
+     "owner": "Head of Procurement Operations",
+     "likelihood": 3,
+     "impact": 4,
+     "control": "Single-source justification approved per Delegation of Authority",
+     "controlType": "Preventive",
+     "status": "Mitigated"
+    }
+   ],
+   "docs": [],
+   "ownerJob": "PRC-MGR-13",
+   "roleJobs": {
+    "Procurement Operations & Purchasing": {
+     "sjf": "PRC-OPS",
+     "jobs": [
+      "PRC-BUY-08",
+      "PRC-SBY-10",
+      "PRC-OFF-07",
+      "PRC-MGR-13"
+     ]
+    },
+    "Procurement Operations & Sourcing": {
+     "sjf": "PRC-SRC",
+     "jobs": [
+      "PRC-CAT-11",
+      "PRC-SRM-12"
+     ]
+    },
+    "Technical Engineering": {
+     "sjf": "ENG-TE",
+     "jobs": [
+      "ENG-TEV-10"
+     ]
+    },
+    "Supplier": {
+     "sjf": "",
+     "jobs": [],
+     "external": true
+    }
+   }
+  }
+ },
+ {
+  "path": "nodes/15-030",
+  "data": {
+   "code": "15-030",
+   "level": 3,
+   "parentId": "PRO",
+   "name": "Manage Purchase Order Lifecycle",
+   "description": "From an approved requisition to a paid and closed purchase order.",
+   "owner": "Head of Procurement Operations",
+   "status": "Active",
+   "order": 21,
+   "bus": [
+    "HQ",
+    "Infrastructure BU",
+    "Equipment BU",
+    "Production BU"
+   ],
+   "systems": "Oracle Fusion Procurement, Supplier Portal, Payables",
+   "criticality": "High",
+   "sample": true,
+   "processType": "Manage Purchase Order Lifecycle",
+   "sequence": "5",
+   "jobFamily": "Procurement",
+   "subJobFamily": "Procurement Operations & Purchasing",
+   "startTrigger": "Approved requisition / framework award",
+   "applicableDomains": "CSP \u00b7 PMS \u00b7 COS",
+   "modellingStandard": "BPMN 2.0",
+   "maxLevel": "",
+   "centralization": "",
+   "shoring": "",
+   "avgCycleTobe": "Req-to-PO: 3 d",
+   "residualBottlenecks": "2",
+   "annualVolume": "~6,200 purchase orders",
+   "reviewMonths": 12,
+   "risks": [
+    {
+     "id": "R-030-01",
+     "title": "Supplier does not confirm the delivery date, so late deliveries surface only at site",
+     "step": "T-030-07",
+     "owner": "Head of Procurement Operations",
+     "likelihood": 4,
+     "impact": 4,
+     "control": "Acknowledgement window with automatic escalation of unacknowledged orders",
+     "controlType": "Preventive",
+     "status": "Open"
+    },
+    {
+     "id": "R-030-02",
+     "title": "PO released above the award or framework rate",
+     "step": "T-030-02",
+     "owner": "Procurement Manager",
+     "likelihood": 2,
+     "impact": 5,
+     "control": "System check of PO price against the awarded rate before release",
+     "controlType": "Preventive",
+     "status": "Mitigated"
+    },
+    {
+     "id": "R-030-03",
+     "title": "Invoice paid for quantities not received on the segment",
+     "step": "T-030-16",
+     "owner": "Accounts Payable Lead",
+     "likelihood": 2,
+     "impact": 4,
+     "control": "Systematic 3-way match at segment level; exceptions block payment",
+     "controlType": "Preventive",
+     "status": "Mitigated"
+    },
+    {
+     "id": "R-030-04",
+     "title": "Long-lead items ordered too late for the wave schedule",
+     "step": "T-030-09",
+     "owner": "Planning Manager",
+     "likelihood": 3,
+     "impact": 4,
+     "control": "Weekly review of long-lead orders against segment and wave dates",
+     "controlType": "Detective",
+     "status": "Open"
+    }
+   ],
+   "docs": [
+    {
+     "id": "D-030-01",
+     "title": "Procurement Policy",
+     "type": "Policy",
+     "version": "4.2",
+     "url": "https://alayuni.sharepoint.com/sites/Policies/Procurement-Policy.pdf",
+     "step": "",
+     "owner": "Chief Procurement Officer"
+    },
+    {
+     "id": "D-030-02",
+     "title": "Purchase Order Release SOP",
+     "type": "SOP",
+     "version": "2.1",
+     "url": "https://alayuni.sharepoint.com/sites/Policies/PO-Release-SOP.pdf",
+     "step": "T-030-02",
+     "owner": "Head of Procurement Operations"
+    },
+    {
+     "id": "D-030-03",
+     "title": "Delegation of Authority: Procurement",
+     "type": "Delegation of authority",
+     "version": "2026",
+     "url": "https://alayuni.sharepoint.com/sites/Policies/DoA-Procurement.pdf",
+     "step": "",
+     "owner": "Finance & Governance"
+    }
+   ],
+   "ownerJob": "PRC-MGR-13",
+   "roleJobs": {
+    "Procurement Operations & Purchasing": {
+     "sjf": "PRC-OPS",
+     "jobs": [
+      "PRC-BUY-08",
+      "PRC-SBY-10",
+      "PRC-OFF-07",
+      "PRC-MGR-13"
+     ]
+    },
+    "Project Controls": {
+     "sjf": "PMC-PC",
+     "jobs": [
+      "PMC-PCE-09"
+     ]
+    },
+    "Warehouse & Logistics": {
+     "sjf": "SCL-WHS",
+     "jobs": [
+      "SCL-WHS-06"
+     ]
+    },
+    "Accounts Payable": {
+     "sjf": "FIN-AP",
+     "jobs": [
+      "FIN-APA-07"
+     ]
+    },
+    "Cost Control": {
+     "sjf": "CCL-CC",
+     "jobs": [
+      "CCL-CCO-09"
+     ]
+    },
+    "Supplier": {
+     "sjf": "",
+     "jobs": [],
+     "external": true
+    }
+   }
+  }
+ },
+ {
+  "path": "services/SVC-PO-02",
+  "data": {
+   "serviceId": "SVC-PO-02",
+   "processId": "15-030",
+   "name": "Purchase Order Issuance",
+   "category": "Business",
+   "tasks": [
+    "T-030-01",
+    "T-030-02",
+    "T-030-03"
+   ],
+   "kpis": [
+    "15-030-KPI-01",
+    "PRO-KPI-01"
+   ],
+   "requester": "Project / site team",
+   "channel": "Oracle Self-Service Procurement",
+   "sla": "4 working days",
+   "status": "Approved",
+   "owner": "Head of Procurement Operations",
+   "description": "Release an approved PO against the framework at the agreed rate.",
+   "sample": true
+  }
+ },
+ {
+  "path": "services/SVC-PO-04",
+  "data": {
+   "serviceId": "SVC-PO-04",
+   "processId": "15-030",
+   "name": "Purchase Order Change Request",
+   "category": "Business",
+   "tasks": [
+    "T-030-17"
+   ],
+   "kpis": [
+    "15-030-KPI-05"
+   ],
+   "requester": "Project / site team",
+   "channel": "Oracle Change Control",
+   "sla": "2 working days",
+   "status": "Draft",
+   "owner": "Head of Procurement Operations",
+   "description": "Request a controlled amendment to an existing PO.",
+   "sample": true
+  }
+ },
+ {
+  "path": "services/SVC-RFX-01",
+  "data": {
+   "serviceId": "SVC-RFX-01",
+   "processId": "15-028",
+   "name": "RFx Event Setup & Issue",
+   "category": "Business",
+   "tasks": [
+    "T-028-02",
+    "T-028-03"
+   ],
+   "kpis": [
+    "15-028-KPI-01",
+    "15-028-KPI-02"
+   ],
+   "requester": "Project / category team",
+   "channel": "Oracle Sourcing",
+   "sla": "3 working days",
+   "status": "Approved",
+   "owner": "Head of Procurement Operations",
+   "description": "Build the RFx package and issue it to at least 3 approved suppliers.",
+   "sample": true
+  }
+ },
+ {
+  "path": "audit/15-030",
+  "data": {
+   "processId": "15-030",
+   "entries": [
+    {
+     "at": "2026-02-24T12:00:00Z",
+     "by": "sample",
+     "what": "Approved As-Is v2.0"
+    },
+    {
+     "at": "2026-06-15T10:00:00Z",
+     "by": "sample",
+     "what": "Approved To-Be v3.0 (As-Is v2.0 kept as baseline)"
+    },
+    {
+     "at": "2026-11-03T08:30:00Z",
+     "by": "sample",
+     "what": "Created To-Be v3.1 draft from v3.0"
+    }
+   ],
+   "sample": true
+  }
+ },
+ {
+  "path": "versions/15-030__As-Is__2.0",
+  "data": {
+   "processId": "15-030",
+   "kind": "As-Is",
+   "version": "2.0",
+   "status": "Approved",
+   "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Defs_P_15_030\" targetNamespace=\"http://al-ayuni.com/basirah\" exporter=\"X-Core\" exporterVersion=\"1.1\">\n  <bpmn:collaboration id=\"Collab_P_15_030\"><bpmn:participant id=\"Pool_P_15_030\" name=\"Manage Purchase Order Lifecycle (As-Is)\" processRef=\"P_15_030\" /></bpmn:collaboration>\n  <bpmn:process id=\"P_15_030\" isExecutable=\"false\">\n    <bpmn:laneSet id=\"LaneSet_P_15_030\">\n      <bpmn:lane id=\"Lane_P_15_030_0\" name=\"Project Controls\">\n        <bpmn:flowNodeRef>S-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_1\" name=\"Procurement Operations &amp; Purchasing\">\n        <bpmn:flowNodeRef>A-030-01</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-030-03</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-030-05</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-030-06</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-030-09</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_2\" name=\"Supplier\">\n        <bpmn:flowNodeRef>A-030-04</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_3\" name=\"Warehouse &amp; Logistics\">\n        <bpmn:flowNodeRef>A-030-07</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_4\" name=\"Accounts Payable\">\n        <bpmn:flowNodeRef>A-030-02</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-030-08</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>E-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n    </bpmn:laneSet>\n    <bpmn:startEvent id=\"S-030\" name=\"Requisition approved\">\n      <bpmn:documentation>Approved requisition / framework award.\nRole: Project Controls</bpmn:documentation>\n      <bpmn:outgoing>Flow_P_15_030_1</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:userTask id=\"A-030-01\" name=\"Manual PO creation\">\n      <bpmn:documentation>PO raised by hand; segment &amp; sub-package not captured.\nSteps: Key PO \u00b7 No segment coding\nRole: Procurement Operations &amp; Purchasing\nTypical duration: 2.5 d\nIssue: PO raised &amp; coded manually.\nRecommendation: Auto-release against framework + auto coding.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_1</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_2</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-02\" name=\"Manual cost coding\">\n      <bpmn:documentation>Expenditure type coded later by Finance.\nSteps: Code later\nRole: Accounts Payable\nTypical duration: 1.0 d\nRecommendation: Carry expenditure type through automatically.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_2</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_3</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-03\" name=\"Email PO to supplier\">\n      <bpmn:documentation>PO emailed to the supplier.\nSteps: Email PO\nRole: Procurement Operations &amp; Purchasing\nTypical duration: 0.5 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_3</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_4</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-04\" name=\"Chase delivery date\">\n      <bpmn:documentation>Delivery date chased; no escalation.\nSteps: Chase\nRole: Supplier\nTypical duration: 2.0 d\nIssue: No acknowledgement or escalation.\nRecommendation: Portal ack + auto-escalation.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_4</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_5</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-05\" name=\"Open-order tracking (Excel)\">\n      <bpmn:documentation>Open orders tracked in spreadsheets.\nSteps: Update sheet\nRole: Procurement Operations &amp; Purchasing\nRecommendation: Open-order log with owner &amp; committed date.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_5</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_6</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:manualTask id=\"A-030-06\" name=\"React to shortages\">\n      <bpmn:documentation>Long-lead items untracked; shortages handled reactively.\nSteps: Expedite\nRole: Procurement Operations &amp; Purchasing\nTypical duration: 3.0 d\nIssue: Long-lead not identified early.\nRecommendation: Register long-lead at tender; fulfilment report.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_6</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_7</bpmn:outgoing>\n    </bpmn:manualTask>\n    <bpmn:userTask id=\"A-030-07\" name=\"Goods receipt\">\n      <bpmn:documentation>Receive without segment reservation check.\nSteps: Receive\nRole: Warehouse &amp; Logistics\nTypical duration: 1.0 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_7</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_8</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-08\" name=\"Manual 3-way match\">\n      <bpmn:documentation>Match by hand; no segment code.\nSteps: Match\nRole: Accounts Payable\nTypical duration: 2.0 d\nRecommendation: Systematic 3-way match with segment code.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_8</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_9</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-030-09\" name=\"Amendments by email\">\n      <bpmn:documentation>Changes made on the order directly.\nSteps: Amend\nRole: Procurement Operations &amp; Purchasing\nTypical duration: 1.0 d\nIssue: No change control.\nRecommendation: Amendments only via Procurement Change Control.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_9</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_10</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:endEvent id=\"E-030\" name=\"Order closed\">\n      <bpmn:documentation>Closed \u2014 ~9 days req-to-PO; weak delivery assurance.\nRole: Accounts Payable</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_10</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_1\" sourceRef=\"S-030\" targetRef=\"A-030-01\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_2\" sourceRef=\"A-030-01\" targetRef=\"A-030-02\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_3\" sourceRef=\"A-030-02\" targetRef=\"A-030-03\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_4\" sourceRef=\"A-030-03\" targetRef=\"A-030-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_5\" sourceRef=\"A-030-04\" targetRef=\"A-030-05\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_6\" sourceRef=\"A-030-05\" targetRef=\"A-030-06\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_7\" sourceRef=\"A-030-06\" targetRef=\"A-030-07\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_8\" sourceRef=\"A-030-07\" targetRef=\"A-030-08\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_9\" sourceRef=\"A-030-08\" targetRef=\"A-030-09\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_10\" sourceRef=\"A-030-09\" targetRef=\"E-030\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"Diagram_P_15_030\"><bpmndi:BPMNPlane id=\"Plane_P_15_030\" bpmnElement=\"Collab_P_15_030\">\n      <bpmndi:BPMNShape id=\"Pool_P_15_030_di\" bpmnElement=\"Pool_P_15_030\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1935\" height=\"700\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_0_di\" bpmnElement=\"Lane_P_15_030_0\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"60\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_1_di\" bpmnElement=\"Lane_P_15_030_1\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"200\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_2_di\" bpmnElement=\"Lane_P_15_030_2\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"340\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_3_di\" bpmnElement=\"Lane_P_15_030_3\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"480\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_4_di\" bpmnElement=\"Lane_P_15_030_4\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"620\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030_di\" bpmnElement=\"S-030\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-01_di\" bpmnElement=\"A-030-01\"><dc:Bounds x=\"405\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-02_di\" bpmnElement=\"A-030-02\"><dc:Bounds x=\"570\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-03_di\" bpmnElement=\"A-030-03\"><dc:Bounds x=\"735\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-04_di\" bpmnElement=\"A-030-04\"><dc:Bounds x=\"900\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-05_di\" bpmnElement=\"A-030-05\"><dc:Bounds x=\"1065\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-06_di\" bpmnElement=\"A-030-06\"><dc:Bounds x=\"1230\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-07_di\" bpmnElement=\"A-030-07\"><dc:Bounds x=\"1395\" y=\"510\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-08_di\" bpmnElement=\"A-030-08\"><dc:Bounds x=\"1560\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-030-09_di\" bpmnElement=\"A-030-09\"><dc:Bounds x=\"1725\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030_di\" bpmnElement=\"E-030\"><dc:Bounds x=\"1932\" y=\"672\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1890\" y=\"713\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_1_di\" bpmnElement=\"Flow_P_15_030_1\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"340\" y=\"130\" /><di:waypoint x=\"340\" y=\"270\" /><di:waypoint x=\"405\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_2_di\" bpmnElement=\"Flow_P_15_030_2\"><di:waypoint x=\"525\" y=\"270\" /><di:waypoint x=\"547\" y=\"270\" /><di:waypoint x=\"547\" y=\"690\" /><di:waypoint x=\"570\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_3_di\" bpmnElement=\"Flow_P_15_030_3\"><di:waypoint x=\"690\" y=\"690\" /><di:waypoint x=\"712\" y=\"690\" /><di:waypoint x=\"712\" y=\"270\" /><di:waypoint x=\"735\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_4_di\" bpmnElement=\"Flow_P_15_030_4\"><di:waypoint x=\"855\" y=\"270\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"877\" y=\"410\" /><di:waypoint x=\"900\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_5_di\" bpmnElement=\"Flow_P_15_030_5\"><di:waypoint x=\"1020\" y=\"410\" /><di:waypoint x=\"1042\" y=\"410\" /><di:waypoint x=\"1042\" y=\"270\" /><di:waypoint x=\"1065\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_6_di\" bpmnElement=\"Flow_P_15_030_6\"><di:waypoint x=\"1185\" y=\"270\" /><di:waypoint x=\"1230\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_7_di\" bpmnElement=\"Flow_P_15_030_7\"><di:waypoint x=\"1350\" y=\"270\" /><di:waypoint x=\"1372\" y=\"270\" /><di:waypoint x=\"1372\" y=\"550\" /><di:waypoint x=\"1395\" y=\"550\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_8_di\" bpmnElement=\"Flow_P_15_030_8\"><di:waypoint x=\"1515\" y=\"550\" /><di:waypoint x=\"1537\" y=\"550\" /><di:waypoint x=\"1537\" y=\"690\" /><di:waypoint x=\"1560\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_9_di\" bpmnElement=\"Flow_P_15_030_9\"><di:waypoint x=\"1680\" y=\"690\" /><di:waypoint x=\"1702\" y=\"690\" /><di:waypoint x=\"1702\" y=\"270\" /><di:waypoint x=\"1725\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_10_di\" bpmnElement=\"Flow_P_15_030_10\"><di:waypoint x=\"1845\" y=\"270\" /><di:waypoint x=\"1867\" y=\"270\" /><di:waypoint x=\"1867\" y=\"690\" /><di:waypoint x=\"1932\" y=\"690\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>",
+   "note": "Current practice: manual PO creation, coding by Finance, email to supplier, spreadsheet tracking.",
+   "createdAt": "2026-02-10T09:00:00Z",
+   "updatedAt": "2026-02-10T09:00:00Z",
+   "approvedAt": "2026-02-24T12:00:00Z",
+   "basedOn": null,
+   "by": "sample",
+   "sample": true
+  }
+ },
+ {
+  "path": "versions/15-030__To-Be__3.0",
+  "data": {
+   "processId": "15-030",
+   "kind": "To-Be",
+   "version": "3.0",
+   "status": "Approved",
+   "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Defs_P_15_030\" targetNamespace=\"http://al-ayuni.com/basirah\" exporter=\"X-Core\" exporterVersion=\"1.1\">\n  <bpmn:collaboration id=\"Collab_P_15_030\"><bpmn:participant id=\"Pool_P_15_030\" name=\"Manage Purchase Order Lifecycle (To-Be)\" processRef=\"P_15_030\" /></bpmn:collaboration>\n  <bpmn:process id=\"P_15_030\" isExecutable=\"false\">\n    <bpmn:laneSet id=\"LaneSet_P_15_030\">\n      <bpmn:lane id=\"Lane_P_15_030_0\" name=\"Project Controls\">\n        <bpmn:flowNodeRef>S-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_1\" name=\"Procurement Operations &amp; Purchasing\">\n        <bpmn:flowNodeRef>T-030-01</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-02</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-03</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-05</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-06</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-030-07</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-07E</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>SP-030-A</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-17</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-15-030-M2</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_2\" name=\"Supplier\">\n        <bpmn:flowNodeRef>T-030-07</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_3\" name=\"Warehouse &amp; Logistics\">\n        <bpmn:flowNodeRef>SP-030-B</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_4\" name=\"Accounts Payable\">\n        <bpmn:flowNodeRef>T-030-04</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-18</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>E-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n    </bpmn:laneSet>\n    <bpmn:startEvent id=\"S-030\" name=\"Requisition approved\">\n      <bpmn:documentation>Approved requisition / framework award triggers the order.\nRole: Project Controls</bpmn:documentation>\n      <bpmn:outgoing>Flow_P_15_030_15</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:userTask id=\"T-030-01\" name=\"Confirm award / framework rate\">\n      <bpmn:documentation>(1) Confirm the award or framework rate against the approved requisition.\nSteps: Confirm rate vs requisition\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_15</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_16</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:serviceTask id=\"T-030-02\" name=\"Release PO (framework / RFx)\">\n      <bpmn:documentation>(2) Release the PO against the framework at the agreed rate, or via the RFx outcome.\nSteps: Auto-release at agreed rate\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_16</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_17</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-03\" name=\"Segment, sub-package &amp; site delivery point\">\n      <bpmn:documentation>(3) Put the segment &amp; sub-package on the order, delivery point at the actual site location.\nSteps: Add segment/sub-package \u00b7 Set site delivery point\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_17</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_18</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-04\" name=\"Auto expenditure-type coding\">\n      <bpmn:documentation>(4) Carry the expenditure type through so cost lands correctly \u2014 no later coding.\nSteps: Auto cost coding\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_18</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_19</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-05\" name=\"Segment ref on delivery note\">\n      <bpmn:documentation>(5) Require the segment &amp; package reference on the supplier delivery note for labelling on arrival.\nSteps: Require segment ref\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_19</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_20</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-06\" name=\"Register in open-order log\">\n      <bpmn:documentation>(6) Register the issued order in the open-order log with its committed date and owner.\nSteps: Log committed date &amp; owner\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_20</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_21</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:userTask id=\"T-030-07\" name=\"Supplier acknowledges date\">\n      <bpmn:documentation>(7) Obtain supplier acknowledgement of the delivery date, not just the order.\nSteps: Acknowledge delivery date\nRole: Supplier\nTypical duration: \u2264 1 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_21</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_22</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:exclusiveGateway id=\"G-030-07\" name=\"Ack in window?\">\n      <bpmn:documentation>Escalate any order unacknowledged within the agreed window.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_22</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_23</bpmn:outgoing>\n      <bpmn:outgoing>Flow_P_15_030_25</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:userTask id=\"T-030-07E\" name=\"Escalate unack order\">\n      <bpmn:documentation>(7) Auto-escalate unacknowledged orders.\nSteps: Escalate\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_23</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_24</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:subProcess id=\"SP-030-A\" name=\"Long-Lead &amp; Open-Order Mgmt\">\n      <bpmn:documentation>Activities 8\u201310, 12\u201313: identify, place, prioritise, escalate &amp; recover.\nSteps: Open sub-process\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_30</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_26</bpmn:outgoing>\n      <bpmn:laneSet id=\"LaneSet_SP-030-A\">\n        <bpmn:lane id=\"Lane_SP-030-A_0\" name=\"Procurement Operations &amp; Purchasing\">\n          <bpmn:flowNodeRef>S-030-A</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-09</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-10</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>G-030-12</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-13</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>E-030-A</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>G-15-030-M1</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-A_1\" name=\"Cost Control\">\n          <bpmn:flowNodeRef>T-030-08</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-08B</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-A_2\" name=\"Supplier\">\n        </bpmn:lane>\n      </bpmn:laneSet>\n      <bpmn:startEvent id=\"S-030-A\" name=\"From main\">\n        <bpmn:documentation>Enter long-lead &amp; open-order management.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:outgoing>Flow_P_15_030_1</bpmn:outgoing>\n      </bpmn:startEvent>\n      <bpmn:userTask id=\"T-030-08\" name=\"Identify long-lead items (BU level)\">\n        <bpmn:documentation>(8) Identify long-lead items by comparing material lead time; register at tender stage.\nSteps: Compare lead time \u00b7 Register at tender\nRole: Cost Control</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_1</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_2</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:serviceTask id=\"T-030-08B\" name=\"Confirm on segment &amp; wave dates\">\n        <bpmn:documentation>(8) Confirm the list once segments &amp; wave dates are fixed.\nSteps: Confirm list\nRole: Cost Control</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_2</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_3</bpmn:outgoing>\n      </bpmn:serviceTask>\n      <bpmn:userTask id=\"T-030-09\" name=\"Place long-lead orders vs schedule\">\n        <bpmn:documentation>(9) Place long-lead orders against the delivery schedule; monitor in the package fulfilment report.\nSteps: Place orders \u00b7 Monitor fulfilment\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_3</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_4</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-10\" name=\"Prioritise open orders by criticality\">\n        <bpmn:documentation>(10) Prioritise open orders by material criticality against the approved procurement schedule.\nSteps: Prioritise\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_4</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_5</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:exclusiveGateway id=\"G-030-12\" name=\"Shortage risk?\">\n        <bpmn:documentation>(12) Escalate any shortage that would prevent a segment from opening.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_5</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_6</bpmn:outgoing>\n        <bpmn:outgoing>Flow_P_15_030_8</bpmn:outgoing>\n      </bpmn:exclusiveGateway>\n      <bpmn:userTask id=\"T-030-13\" name=\"Trigger recovery\">\n        <bpmn:documentation>(13) Trigger recovery: partial delivery, alternate source or expedited freight.\nSteps: Partial / alternate / expedite\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_6</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_7</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:endEvent id=\"E-030-A\" name=\"Back to main\">\n        <bpmn:documentation>Role: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_9</bpmn:incoming>\n      </bpmn:endEvent>\n      <bpmn:exclusiveGateway id=\"G-15-030-M1\">\n        <bpmn:incoming>Flow_P_15_030_7</bpmn:incoming>\n        <bpmn:incoming>Flow_P_15_030_8</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_9</bpmn:outgoing>\n      </bpmn:exclusiveGateway>\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_1\" sourceRef=\"S-030-A\" targetRef=\"T-030-08\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_2\" sourceRef=\"T-030-08\" targetRef=\"T-030-08B\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_3\" sourceRef=\"T-030-08B\" targetRef=\"T-030-09\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_4\" sourceRef=\"T-030-09\" targetRef=\"T-030-10\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_5\" sourceRef=\"T-030-10\" targetRef=\"G-030-12\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_6\" name=\"Yes\" sourceRef=\"G-030-12\" targetRef=\"T-030-13\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_7\" sourceRef=\"T-030-13\" targetRef=\"G-15-030-M1\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_8\" name=\"No\" sourceRef=\"G-030-12\" targetRef=\"G-15-030-M1\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_9\" sourceRef=\"G-15-030-M1\" targetRef=\"E-030-A\" />\n    </bpmn:subProcess>\n    <bpmn:subProcess id=\"SP-030-B\" name=\"Delivery, Receiving &amp; 3-Way Match\">\n      <bpmn:documentation>Activities 11, 14\u201316: monitor, slot, confirm, match.\nSteps: Open sub-process\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_26</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_27</bpmn:outgoing>\n      <bpmn:laneSet id=\"LaneSet_SP-030-B\">\n        <bpmn:lane id=\"Lane_SP-030-B_0\" name=\"Procurement Operations &amp; Purchasing\">\n          <bpmn:flowNodeRef>S-030-B</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-11</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-B_1\" name=\"Warehouse &amp; Logistics\">\n          <bpmn:flowNodeRef>T-030-14</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-15</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-B_2\" name=\"Accounts Payable\">\n          <bpmn:flowNodeRef>T-030-16</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>E-030-B</bpmn:flowNodeRef>\n        </bpmn:lane>\n      </bpmn:laneSet>\n      <bpmn:startEvent id=\"S-030-B\" name=\"From main\">\n        <bpmn:documentation>Enter delivery &amp; receiving.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:outgoing>Flow_P_15_030_10</bpmn:outgoing>\n      </bpmn:startEvent>\n      <bpmn:userTask id=\"T-030-11\" name=\"Monitor delivery \u2192 Pulse Check\">\n        <bpmn:documentation>(11) Monitor delivery vs schedule; report material readiness into Pulse Check for every segment due to start.\nSteps: Monitor \u00b7 Report to Pulse Check\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_10</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_11</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-14\" name=\"Arrange delivery slot\">\n        <bpmn:documentation>(14) Arrange the delivery slot with the warehouse team against the schedule.\nSteps: Book slot\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_11</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_12</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-15\" name=\"Confirm qty vs segment reservation\">\n        <bpmn:documentation>(15) Confirm received quantity against the sub-package line and its segment reservation.\nSteps: Confirm qty \u00b7 Check reservation\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_12</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_13</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:serviceTask id=\"T-030-16\" name=\"Systematic 3-way match (segment)\">\n        <bpmn:documentation>(16) Assure the systematic three-way match with the segment code generated.\nSteps: Auto 3-way match\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_13</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_14</bpmn:outgoing>\n      </bpmn:serviceTask>\n      <bpmn:endEvent id=\"E-030-B\" name=\"Received &amp; matched\">\n        <bpmn:documentation>Role: Accounts Payable</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_14</bpmn:incoming>\n      </bpmn:endEvent>\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_10\" sourceRef=\"S-030-B\" targetRef=\"T-030-11\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_11\" sourceRef=\"T-030-11\" targetRef=\"T-030-14\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_12\" sourceRef=\"T-030-14\" targetRef=\"T-030-15\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_13\" sourceRef=\"T-030-15\" targetRef=\"T-030-16\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_14\" sourceRef=\"T-030-16\" targetRef=\"E-030-B\" />\n    </bpmn:subProcess>\n    <bpmn:userTask id=\"T-030-17\" name=\"Amendments via Change Control\">\n      <bpmn:documentation>(17) Handle amendments only through Procurement Change Control, never on the order directly.\nSteps: Route via Change Control\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_27</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_28</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:serviceTask id=\"T-030-18\" name=\"Close order + vendor performance\">\n      <bpmn:documentation>(18) Close after final receipt &amp; invoice match; record delivery performance against the vendor.\nSteps: Close order \u00b7 Record vendor performance\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_28</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_29</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:endEvent id=\"E-030\" name=\"Order closed\">\n      <bpmn:documentation>Closed \u2014 ~3 days req-to-PO, full delivery assurance.\nRole: Accounts Payable</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_29</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:exclusiveGateway id=\"G-15-030-M2\">\n      <bpmn:incoming>Flow_P_15_030_24</bpmn:incoming>\n      <bpmn:incoming>Flow_P_15_030_25</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_30</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_15\" sourceRef=\"S-030\" targetRef=\"T-030-01\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_16\" sourceRef=\"T-030-01\" targetRef=\"T-030-02\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_17\" sourceRef=\"T-030-02\" targetRef=\"T-030-03\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_18\" sourceRef=\"T-030-03\" targetRef=\"T-030-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_19\" sourceRef=\"T-030-04\" targetRef=\"T-030-05\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_20\" sourceRef=\"T-030-05\" targetRef=\"T-030-06\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_21\" sourceRef=\"T-030-06\" targetRef=\"T-030-07\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_22\" sourceRef=\"T-030-07\" targetRef=\"G-030-07\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_23\" name=\"No\" sourceRef=\"G-030-07\" targetRef=\"T-030-07E\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_24\" sourceRef=\"T-030-07E\" targetRef=\"G-15-030-M2\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_25\" name=\"Yes\" sourceRef=\"G-030-07\" targetRef=\"G-15-030-M2\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_26\" sourceRef=\"SP-030-A\" targetRef=\"SP-030-B\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_27\" sourceRef=\"SP-030-B\" targetRef=\"T-030-17\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_28\" sourceRef=\"T-030-17\" targetRef=\"T-030-18\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_29\" sourceRef=\"T-030-18\" targetRef=\"E-030\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_30\" sourceRef=\"G-15-030-M2\" targetRef=\"SP-030-A\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"Diagram_P_15_030\"><bpmndi:BPMNPlane id=\"Plane_P_15_030\" bpmnElement=\"Collab_P_15_030\">\n      <bpmndi:BPMNShape id=\"Pool_P_15_030_di\" bpmnElement=\"Pool_P_15_030\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"2760\" height=\"700\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_0_di\" bpmnElement=\"Lane_P_15_030_0\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"60\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_1_di\" bpmnElement=\"Lane_P_15_030_1\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"200\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_2_di\" bpmnElement=\"Lane_P_15_030_2\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"340\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_3_di\" bpmnElement=\"Lane_P_15_030_3\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"480\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_4_di\" bpmnElement=\"Lane_P_15_030_4\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"620\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030_di\" bpmnElement=\"S-030\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-01_di\" bpmnElement=\"T-030-01\"><dc:Bounds x=\"405\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-02_di\" bpmnElement=\"T-030-02\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-03_di\" bpmnElement=\"T-030-03\"><dc:Bounds x=\"735\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-04_di\" bpmnElement=\"T-030-04\"><dc:Bounds x=\"900\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-05_di\" bpmnElement=\"T-030-05\"><dc:Bounds x=\"1065\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-06_di\" bpmnElement=\"T-030-06\"><dc:Bounds x=\"1230\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-07_di\" bpmnElement=\"T-030-07\"><dc:Bounds x=\"1395\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-030-07_di\" bpmnElement=\"G-030-07\" isMarkerVisible=\"true\"><dc:Bounds x=\"1595\" y=\"245\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1560\" y=\"300\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-07E_di\" bpmnElement=\"T-030-07E\"><dc:Bounds x=\"1725\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"SP-030-A_di\" bpmnElement=\"SP-030-A\" isExpanded=\"false\"><dc:Bounds x=\"2055\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"SP-030-B_di\" bpmnElement=\"SP-030-B\" isExpanded=\"false\"><dc:Bounds x=\"2220\" y=\"510\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-17_di\" bpmnElement=\"T-030-17\"><dc:Bounds x=\"2385\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-18_di\" bpmnElement=\"T-030-18\"><dc:Bounds x=\"2550\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030_di\" bpmnElement=\"E-030\"><dc:Bounds x=\"2757\" y=\"672\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"2715\" y=\"713\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-15-030-M2_di\" bpmnElement=\"G-15-030-M2\" isMarkerVisible=\"true\"><dc:Bounds x=\"1925\" y=\"245\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1890\" y=\"300\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_15_di\" bpmnElement=\"Flow_P_15_030_15\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"340\" y=\"130\" /><di:waypoint x=\"340\" y=\"270\" /><di:waypoint x=\"405\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_16_di\" bpmnElement=\"Flow_P_15_030_16\"><di:waypoint x=\"525\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_17_di\" bpmnElement=\"Flow_P_15_030_17\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"735\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_18_di\" bpmnElement=\"Flow_P_15_030_18\"><di:waypoint x=\"855\" y=\"270\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"877\" y=\"690\" /><di:waypoint x=\"900\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_19_di\" bpmnElement=\"Flow_P_15_030_19\"><di:waypoint x=\"1020\" y=\"690\" /><di:waypoint x=\"1042\" y=\"690\" /><di:waypoint x=\"1042\" y=\"270\" /><di:waypoint x=\"1065\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_20_di\" bpmnElement=\"Flow_P_15_030_20\"><di:waypoint x=\"1185\" y=\"270\" /><di:waypoint x=\"1230\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_21_di\" bpmnElement=\"Flow_P_15_030_21\"><di:waypoint x=\"1350\" y=\"270\" /><di:waypoint x=\"1372\" y=\"270\" /><di:waypoint x=\"1372\" y=\"410\" /><di:waypoint x=\"1395\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_22_di\" bpmnElement=\"Flow_P_15_030_22\"><di:waypoint x=\"1515\" y=\"410\" /><di:waypoint x=\"1537\" y=\"410\" /><di:waypoint x=\"1537\" y=\"270\" /><di:waypoint x=\"1595\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_23_di\" bpmnElement=\"Flow_P_15_030_23\"><di:waypoint x=\"1645\" y=\"270\" /><di:waypoint x=\"1725\" y=\"270\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1649\" y=\"252\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_24_di\" bpmnElement=\"Flow_P_15_030_24\"><di:waypoint x=\"1845\" y=\"270\" /><di:waypoint x=\"1925\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_25_di\" bpmnElement=\"Flow_P_15_030_25\"><di:waypoint x=\"1620\" y=\"245\" /><di:waypoint x=\"1620\" y=\"223\" /><di:waypoint x=\"1950\" y=\"223\" /><di:waypoint x=\"1950\" y=\"245\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1626\" y=\"207\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_26_di\" bpmnElement=\"Flow_P_15_030_26\"><di:waypoint x=\"2175\" y=\"270\" /><di:waypoint x=\"2197\" y=\"270\" /><di:waypoint x=\"2197\" y=\"550\" /><di:waypoint x=\"2220\" y=\"550\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_27_di\" bpmnElement=\"Flow_P_15_030_27\"><di:waypoint x=\"2340\" y=\"550\" /><di:waypoint x=\"2362\" y=\"550\" /><di:waypoint x=\"2362\" y=\"270\" /><di:waypoint x=\"2385\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_28_di\" bpmnElement=\"Flow_P_15_030_28\"><di:waypoint x=\"2505\" y=\"270\" /><di:waypoint x=\"2527\" y=\"270\" /><di:waypoint x=\"2527\" y=\"690\" /><di:waypoint x=\"2550\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_29_di\" bpmnElement=\"Flow_P_15_030_29\"><di:waypoint x=\"2670\" y=\"690\" /><di:waypoint x=\"2757\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_30_di\" bpmnElement=\"Flow_P_15_030_30\"><di:waypoint x=\"1975\" y=\"270\" /><di:waypoint x=\"2055\" y=\"270\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n  <bpmndi:BPMNDiagram id=\"Diagram_SP-030-A\"><bpmndi:BPMNPlane id=\"Plane_SP-030-A\" bpmnElement=\"SP-030-A\">\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_0_di\" bpmnElement=\"Lane_SP-030-A_0\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_1_di\" bpmnElement=\"Lane_SP-030-A_1\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"200\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_2_di\" bpmnElement=\"Lane_SP-030-A_2\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"340\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030-A_di\" bpmnElement=\"S-030-A\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-08_di\" bpmnElement=\"T-030-08\"><dc:Bounds x=\"405\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-08B_di\" bpmnElement=\"T-030-08B\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-09_di\" bpmnElement=\"T-030-09\"><dc:Bounds x=\"735\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-10_di\" bpmnElement=\"T-030-10\"><dc:Bounds x=\"900\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-030-12_di\" bpmnElement=\"G-030-12\" isMarkerVisible=\"true\"><dc:Bounds x=\"1100\" y=\"105\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1065\" y=\"160\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-13_di\" bpmnElement=\"T-030-13\"><dc:Bounds x=\"1230\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030-A_di\" bpmnElement=\"E-030-A\"><dc:Bounds x=\"1602\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1560\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-15-030-M1_di\" bpmnElement=\"G-15-030-M1\" isMarkerVisible=\"true\"><dc:Bounds x=\"1430\" y=\"105\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1395\" y=\"160\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_1_di\" bpmnElement=\"Flow_P_15_030_1\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"340\" y=\"130\" /><di:waypoint x=\"340\" y=\"270\" /><di:waypoint x=\"405\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_2_di\" bpmnElement=\"Flow_P_15_030_2\"><di:waypoint x=\"525\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_3_di\" bpmnElement=\"Flow_P_15_030_3\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"712\" y=\"270\" /><di:waypoint x=\"712\" y=\"130\" /><di:waypoint x=\"735\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_4_di\" bpmnElement=\"Flow_P_15_030_4\"><di:waypoint x=\"855\" y=\"130\" /><di:waypoint x=\"900\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_5_di\" bpmnElement=\"Flow_P_15_030_5\"><di:waypoint x=\"1020\" y=\"130\" /><di:waypoint x=\"1100\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_6_di\" bpmnElement=\"Flow_P_15_030_6\"><di:waypoint x=\"1150\" y=\"130\" /><di:waypoint x=\"1230\" y=\"130\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1154\" y=\"112\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_7_di\" bpmnElement=\"Flow_P_15_030_7\"><di:waypoint x=\"1350\" y=\"130\" /><di:waypoint x=\"1430\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_8_di\" bpmnElement=\"Flow_P_15_030_8\"><di:waypoint x=\"1125\" y=\"105\" /><di:waypoint x=\"1125\" y=\"83\" /><di:waypoint x=\"1455\" y=\"83\" /><di:waypoint x=\"1455\" y=\"105\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1131\" y=\"67\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_9_di\" bpmnElement=\"Flow_P_15_030_9\"><di:waypoint x=\"1480\" y=\"130\" /><di:waypoint x=\"1602\" y=\"130\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n  <bpmndi:BPMNDiagram id=\"Diagram_SP-030-B\"><bpmndi:BPMNPlane id=\"Plane_SP-030-B\" bpmnElement=\"SP-030-B\">\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_0_di\" bpmnElement=\"Lane_SP-030-B_0\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_1_di\" bpmnElement=\"Lane_SP-030-B_1\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"200\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_2_di\" bpmnElement=\"Lane_SP-030-B_2\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"340\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030-B_di\" bpmnElement=\"S-030-B\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-11_di\" bpmnElement=\"T-030-11\"><dc:Bounds x=\"405\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-14_di\" bpmnElement=\"T-030-14\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-15_di\" bpmnElement=\"T-030-15\"><dc:Bounds x=\"735\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-16_di\" bpmnElement=\"T-030-16\"><dc:Bounds x=\"900\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030-B_di\" bpmnElement=\"E-030-B\"><dc:Bounds x=\"1107\" y=\"392\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1065\" y=\"433\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_10_di\" bpmnElement=\"Flow_P_15_030_10\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"405\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_11_di\" bpmnElement=\"Flow_P_15_030_11\"><di:waypoint x=\"525\" y=\"130\" /><di:waypoint x=\"547\" y=\"130\" /><di:waypoint x=\"547\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_12_di\" bpmnElement=\"Flow_P_15_030_12\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"735\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_13_di\" bpmnElement=\"Flow_P_15_030_13\"><di:waypoint x=\"855\" y=\"270\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"877\" y=\"410\" /><di:waypoint x=\"900\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_14_di\" bpmnElement=\"Flow_P_15_030_14\"><di:waypoint x=\"1020\" y=\"410\" /><di:waypoint x=\"1107\" y=\"410\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>",
+   "note": "18 activities in 2 sub-processes: framework release, segment coding, supplier acknowledgement, long-lead management, receiving and 3-way match.",
+   "createdAt": "2026-05-20T09:00:00Z",
+   "updatedAt": "2026-05-20T09:00:00Z",
+   "approvedAt": "2026-06-15T10:00:00Z",
+   "basedOn": "15-030__As-Is__2.0",
+   "by": "sample",
+   "sample": true
+  }
+ },
+ {
+  "path": "versions/15-030__To-Be__3.1",
+  "data": {
+   "processId": "15-030",
+   "kind": "To-Be",
+   "version": "3.1",
+   "status": "Draft",
+   "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Defs_P_15_030\" targetNamespace=\"http://al-ayuni.com/basirah\" exporter=\"X-Core\" exporterVersion=\"1.1\">\n  <bpmn:collaboration id=\"Collab_P_15_030\"><bpmn:participant id=\"Pool_P_15_030\" name=\"Manage Purchase Order Lifecycle (To-Be)\" processRef=\"P_15_030\" /></bpmn:collaboration>\n  <bpmn:process id=\"P_15_030\" isExecutable=\"false\">\n    <bpmn:laneSet id=\"LaneSet_P_15_030\">\n      <bpmn:lane id=\"Lane_P_15_030_0\" name=\"Project Controls\">\n        <bpmn:flowNodeRef>S-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_1\" name=\"Procurement Operations &amp; Purchasing\">\n        <bpmn:flowNodeRef>T-030-01</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-02</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-03</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-05</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-06</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-030-07</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-07E</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>SP-030-A</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-17</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-15-030-M2</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_2\" name=\"Supplier\">\n        <bpmn:flowNodeRef>T-030-07</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_3\" name=\"Warehouse &amp; Logistics\">\n        <bpmn:flowNodeRef>SP-030-B</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_030_4\" name=\"Accounts Payable\">\n        <bpmn:flowNodeRef>T-030-04</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-030-18</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>E-030</bpmn:flowNodeRef>\n      </bpmn:lane>\n    </bpmn:laneSet>\n    <bpmn:startEvent id=\"S-030\" name=\"Requisition approved\">\n      <bpmn:documentation>Approved requisition / framework award triggers the order.\nRole: Project Controls</bpmn:documentation>\n      <bpmn:outgoing>Flow_P_15_030_15</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:serviceTask id=\"T-030-01\" name=\"Auto-check award / framework rate\">\n      <bpmn:documentation>(1) Confirm the award or framework rate against the approved requisition.\nSteps: Confirm rate vs requisition\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_15</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_16</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-02\" name=\"Release PO (framework / RFx)\">\n      <bpmn:documentation>(2) Release the PO against the framework at the agreed rate, or via the RFx outcome.\nSteps: Auto-release at agreed rate\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_16</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_17</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-03\" name=\"Segment, sub-package &amp; site delivery point\">\n      <bpmn:documentation>(3) Put the segment &amp; sub-package on the order, delivery point at the actual site location.\nSteps: Add segment/sub-package \u00b7 Set site delivery point\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_17</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_18</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-04\" name=\"Auto expenditure-type coding\">\n      <bpmn:documentation>(4) Carry the expenditure type through so cost lands correctly \u2014 no later coding.\nSteps: Auto cost coding\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_18</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_19</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-05\" name=\"Segment ref on delivery note\">\n      <bpmn:documentation>(5) Require the segment &amp; package reference on the supplier delivery note for labelling on arrival.\nSteps: Require segment ref\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_19</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_20</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-06\" name=\"Register in open-order log\">\n      <bpmn:documentation>(6) Register the issued order in the open-order log with its committed date and owner.\nSteps: Log committed date &amp; owner\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_20</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_21</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:serviceTask id=\"T-030-07\" name=\"Supplier acknowledges date in Supplier Portal\">\n      <bpmn:documentation>(7) Obtain supplier acknowledgement of the delivery date, not just the order.\nSteps: Acknowledge delivery date\nRole: Supplier\nTypical duration: \u2264 1 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_21</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_22</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:exclusiveGateway id=\"G-030-07\" name=\"Ack in window?\">\n      <bpmn:documentation>Escalate any order unacknowledged within the agreed window.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_22</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_23</bpmn:outgoing>\n      <bpmn:outgoing>Flow_P_15_030_25</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:serviceTask id=\"T-030-07E\" name=\"AI agent escalates unacknowledged order\">\n      <bpmn:documentation>(7) Auto-escalate unacknowledged orders.\nSteps: Escalate\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_23</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_24</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:subProcess id=\"SP-030-A\" name=\"Long-Lead &amp; Open-Order Mgmt\">\n      <bpmn:documentation>Activities 8\u201310, 12\u201313: identify, place, prioritise, escalate &amp; recover.\nSteps: Open sub-process\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_30</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_26</bpmn:outgoing>\n      <bpmn:laneSet id=\"LaneSet_SP-030-A\">\n        <bpmn:lane id=\"Lane_SP-030-A_0\" name=\"Procurement Operations &amp; Purchasing\">\n          <bpmn:flowNodeRef>S-030-A</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-09</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-10</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>G-030-12</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-13</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>E-030-A</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>G-15-030-M1</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-A_1\" name=\"Cost Control\">\n          <bpmn:flowNodeRef>T-030-08</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-08B</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-A_2\" name=\"Supplier\">\n        </bpmn:lane>\n      </bpmn:laneSet>\n      <bpmn:startEvent id=\"S-030-A\" name=\"From main\">\n        <bpmn:documentation>Enter long-lead &amp; open-order management.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:outgoing>Flow_P_15_030_1</bpmn:outgoing>\n      </bpmn:startEvent>\n      <bpmn:userTask id=\"T-030-08\" name=\"Identify long-lead items (BU level)\">\n        <bpmn:documentation>(8) Identify long-lead items by comparing material lead time; register at tender stage.\nSteps: Compare lead time \u00b7 Register at tender\nRole: Cost Control</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_1</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_2</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:serviceTask id=\"T-030-08B\" name=\"Confirm on segment &amp; wave dates\">\n        <bpmn:documentation>(8) Confirm the list once segments &amp; wave dates are fixed.\nSteps: Confirm list\nRole: Cost Control</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_2</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_3</bpmn:outgoing>\n      </bpmn:serviceTask>\n      <bpmn:userTask id=\"T-030-09\" name=\"Place long-lead orders vs schedule\">\n        <bpmn:documentation>(9) Place long-lead orders against the delivery schedule; monitor in the package fulfilment report.\nSteps: Place orders \u00b7 Monitor fulfilment\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_3</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_4</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-10\" name=\"Prioritise open orders by criticality\">\n        <bpmn:documentation>(10) Prioritise open orders by material criticality against the approved procurement schedule.\nSteps: Prioritise\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_4</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_5</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:exclusiveGateway id=\"G-030-12\" name=\"Shortage risk?\">\n        <bpmn:documentation>(12) Escalate any shortage that would prevent a segment from opening.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_5</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_6</bpmn:outgoing>\n        <bpmn:outgoing>Flow_P_15_030_8</bpmn:outgoing>\n      </bpmn:exclusiveGateway>\n      <bpmn:userTask id=\"T-030-13\" name=\"Trigger recovery\">\n        <bpmn:documentation>(13) Trigger recovery: partial delivery, alternate source or expedited freight.\nSteps: Partial / alternate / expedite\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_6</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_7</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:endEvent id=\"E-030-A\" name=\"Back to main\">\n        <bpmn:documentation>Role: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_9</bpmn:incoming>\n      </bpmn:endEvent>\n      <bpmn:exclusiveGateway id=\"G-15-030-M1\">\n        <bpmn:incoming>Flow_P_15_030_7</bpmn:incoming>\n        <bpmn:incoming>Flow_P_15_030_8</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_9</bpmn:outgoing>\n      </bpmn:exclusiveGateway>\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_1\" sourceRef=\"S-030-A\" targetRef=\"T-030-08\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_2\" sourceRef=\"T-030-08\" targetRef=\"T-030-08B\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_3\" sourceRef=\"T-030-08B\" targetRef=\"T-030-09\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_4\" sourceRef=\"T-030-09\" targetRef=\"T-030-10\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_5\" sourceRef=\"T-030-10\" targetRef=\"G-030-12\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_6\" name=\"Yes\" sourceRef=\"G-030-12\" targetRef=\"T-030-13\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_7\" sourceRef=\"T-030-13\" targetRef=\"G-15-030-M1\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_8\" name=\"No\" sourceRef=\"G-030-12\" targetRef=\"G-15-030-M1\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_9\" sourceRef=\"G-15-030-M1\" targetRef=\"E-030-A\" />\n    </bpmn:subProcess>\n    <bpmn:subProcess id=\"SP-030-B\" name=\"Delivery, Receiving &amp; 3-Way Match\">\n      <bpmn:documentation>Activities 11, 14\u201316: monitor, slot, confirm, match.\nSteps: Open sub-process\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_26</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_27</bpmn:outgoing>\n      <bpmn:laneSet id=\"LaneSet_SP-030-B\">\n        <bpmn:lane id=\"Lane_SP-030-B_0\" name=\"Procurement Operations &amp; Purchasing\">\n          <bpmn:flowNodeRef>S-030-B</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-11</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-B_1\" name=\"Warehouse &amp; Logistics\">\n          <bpmn:flowNodeRef>T-030-14</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>T-030-15</bpmn:flowNodeRef>\n        </bpmn:lane>\n        <bpmn:lane id=\"Lane_SP-030-B_2\" name=\"Accounts Payable\">\n          <bpmn:flowNodeRef>T-030-16</bpmn:flowNodeRef>\n          <bpmn:flowNodeRef>E-030-B</bpmn:flowNodeRef>\n        </bpmn:lane>\n      </bpmn:laneSet>\n      <bpmn:startEvent id=\"S-030-B\" name=\"From main\">\n        <bpmn:documentation>Enter delivery &amp; receiving.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:outgoing>Flow_P_15_030_10</bpmn:outgoing>\n      </bpmn:startEvent>\n      <bpmn:userTask id=\"T-030-11\" name=\"Monitor delivery \u2192 Pulse Check\">\n        <bpmn:documentation>(11) Monitor delivery vs schedule; report material readiness into Pulse Check for every segment due to start.\nSteps: Monitor \u00b7 Report to Pulse Check\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_10</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_11</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-14\" name=\"Arrange delivery slot\">\n        <bpmn:documentation>(14) Arrange the delivery slot with the warehouse team against the schedule.\nSteps: Book slot\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_11</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_12</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:userTask id=\"T-030-15\" name=\"Confirm qty vs segment reservation\">\n        <bpmn:documentation>(15) Confirm received quantity against the sub-package line and its segment reservation.\nSteps: Confirm qty \u00b7 Check reservation\nRole: Warehouse &amp; Logistics</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_12</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_13</bpmn:outgoing>\n      </bpmn:userTask>\n      <bpmn:serviceTask id=\"T-030-16\" name=\"Systematic 3-way match (segment)\">\n        <bpmn:documentation>(16) Assure the systematic three-way match with the segment code generated.\nSteps: Auto 3-way match\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_13</bpmn:incoming>\n        <bpmn:outgoing>Flow_P_15_030_14</bpmn:outgoing>\n      </bpmn:serviceTask>\n      <bpmn:endEvent id=\"E-030-B\" name=\"Received &amp; matched\">\n        <bpmn:documentation>Role: Accounts Payable</bpmn:documentation>\n        <bpmn:incoming>Flow_P_15_030_14</bpmn:incoming>\n      </bpmn:endEvent>\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_10\" sourceRef=\"S-030-B\" targetRef=\"T-030-11\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_11\" sourceRef=\"T-030-11\" targetRef=\"T-030-14\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_12\" sourceRef=\"T-030-14\" targetRef=\"T-030-15\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_13\" sourceRef=\"T-030-15\" targetRef=\"T-030-16\" />\n      <bpmn:sequenceFlow id=\"Flow_P_15_030_14\" sourceRef=\"T-030-16\" targetRef=\"E-030-B\" />\n    </bpmn:subProcess>\n    <bpmn:userTask id=\"T-030-17\" name=\"Amendments via Change Control\">\n      <bpmn:documentation>(17) Handle amendments only through Procurement Change Control, never on the order directly.\nSteps: Route via Change Control\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_27</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_28</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:serviceTask id=\"T-030-18\" name=\"Close order + vendor performance\">\n      <bpmn:documentation>(18) Close after final receipt &amp; invoice match; record delivery performance against the vendor.\nSteps: Close order \u00b7 Record vendor performance\nRole: Accounts Payable\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_28</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_29</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:endEvent id=\"E-030\" name=\"Order closed\">\n      <bpmn:documentation>Closed \u2014 ~3 days req-to-PO, full delivery assurance.\nRole: Accounts Payable</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_030_29</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:exclusiveGateway id=\"G-15-030-M2\">\n      <bpmn:incoming>Flow_P_15_030_24</bpmn:incoming>\n      <bpmn:incoming>Flow_P_15_030_25</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_030_30</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_15\" sourceRef=\"S-030\" targetRef=\"T-030-01\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_16\" sourceRef=\"T-030-01\" targetRef=\"T-030-02\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_17\" sourceRef=\"T-030-02\" targetRef=\"T-030-03\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_18\" sourceRef=\"T-030-03\" targetRef=\"T-030-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_19\" sourceRef=\"T-030-04\" targetRef=\"T-030-05\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_20\" sourceRef=\"T-030-05\" targetRef=\"T-030-06\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_21\" sourceRef=\"T-030-06\" targetRef=\"T-030-07\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_22\" sourceRef=\"T-030-07\" targetRef=\"G-030-07\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_23\" name=\"No\" sourceRef=\"G-030-07\" targetRef=\"T-030-07E\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_24\" sourceRef=\"T-030-07E\" targetRef=\"G-15-030-M2\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_25\" name=\"Yes\" sourceRef=\"G-030-07\" targetRef=\"G-15-030-M2\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_26\" sourceRef=\"SP-030-A\" targetRef=\"SP-030-B\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_27\" sourceRef=\"SP-030-B\" targetRef=\"T-030-17\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_28\" sourceRef=\"T-030-17\" targetRef=\"T-030-18\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_29\" sourceRef=\"T-030-18\" targetRef=\"E-030\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_030_30\" sourceRef=\"G-15-030-M2\" targetRef=\"SP-030-A\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"Diagram_P_15_030\"><bpmndi:BPMNPlane id=\"Plane_P_15_030\" bpmnElement=\"Collab_P_15_030\">\n      <bpmndi:BPMNShape id=\"Pool_P_15_030_di\" bpmnElement=\"Pool_P_15_030\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"2760\" height=\"700\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_0_di\" bpmnElement=\"Lane_P_15_030_0\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"60\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_1_di\" bpmnElement=\"Lane_P_15_030_1\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"200\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_2_di\" bpmnElement=\"Lane_P_15_030_2\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"340\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_3_di\" bpmnElement=\"Lane_P_15_030_3\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"480\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_030_4_di\" bpmnElement=\"Lane_P_15_030_4\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"620\" width=\"2730\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030_di\" bpmnElement=\"S-030\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-01_di\" bpmnElement=\"T-030-01\"><dc:Bounds x=\"405\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-02_di\" bpmnElement=\"T-030-02\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-03_di\" bpmnElement=\"T-030-03\"><dc:Bounds x=\"735\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-04_di\" bpmnElement=\"T-030-04\"><dc:Bounds x=\"900\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-05_di\" bpmnElement=\"T-030-05\"><dc:Bounds x=\"1065\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-06_di\" bpmnElement=\"T-030-06\"><dc:Bounds x=\"1230\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-07_di\" bpmnElement=\"T-030-07\"><dc:Bounds x=\"1395\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-030-07_di\" bpmnElement=\"G-030-07\" isMarkerVisible=\"true\"><dc:Bounds x=\"1595\" y=\"245\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1560\" y=\"300\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-07E_di\" bpmnElement=\"T-030-07E\"><dc:Bounds x=\"1725\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"SP-030-A_di\" bpmnElement=\"SP-030-A\" isExpanded=\"false\"><dc:Bounds x=\"2055\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"SP-030-B_di\" bpmnElement=\"SP-030-B\" isExpanded=\"false\"><dc:Bounds x=\"2220\" y=\"510\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-17_di\" bpmnElement=\"T-030-17\"><dc:Bounds x=\"2385\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-18_di\" bpmnElement=\"T-030-18\"><dc:Bounds x=\"2550\" y=\"650\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030_di\" bpmnElement=\"E-030\"><dc:Bounds x=\"2757\" y=\"672\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"2715\" y=\"713\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-15-030-M2_di\" bpmnElement=\"G-15-030-M2\" isMarkerVisible=\"true\"><dc:Bounds x=\"1925\" y=\"245\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1890\" y=\"300\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_15_di\" bpmnElement=\"Flow_P_15_030_15\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"340\" y=\"130\" /><di:waypoint x=\"340\" y=\"270\" /><di:waypoint x=\"405\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_16_di\" bpmnElement=\"Flow_P_15_030_16\"><di:waypoint x=\"525\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_17_di\" bpmnElement=\"Flow_P_15_030_17\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"735\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_18_di\" bpmnElement=\"Flow_P_15_030_18\"><di:waypoint x=\"855\" y=\"270\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"877\" y=\"690\" /><di:waypoint x=\"900\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_19_di\" bpmnElement=\"Flow_P_15_030_19\"><di:waypoint x=\"1020\" y=\"690\" /><di:waypoint x=\"1042\" y=\"690\" /><di:waypoint x=\"1042\" y=\"270\" /><di:waypoint x=\"1065\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_20_di\" bpmnElement=\"Flow_P_15_030_20\"><di:waypoint x=\"1185\" y=\"270\" /><di:waypoint x=\"1230\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_21_di\" bpmnElement=\"Flow_P_15_030_21\"><di:waypoint x=\"1350\" y=\"270\" /><di:waypoint x=\"1372\" y=\"270\" /><di:waypoint x=\"1372\" y=\"410\" /><di:waypoint x=\"1395\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_22_di\" bpmnElement=\"Flow_P_15_030_22\"><di:waypoint x=\"1515\" y=\"410\" /><di:waypoint x=\"1537\" y=\"410\" /><di:waypoint x=\"1537\" y=\"270\" /><di:waypoint x=\"1595\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_23_di\" bpmnElement=\"Flow_P_15_030_23\"><di:waypoint x=\"1645\" y=\"270\" /><di:waypoint x=\"1725\" y=\"270\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1649\" y=\"252\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_24_di\" bpmnElement=\"Flow_P_15_030_24\"><di:waypoint x=\"1845\" y=\"270\" /><di:waypoint x=\"1925\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_25_di\" bpmnElement=\"Flow_P_15_030_25\"><di:waypoint x=\"1620\" y=\"245\" /><di:waypoint x=\"1620\" y=\"223\" /><di:waypoint x=\"1950\" y=\"223\" /><di:waypoint x=\"1950\" y=\"245\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1626\" y=\"207\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_26_di\" bpmnElement=\"Flow_P_15_030_26\"><di:waypoint x=\"2175\" y=\"270\" /><di:waypoint x=\"2197\" y=\"270\" /><di:waypoint x=\"2197\" y=\"550\" /><di:waypoint x=\"2220\" y=\"550\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_27_di\" bpmnElement=\"Flow_P_15_030_27\"><di:waypoint x=\"2340\" y=\"550\" /><di:waypoint x=\"2362\" y=\"550\" /><di:waypoint x=\"2362\" y=\"270\" /><di:waypoint x=\"2385\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_28_di\" bpmnElement=\"Flow_P_15_030_28\"><di:waypoint x=\"2505\" y=\"270\" /><di:waypoint x=\"2527\" y=\"270\" /><di:waypoint x=\"2527\" y=\"690\" /><di:waypoint x=\"2550\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_29_di\" bpmnElement=\"Flow_P_15_030_29\"><di:waypoint x=\"2670\" y=\"690\" /><di:waypoint x=\"2757\" y=\"690\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_30_di\" bpmnElement=\"Flow_P_15_030_30\"><di:waypoint x=\"1975\" y=\"270\" /><di:waypoint x=\"2055\" y=\"270\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n  <bpmndi:BPMNDiagram id=\"Diagram_SP-030-A\"><bpmndi:BPMNPlane id=\"Plane_SP-030-A\" bpmnElement=\"SP-030-A\">\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_0_di\" bpmnElement=\"Lane_SP-030-A_0\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_1_di\" bpmnElement=\"Lane_SP-030-A_1\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"200\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-A_2_di\" bpmnElement=\"Lane_SP-030-A_2\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"340\" width=\"1605\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030-A_di\" bpmnElement=\"S-030-A\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-08_di\" bpmnElement=\"T-030-08\"><dc:Bounds x=\"405\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-08B_di\" bpmnElement=\"T-030-08B\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-09_di\" bpmnElement=\"T-030-09\"><dc:Bounds x=\"735\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-10_di\" bpmnElement=\"T-030-10\"><dc:Bounds x=\"900\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-030-12_di\" bpmnElement=\"G-030-12\" isMarkerVisible=\"true\"><dc:Bounds x=\"1100\" y=\"105\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1065\" y=\"160\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-13_di\" bpmnElement=\"T-030-13\"><dc:Bounds x=\"1230\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030-A_di\" bpmnElement=\"E-030-A\"><dc:Bounds x=\"1602\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1560\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-15-030-M1_di\" bpmnElement=\"G-15-030-M1\" isMarkerVisible=\"true\"><dc:Bounds x=\"1430\" y=\"105\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1395\" y=\"160\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_1_di\" bpmnElement=\"Flow_P_15_030_1\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"340\" y=\"130\" /><di:waypoint x=\"340\" y=\"270\" /><di:waypoint x=\"405\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_2_di\" bpmnElement=\"Flow_P_15_030_2\"><di:waypoint x=\"525\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_3_di\" bpmnElement=\"Flow_P_15_030_3\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"712\" y=\"270\" /><di:waypoint x=\"712\" y=\"130\" /><di:waypoint x=\"735\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_4_di\" bpmnElement=\"Flow_P_15_030_4\"><di:waypoint x=\"855\" y=\"130\" /><di:waypoint x=\"900\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_5_di\" bpmnElement=\"Flow_P_15_030_5\"><di:waypoint x=\"1020\" y=\"130\" /><di:waypoint x=\"1100\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_6_di\" bpmnElement=\"Flow_P_15_030_6\"><di:waypoint x=\"1150\" y=\"130\" /><di:waypoint x=\"1230\" y=\"130\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1154\" y=\"112\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_7_di\" bpmnElement=\"Flow_P_15_030_7\"><di:waypoint x=\"1350\" y=\"130\" /><di:waypoint x=\"1430\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_8_di\" bpmnElement=\"Flow_P_15_030_8\"><di:waypoint x=\"1125\" y=\"105\" /><di:waypoint x=\"1125\" y=\"83\" /><di:waypoint x=\"1455\" y=\"83\" /><di:waypoint x=\"1455\" y=\"105\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1131\" y=\"67\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_9_di\" bpmnElement=\"Flow_P_15_030_9\"><di:waypoint x=\"1480\" y=\"130\" /><di:waypoint x=\"1602\" y=\"130\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n  <bpmndi:BPMNDiagram id=\"Diagram_SP-030-B\"><bpmndi:BPMNPlane id=\"Plane_SP-030-B\" bpmnElement=\"SP-030-B\">\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_0_di\" bpmnElement=\"Lane_SP-030-B_0\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_1_di\" bpmnElement=\"Lane_SP-030-B_1\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"200\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_SP-030-B_2_di\" bpmnElement=\"Lane_SP-030-B_2\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"340\" width=\"1110\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-030-B_di\" bpmnElement=\"S-030-B\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-11_di\" bpmnElement=\"T-030-11\"><dc:Bounds x=\"405\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-14_di\" bpmnElement=\"T-030-14\"><dc:Bounds x=\"570\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-15_di\" bpmnElement=\"T-030-15\"><dc:Bounds x=\"735\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-030-16_di\" bpmnElement=\"T-030-16\"><dc:Bounds x=\"900\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-030-B_di\" bpmnElement=\"E-030-B\"><dc:Bounds x=\"1107\" y=\"392\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1065\" y=\"433\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_10_di\" bpmnElement=\"Flow_P_15_030_10\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"405\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_11_di\" bpmnElement=\"Flow_P_15_030_11\"><di:waypoint x=\"525\" y=\"130\" /><di:waypoint x=\"547\" y=\"130\" /><di:waypoint x=\"547\" y=\"270\" /><di:waypoint x=\"570\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_12_di\" bpmnElement=\"Flow_P_15_030_12\"><di:waypoint x=\"690\" y=\"270\" /><di:waypoint x=\"735\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_13_di\" bpmnElement=\"Flow_P_15_030_13\"><di:waypoint x=\"855\" y=\"270\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"877\" y=\"410\" /><di:waypoint x=\"900\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_030_14_di\" bpmnElement=\"Flow_P_15_030_14\"><di:waypoint x=\"1020\" y=\"410\" /><di:waypoint x=\"1107\" y=\"410\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>",
+   "note": "Supplier acknowledgement in the Supplier Portal, AI agent escalation and automatic award check.",
+   "createdAt": "2026-11-03T08:30:00Z",
+   "updatedAt": "2026-11-03T08:30:00Z",
+   "approvedAt": null,
+   "basedOn": "15-030__To-Be__3.0",
+   "by": "sample",
+   "sample": true
+  }
+ },
+ {
+  "path": "versions/15-028__As-Is__1.0",
+  "data": {
+   "processId": "15-028",
+   "kind": "As-Is",
+   "version": "1.0",
+   "status": "Approved",
+   "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Defs_P_15_028\" targetNamespace=\"http://al-ayuni.com/basirah\" exporter=\"X-Core\" exporterVersion=\"1.1\">\n  <bpmn:collaboration id=\"Collab_P_15_028\"><bpmn:participant id=\"Pool_P_15_028\" name=\"Manage RFx &amp; Bidding &amp; Technical Evaluation (As-Is)\" processRef=\"P_15_028\" /></bpmn:collaboration>\n  <bpmn:process id=\"P_15_028\" isExecutable=\"false\">\n    <bpmn:laneSet id=\"LaneSet_P_15_028\">\n      <bpmn:lane id=\"Lane_P_15_028_0\" name=\"Procurement Operations &amp; Purchasing\">\n        <bpmn:flowNodeRef>S-028</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-028-01</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-028-02</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-028-03</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>A-028-05</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_1\" name=\"Supplier\">\n        <bpmn:flowNodeRef>A-028-04</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_2\" name=\"Technical Engineering\">\n        <bpmn:flowNodeRef>A-028-06</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_3\" name=\"Procurement Operations &amp; Sourcing\">\n        <bpmn:flowNodeRef>E-028</bpmn:flowNodeRef>\n      </bpmn:lane>\n    </bpmn:laneSet>\n    <bpmn:startEvent id=\"S-028\" name=\"Sourcing need\">\n      <bpmn:documentation>A sourcing need is raised.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:outgoing>Flow_P_15_028_1</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:manualTask id=\"A-028-01\" name=\"Pick supplier from memory\">\n      <bpmn:documentation>No package-type playbook used.\nSteps: Choose supplier\nRole: Procurement Operations &amp; Purchasing\nIssue: No sourcing playbook.\nRecommendation: Confirm approach from package-type playbook.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_1</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_2</bpmn:outgoing>\n    </bpmn:manualTask>\n    <bpmn:userTask id=\"A-028-02\" name=\"Build RFx in Word / Excel\">\n      <bpmn:documentation>RFx package built by hand.\nSteps: Draft specs &amp; terms\nRole: Procurement Operations &amp; Purchasing\nRecommendation: Maintained RFx package with specs &amp; terms.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_2</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_3</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-028-03\" name=\"Email RFx (often &lt;3 suppliers)\">\n      <bpmn:documentation>RFx emailed to few suppliers; no schedule.\nSteps: Email RFx\nRole: Procurement Operations &amp; Purchasing\nIssue: Too few suppliers; no schedule.\nRecommendation: Issue to \u22653 suppliers with delivery schedule.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_3</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_4</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-028-04\" name=\"Chase quotations\">\n      <bpmn:documentation>Quotes chased; lead time often missing.\nSteps: Submit quote\nRole: Supplier\nIssue: Quotes incomplete / late.\nRecommendation: Validate quotes incl. committed lead time.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_4</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_5</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-028-05\" name=\"Manual quote comparison\">\n      <bpmn:documentation>Quotes compared manually.\nSteps: Compare\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_5</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_6</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"A-028-06\" name=\"Technical eval by email (slow)\">\n      <bpmn:documentation>Scoring across stakeholders by email.\nSteps: Score\nRole: Technical Engineering\nIssue: Slow email-based scoring.\nRecommendation: Structured TCS workflow.\nBottleneck step.</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_6</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_7</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:endEvent id=\"E-028\" name=\"Award recommendation\">\n      <bpmn:documentation>Recommendation after ~14 days.\nRole: Procurement Operations &amp; Sourcing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_7</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_1\" sourceRef=\"S-028\" targetRef=\"A-028-01\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_2\" sourceRef=\"A-028-01\" targetRef=\"A-028-02\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_3\" sourceRef=\"A-028-02\" targetRef=\"A-028-03\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_4\" sourceRef=\"A-028-03\" targetRef=\"A-028-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_5\" sourceRef=\"A-028-04\" targetRef=\"A-028-05\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_6\" sourceRef=\"A-028-05\" targetRef=\"A-028-06\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_7\" sourceRef=\"A-028-06\" targetRef=\"E-028\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"Diagram_P_15_028\"><bpmndi:BPMNPlane id=\"Plane_P_15_028\" bpmnElement=\"Collab_P_15_028\">\n      <bpmndi:BPMNShape id=\"Pool_P_15_028_di\" bpmnElement=\"Pool_P_15_028\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1440\" height=\"560\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_0_di\" bpmnElement=\"Lane_P_15_028_0\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"60\" width=\"1410\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_1_di\" bpmnElement=\"Lane_P_15_028_1\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"200\" width=\"1410\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_2_di\" bpmnElement=\"Lane_P_15_028_2\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"340\" width=\"1410\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_3_di\" bpmnElement=\"Lane_P_15_028_3\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"480\" width=\"1410\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-028_di\" bpmnElement=\"S-028\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-01_di\" bpmnElement=\"A-028-01\"><dc:Bounds x=\"405\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-02_di\" bpmnElement=\"A-028-02\"><dc:Bounds x=\"570\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-03_di\" bpmnElement=\"A-028-03\"><dc:Bounds x=\"735\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-04_di\" bpmnElement=\"A-028-04\"><dc:Bounds x=\"900\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-05_di\" bpmnElement=\"A-028-05\"><dc:Bounds x=\"1065\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"A-028-06_di\" bpmnElement=\"A-028-06\"><dc:Bounds x=\"1230\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-028_di\" bpmnElement=\"E-028\"><dc:Bounds x=\"1437\" y=\"532\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1395\" y=\"573\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_1_di\" bpmnElement=\"Flow_P_15_028_1\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"405\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_2_di\" bpmnElement=\"Flow_P_15_028_2\"><di:waypoint x=\"525\" y=\"130\" /><di:waypoint x=\"570\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_3_di\" bpmnElement=\"Flow_P_15_028_3\"><di:waypoint x=\"690\" y=\"130\" /><di:waypoint x=\"735\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_4_di\" bpmnElement=\"Flow_P_15_028_4\"><di:waypoint x=\"855\" y=\"130\" /><di:waypoint x=\"877\" y=\"130\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"900\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_5_di\" bpmnElement=\"Flow_P_15_028_5\"><di:waypoint x=\"1020\" y=\"270\" /><di:waypoint x=\"1042\" y=\"270\" /><di:waypoint x=\"1042\" y=\"130\" /><di:waypoint x=\"1065\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_6_di\" bpmnElement=\"Flow_P_15_028_6\"><di:waypoint x=\"1185\" y=\"130\" /><di:waypoint x=\"1207\" y=\"130\" /><di:waypoint x=\"1207\" y=\"410\" /><di:waypoint x=\"1230\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_7_di\" bpmnElement=\"Flow_P_15_028_7\"><di:waypoint x=\"1350\" y=\"410\" /><di:waypoint x=\"1372\" y=\"410\" /><di:waypoint x=\"1372\" y=\"550\" /><di:waypoint x=\"1437\" y=\"550\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>",
+   "note": "Current practice: RFx in Word/Excel, email to few suppliers, technical evaluation by email.",
+   "createdAt": "2026-02-12T09:00:00Z",
+   "updatedAt": "2026-02-12T09:00:00Z",
+   "approvedAt": "2026-02-26T09:00:00Z",
+   "basedOn": null,
+   "by": "sample",
+   "sample": true
+  }
+ },
+ {
+  "path": "versions/15-028__To-Be__2.0",
+  "data": {
+   "processId": "15-028",
+   "kind": "To-Be",
+   "version": "2.0",
+   "status": "Approved",
+   "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn:definitions xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Defs_P_15_028\" targetNamespace=\"http://al-ayuni.com/basirah\" exporter=\"X-Core\" exporterVersion=\"1.1\">\n  <bpmn:collaboration id=\"Collab_P_15_028\"><bpmn:participant id=\"Pool_P_15_028\" name=\"Manage RFx &amp; Bidding &amp; Technical Evaluation (To-Be)\" processRef=\"P_15_028\" /></bpmn:collaboration>\n  <bpmn:process id=\"P_15_028\" isExecutable=\"false\">\n    <bpmn:laneSet id=\"LaneSet_P_15_028\">\n      <bpmn:lane id=\"Lane_P_15_028_0\" name=\"Procurement Operations &amp; Purchasing\">\n        <bpmn:flowNodeRef>S-028</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-028-01</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-028-02</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-028-03</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>T-028-04</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-028-04</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_1\" name=\"Supplier\">\n        <bpmn:flowNodeRef>T-028-04S</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_2\" name=\"Technical Engineering\">\n        <bpmn:flowNodeRef>T-028-05</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>G-15-028-M1</bpmn:flowNodeRef>\n      </bpmn:lane>\n      <bpmn:lane id=\"Lane_P_15_028_3\" name=\"Procurement Operations &amp; Sourcing\">\n        <bpmn:flowNodeRef>T-028-SS</bpmn:flowNodeRef>\n        <bpmn:flowNodeRef>E-028</bpmn:flowNodeRef>\n      </bpmn:lane>\n    </bpmn:laneSet>\n    <bpmn:startEvent id=\"S-028\" name=\"Sourcing need\">\n      <bpmn:documentation>Approved sourcing need / category plan triggers the RFx.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:outgoing>Flow_P_15_028_1</bpmn:outgoing>\n    </bpmn:startEvent>\n    <bpmn:userTask id=\"T-028-01\" name=\"Confirm sourcing approach\">\n      <bpmn:documentation>(1) Confirm the sourcing approach from the package-type playbook, and the volume from the sub-packages it covers.\nSteps: Confirm playbook approach \u00b7 Confirm sub-package volume\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_1</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_2</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"T-028-02\" name=\"Maintain RFx package\">\n      <bpmn:documentation>(2) Maintain the RFx package with technical specifications and commercial terms, with scope &amp; quantities.\nSteps: Specs &amp; terms \u00b7 Scope &amp; quantities\nRole: Procurement Operations &amp; Purchasing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_2</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_3</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:serviceTask id=\"T-028-03\" name=\"Issue RFx to \u22653 suppliers\">\n      <bpmn:documentation>(3) Issue the RFx to a minimum of three approved suppliers with a delivery schedule attached.\nSteps: \u22653 approved suppliers \u00b7 Attach delivery schedule\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_3</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_4</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:userTask id=\"T-028-04S\" name=\"Suppliers submit quotations\">\n      <bpmn:documentation>(4) Suppliers submit quotations with committed lead time.\nSteps: Submit quote + lead time\nRole: Supplier\nTypical duration: \u2264 3 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_4</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_5</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:serviceTask id=\"T-028-04\" name=\"Collect &amp; validate quotations\">\n      <bpmn:documentation>(4) Collect &amp; validate quotations, including each supplier's committed lead time.\nSteps: Validate completeness \u00b7 Capture lead time\nRole: Procurement Operations &amp; Purchasing\nTypical duration: mins</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_5</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_6</bpmn:outgoing>\n    </bpmn:serviceTask>\n    <bpmn:exclusiveGateway id=\"G-028-04\" name=\"\u22653 valid quotes?\">\n      <bpmn:documentation>If fewer than three valid quotes, a documented single-source justification is required.\nRole: Procurement Operations &amp; Purchasing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_6</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_7</bpmn:outgoing>\n      <bpmn:outgoing>Flow_P_15_028_8</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:userTask id=\"T-028-SS\" name=\"Single-source justification\">\n      <bpmn:documentation>Document &amp; approve single-source justification (control).\nSteps: Justify &amp; approve\nRole: Procurement Operations &amp; Sourcing\nTypical duration: hrs</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_8</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_9</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:userTask id=\"T-028-05\" name=\"Technical evaluation \u2192 TCS\">\n      <bpmn:documentation>(5) Coordinate Technical Evaluation from all stakeholders to generate the Technical Compliance Sheet (TCS).\nSteps: Collect scores \u00b7 Generate TCS\nRole: Technical Engineering\nTypical duration: \u2264 4 d</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_11</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_10</bpmn:outgoing>\n    </bpmn:userTask>\n    <bpmn:endEvent id=\"E-028\" name=\"TCS &amp; recommendation\">\n      <bpmn:documentation>TCS &amp; award recommendation ready \u2014 ~6 days.\nRole: Procurement Operations &amp; Sourcing</bpmn:documentation>\n      <bpmn:incoming>Flow_P_15_028_10</bpmn:incoming>\n    </bpmn:endEvent>\n    <bpmn:exclusiveGateway id=\"G-15-028-M1\">\n      <bpmn:incoming>Flow_P_15_028_7</bpmn:incoming>\n      <bpmn:incoming>Flow_P_15_028_9</bpmn:incoming>\n      <bpmn:outgoing>Flow_P_15_028_11</bpmn:outgoing>\n    </bpmn:exclusiveGateway>\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_1\" sourceRef=\"S-028\" targetRef=\"T-028-01\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_2\" sourceRef=\"T-028-01\" targetRef=\"T-028-02\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_3\" sourceRef=\"T-028-02\" targetRef=\"T-028-03\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_4\" sourceRef=\"T-028-03\" targetRef=\"T-028-04S\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_5\" sourceRef=\"T-028-04S\" targetRef=\"T-028-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_6\" sourceRef=\"T-028-04\" targetRef=\"G-028-04\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_7\" name=\"Yes\" sourceRef=\"G-028-04\" targetRef=\"G-15-028-M1\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_8\" name=\"No\" sourceRef=\"G-028-04\" targetRef=\"T-028-SS\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_9\" sourceRef=\"T-028-SS\" targetRef=\"G-15-028-M1\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_10\" sourceRef=\"T-028-05\" targetRef=\"E-028\" />\n    <bpmn:sequenceFlow id=\"Flow_P_15_028_11\" sourceRef=\"G-15-028-M1\" targetRef=\"T-028-05\" />\n  </bpmn:process>\n  <bpmndi:BPMNDiagram id=\"Diagram_P_15_028\"><bpmndi:BPMNPlane id=\"Plane_P_15_028\" bpmnElement=\"Collab_P_15_028\">\n      <bpmndi:BPMNShape id=\"Pool_P_15_028_di\" bpmnElement=\"Pool_P_15_028\" isHorizontal=\"true\"><dc:Bounds x=\"160\" y=\"60\" width=\"1935\" height=\"560\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_0_di\" bpmnElement=\"Lane_P_15_028_0\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"60\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_1_di\" bpmnElement=\"Lane_P_15_028_1\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"200\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_2_di\" bpmnElement=\"Lane_P_15_028_2\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"340\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"Lane_P_15_028_3_di\" bpmnElement=\"Lane_P_15_028_3\" isHorizontal=\"true\"><dc:Bounds x=\"190\" y=\"480\" width=\"1905\" height=\"140\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"S-028_di\" bpmnElement=\"S-028\"><dc:Bounds x=\"282\" y=\"112\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"240\" y=\"153\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-01_di\" bpmnElement=\"T-028-01\"><dc:Bounds x=\"405\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-02_di\" bpmnElement=\"T-028-02\"><dc:Bounds x=\"570\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-03_di\" bpmnElement=\"T-028-03\"><dc:Bounds x=\"735\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-04S_di\" bpmnElement=\"T-028-04S\"><dc:Bounds x=\"900\" y=\"230\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-04_di\" bpmnElement=\"T-028-04\"><dc:Bounds x=\"1065\" y=\"90\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-028-04_di\" bpmnElement=\"G-028-04\" isMarkerVisible=\"true\"><dc:Bounds x=\"1265\" y=\"105\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1230\" y=\"160\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-SS_di\" bpmnElement=\"T-028-SS\"><dc:Bounds x=\"1395\" y=\"510\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"T-028-05_di\" bpmnElement=\"T-028-05\"><dc:Bounds x=\"1725\" y=\"370\" width=\"120\" height=\"80\" /></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"E-028_di\" bpmnElement=\"E-028\"><dc:Bounds x=\"1932\" y=\"532\" width=\"36\" height=\"36\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1890\" y=\"573\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNShape id=\"G-15-028-M1_di\" bpmnElement=\"G-15-028-M1\" isMarkerVisible=\"true\"><dc:Bounds x=\"1595\" y=\"385\" width=\"50\" height=\"50\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1560\" y=\"440\" width=\"120\" height=\"27\" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_1_di\" bpmnElement=\"Flow_P_15_028_1\"><di:waypoint x=\"318\" y=\"130\" /><di:waypoint x=\"405\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_2_di\" bpmnElement=\"Flow_P_15_028_2\"><di:waypoint x=\"525\" y=\"130\" /><di:waypoint x=\"570\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_3_di\" bpmnElement=\"Flow_P_15_028_3\"><di:waypoint x=\"690\" y=\"130\" /><di:waypoint x=\"735\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_4_di\" bpmnElement=\"Flow_P_15_028_4\"><di:waypoint x=\"855\" y=\"130\" /><di:waypoint x=\"877\" y=\"130\" /><di:waypoint x=\"877\" y=\"270\" /><di:waypoint x=\"900\" y=\"270\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_5_di\" bpmnElement=\"Flow_P_15_028_5\"><di:waypoint x=\"1020\" y=\"270\" /><di:waypoint x=\"1042\" y=\"270\" /><di:waypoint x=\"1042\" y=\"130\" /><di:waypoint x=\"1065\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_6_di\" bpmnElement=\"Flow_P_15_028_6\"><di:waypoint x=\"1185\" y=\"130\" /><di:waypoint x=\"1265\" y=\"130\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_7_di\" bpmnElement=\"Flow_P_15_028_7\"><di:waypoint x=\"1290\" y=\"155\" /><di:waypoint x=\"1290\" y=\"410\" /><di:waypoint x=\"1595\" y=\"410\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1294\" y=\"412\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_8_di\" bpmnElement=\"Flow_P_15_028_8\"><di:waypoint x=\"1290\" y=\"155\" /><di:waypoint x=\"1290\" y=\"550\" /><di:waypoint x=\"1395\" y=\"550\" /><bpmndi:BPMNLabel><dc:Bounds x=\"1294\" y=\"552\" width=\"30\" height=\"14\" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_9_di\" bpmnElement=\"Flow_P_15_028_9\"><di:waypoint x=\"1515\" y=\"550\" /><di:waypoint x=\"1537\" y=\"550\" /><di:waypoint x=\"1537\" y=\"410\" /><di:waypoint x=\"1595\" y=\"410\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_10_di\" bpmnElement=\"Flow_P_15_028_10\"><di:waypoint x=\"1845\" y=\"410\" /><di:waypoint x=\"1867\" y=\"410\" /><di:waypoint x=\"1867\" y=\"550\" /><di:waypoint x=\"1932\" y=\"550\" /></bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge id=\"Flow_P_15_028_11_di\" bpmnElement=\"Flow_P_15_028_11\"><di:waypoint x=\"1645\" y=\"410\" /><di:waypoint x=\"1725\" y=\"410\" /></bpmndi:BPMNEdge>\n    </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>",
+   "note": "Playbook-based sourcing, RFx to at least 3 suppliers, single-source control and TCS.",
+   "createdAt": "2026-04-02T09:00:00Z",
+   "updatedAt": "2026-04-02T09:00:00Z",
+   "approvedAt": "2026-04-20T09:00:00Z",
+   "basedOn": "15-028__As-Is__1.0",
+   "by": "sample",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-01",
+  "data": {
+   "taskId": "T-030-01",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Confirm rate vs requisition",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-02",
+  "data": {
+   "taskId": "T-030-02",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Auto-release at agreed rate",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-03",
+  "data": {
+   "taskId": "T-030-03",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Add segment/sub-package \u00b7 Set site delivery point",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-04",
+  "data": {
+   "taskId": "T-030-04",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Auto cost coding",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-05",
+  "data": {
+   "taskId": "T-030-05",
+   "system": "Supplier Portal",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Require segment ref",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-06",
+  "data": {
+   "taskId": "T-030-06",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Log committed date & owner",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-07",
+  "data": {
+   "taskId": "T-030-07",
+   "system": "Supplier Portal",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Acknowledge delivery date",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-07E",
+  "data": {
+   "taskId": "T-030-07E",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Escalate",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__SP-030-A",
+  "data": {
+   "taskId": "SP-030-A",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Open sub-process",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__SP-030-B",
+  "data": {
+   "taskId": "SP-030-B",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Open sub-process",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-17",
+  "data": {
+   "taskId": "T-030-17",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Route via Change Control",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-18",
+  "data": {
+   "taskId": "T-030-18",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Close order \u00b7 Record vendor performance",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-08",
+  "data": {
+   "taskId": "T-030-08",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Compare lead time \u00b7 Register at tender",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-08B",
+  "data": {
+   "taskId": "T-030-08B",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Confirm list",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-09",
+  "data": {
+   "taskId": "T-030-09",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Place orders \u00b7 Monitor fulfilment",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-10",
+  "data": {
+   "taskId": "T-030-10",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Prioritise",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-13",
+  "data": {
+   "taskId": "T-030-13",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Partial / alternate / expedite",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-11",
+  "data": {
+   "taskId": "T-030-11",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Monitor \u00b7 Report to Pulse Check",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-14",
+  "data": {
+   "taskId": "T-030-14",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Book slot",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-15",
+  "data": {
+   "taskId": "T-030-15",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Confirm qty \u00b7 Check reservation",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__T-030-16",
+  "data": {
+   "taskId": "T-030-16",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Auto 3-way match",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-01",
+  "data": {
+   "taskId": "A-030-01",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Key PO \u00b7 No segment coding",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-02",
+  "data": {
+   "taskId": "A-030-02",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Code later",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-03",
+  "data": {
+   "taskId": "A-030-03",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Email PO",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-04",
+  "data": {
+   "taskId": "A-030-04",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Chase",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-05",
+  "data": {
+   "taskId": "A-030-05",
+   "system": "Excel",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Update sheet",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-06",
+  "data": {
+   "taskId": "A-030-06",
+   "system": "",
+   "automation": "Manual",
+   "traceable": false,
+   "notes": "Steps: Expedite",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-07",
+  "data": {
+   "taskId": "A-030-07",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Receive",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-08",
+  "data": {
+   "taskId": "A-030-08",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Match",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-030__A-030-09",
+  "data": {
+   "taskId": "A-030-09",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Amend",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-030",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-01",
+  "data": {
+   "taskId": "T-028-01",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Confirm playbook approach \u00b7 Confirm sub-package volume",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-02",
+  "data": {
+   "taskId": "T-028-02",
+   "system": "Fusion Sourcing",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Specs & terms \u00b7 Scope & quantities",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-03",
+  "data": {
+   "taskId": "T-028-03",
+   "system": "Supplier Portal",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: \u22653 approved suppliers \u00b7 Attach delivery schedule",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-04S",
+  "data": {
+   "taskId": "T-028-04S",
+   "system": "Supplier Portal",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Submit quote + lead time",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-04",
+  "data": {
+   "taskId": "T-028-04",
+   "system": "Oracle Fusion",
+   "automation": "Automated",
+   "traceable": true,
+   "notes": "Steps: Validate completeness \u00b7 Capture lead time",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-SS",
+  "data": {
+   "taskId": "T-028-SS",
+   "system": "Oracle Fusion",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Justify & approve",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__T-028-05",
+  "data": {
+   "taskId": "T-028-05",
+   "system": "Fusion / TCS",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Collect scores \u00b7 Generate TCS",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-01",
+  "data": {
+   "taskId": "A-028-01",
+   "system": "",
+   "automation": "Manual",
+   "traceable": false,
+   "notes": "Steps: Choose supplier",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-02",
+  "data": {
+   "taskId": "A-028-02",
+   "system": "Excel",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Draft specs & terms",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-03",
+  "data": {
+   "taskId": "A-028-03",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Email RFx",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-04",
+  "data": {
+   "taskId": "A-028-04",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Submit quote",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-05",
+  "data": {
+   "taskId": "A-028-05",
+   "system": "Excel",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Compare",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "activities/15-028__A-028-06",
+  "data": {
+   "taskId": "A-028-06",
+   "system": "Email",
+   "automation": "Assisted",
+   "traceable": true,
+   "notes": "Steps: Score",
+   "dataIn": "",
+   "dataOut": "",
+   "processId": "15-028",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-KPI-01",
+  "data": {
+   "kpiId": "15-030-KPI-01",
+   "processId": "15-030",
+   "level": 3,
+   "ck": "price",
+   "name": "PO Price Compliance",
+   "definition": "Share of POs released at the agreed framework or contract rate.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "POs at agreed rate \u00f7 total POs",
+   "source": "Fusion \u00b7 Framework rates",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-01",
+   "toTask": "T-030-02",
+   "measureProcess": "",
+   "actual": 97,
+   "baseline": 80,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-KPI-01",
+  "data": {
+   "targetId": "TGT-15-030-KPI-01",
+   "kpiId": "15-030-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "95",
+   "amber": "85",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-KPI-02",
+  "data": {
+   "kpiId": "15-030-KPI-02",
+   "processId": "15-030",
+   "level": 3,
+   "ck": "otd",
+   "name": "On-Time Delivery",
+   "definition": "Share of PO lines delivered by the acknowledged date.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-OI-01"
+   ],
+   "kpiType": "Measured",
+   "formula": "On-time lines \u00f7 total lines",
+   "source": "Supplier Portal \u00b7 Fusion",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-07",
+   "toTask": "T-030-15",
+   "measureProcess": "",
+   "actual": 87,
+   "baseline": 72,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-KPI-02",
+  "data": {
+   "targetId": "TGT-15-030-KPI-02",
+   "kpiId": "15-030-KPI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-KPI-03",
+  "data": {
+   "kpiId": "15-030-KPI-03",
+   "processId": "15-030",
+   "level": 3,
+   "ck": "longlead",
+   "name": "Long-Lead Items on Plan",
+   "definition": "Share of long-lead items ordered and tracked against the segment / wave schedule.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "Long-lead items on plan \u00f7 total long-lead items",
+   "source": "Package fulfilment report",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-08",
+   "toTask": "T-030-13",
+   "measureProcess": "",
+   "actual": 68,
+   "baseline": 60,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-KPI-03",
+  "data": {
+   "targetId": "TGT-15-030-KPI-03",
+   "kpiId": "15-030-KPI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "85",
+   "amber": "70",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-KPI-04",
+  "data": {
+   "kpiId": "15-030-KPI-04",
+   "processId": "15-030",
+   "level": 3,
+   "ck": "poclose",
+   "name": "PO Closure Rate",
+   "definition": "Share of eligible POs closed after final match and vendor evaluation.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-OI-02"
+   ],
+   "kpiType": "Measured",
+   "formula": "Closed POs \u00f7 eligible POs",
+   "source": "Fusion",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-18",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 94,
+   "baseline": 68,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-KPI-04",
+  "data": {
+   "targetId": "TGT-15-030-KPI-04",
+   "kpiId": "15-030-KPI-04",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-KPI-05",
+  "data": {
+   "kpiId": "15-030-KPI-05",
+   "processId": "15-030",
+   "level": 3,
+   "ck": "change",
+   "name": "Change Control Compliance",
+   "definition": "Share of PO amendments processed through Procurement Change Control.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-OI-03"
+   ],
+   "kpiType": "Measured",
+   "formula": "Controlled amendments \u00f7 total amendments",
+   "source": "Fusion Change Control",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-17",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 93,
+   "baseline": 55,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-KPI-05",
+  "data": {
+   "targetId": "TGT-15-030-KPI-05",
+   "kpiId": "15-030-KPI-05",
+   "scope": "Company",
+   "period": "2026",
+   "green": "95",
+   "amber": "85",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-KPI-01",
+  "data": {
+   "kpiId": "15-028-KPI-01",
+   "processId": "15-028",
+   "level": 3,
+   "ck": "response",
+   "name": "Supplier Response Rate",
+   "definition": "Share of invited suppliers that submit a quotation.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-028-OI-02"
+   ],
+   "kpiType": "Measured",
+   "formula": "Responding suppliers \u00f7 invited suppliers",
+   "source": "Supplier Portal",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-03",
+   "toTask": "T-028-04S",
+   "measureProcess": "",
+   "actual": 78,
+   "baseline": 58,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-KPI-01",
+  "data": {
+   "targetId": "TGT-15-028-KPI-01",
+   "kpiId": "15-028-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "80",
+   "amber": "65",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-KPI-02",
+  "data": {
+   "kpiId": "15-028-KPI-02",
+   "processId": "15-028",
+   "level": 3,
+   "ck": "rfxcycle",
+   "name": "RFx Cycle Time",
+   "definition": "Days from RFx issue to a signed Technical Compliance Sheet.",
+   "unit": "days",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "AVG(TCS ready \u2212 RFx issued)",
+   "source": "Fusion Sourcing",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-03",
+   "toTask": "T-028-05",
+   "measureProcess": "",
+   "actual": 8,
+   "baseline": 14,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-KPI-02",
+  "data": {
+   "targetId": "TGT-15-028-KPI-02",
+   "kpiId": "15-028-KPI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "7",
+   "amber": "10",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-KPI-03",
+  "data": {
+   "kpiId": "15-028-KPI-03",
+   "processId": "15-028",
+   "level": 3,
+   "ck": "techeval",
+   "name": "Technical Evaluation Turnaround",
+   "definition": "Days from valid quotations to completed technical evaluation.",
+   "unit": "days",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "AVG(TCS complete \u2212 quotes in)",
+   "source": "Fusion / TCS",
+   "owner": "Technical Evaluation",
+   "fromTask": "T-028-04",
+   "toTask": "T-028-05",
+   "measureProcess": "",
+   "actual": 6,
+   "baseline": 9,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-KPI-03",
+  "data": {
+   "targetId": "TGT-15-028-KPI-03",
+   "kpiId": "15-028-KPI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "5",
+   "amber": "7",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-KPI-04",
+  "data": {
+   "kpiId": "15-028-KPI-04",
+   "processId": "15-028",
+   "level": 3,
+   "ck": "quotevalid",
+   "name": "Quotation Validity Rate",
+   "definition": "Share of received quotations that are complete and valid.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-028-OI-01"
+   ],
+   "kpiType": "Measured",
+   "formula": "Valid quotes \u00f7 quotes received",
+   "source": "Supplier Portal",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-04S",
+   "toTask": "T-028-04",
+   "measureProcess": "",
+   "actual": 93,
+   "baseline": 70,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-KPI-04",
+  "data": {
+   "targetId": "TGT-15-028-KPI-04",
+   "kpiId": "15-028-KPI-04",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-KPI-05",
+  "data": {
+   "kpiId": "15-028-KPI-05",
+   "processId": "15-028",
+   "level": 3,
+   "ck": "singlesrc",
+   "name": "Single-Source Justification Rate",
+   "definition": "Share of single-source awards with an approved justification.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "Justified single-source \u00f7 single-source awards",
+   "source": "Fusion approvals",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-SS",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 96,
+   "baseline": 62,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Process KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-KPI-05",
+  "data": {
+   "targetId": "TGT-15-028-KPI-05",
+   "kpiId": "15-028-KPI-05",
+   "scope": "Company",
+   "period": "2026",
+   "green": "95",
+   "amber": "85",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-01",
+  "data": {
+   "kpiId": "PRO-KPI-01",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "reqpo",
+   "name": "Requisition-to-PO Cycle Time",
+   "definition": "Working days from approved requisition to released PO, measured on every case across sourcing and purchasing.",
+   "unit": "working days",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-028-KPI-02",
+    "15-028-KPI-03",
+    "15-028-KPI-04",
+    "15-028-KPI-01"
+   ],
+   "kpiType": "Direct",
+   "formula": "AVG(PO released \u2212 requisition approved)",
+   "source": "Oracle Fusion Procurement \u00b7 Fabric event log",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-01",
+   "toTask": "T-030-02",
+   "measureProcess": "15-030",
+   "actual": 3,
+   "baseline": 9,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-01",
+  "data": {
+   "targetId": "TGT-PRO-KPI-01",
+   "kpiId": "PRO-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "4",
+   "amber": "6",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-02",
+  "data": {
+   "kpiId": "PRO-KPI-02",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "otd",
+   "name": "On-Time Delivery Rate",
+   "definition": "On-time delivery across the procurement processes, weighted by PO line volume.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "15-030-KPI-02"
+   ],
+   "weights": {
+    "15-030-KPI-02": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (process on-time lines) \u00f7 \u03a3 (process lines)",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 72,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-02",
+  "data": {
+   "targetId": "TGT-PRO-KPI-02",
+   "kpiId": "PRO-KPI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-03",
+  "data": {
+   "kpiId": "PRO-KPI-03",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "poclose",
+   "name": "PO Closure Rate",
+   "definition": "PO closure across the procurement processes, weighted by eligible POs.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "15-030-KPI-04"
+   ],
+   "weights": {
+    "15-030-KPI-04": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (closed POs) \u00f7 \u03a3 (eligible POs)",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 68,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-03",
+  "data": {
+   "targetId": "TGT-PRO-KPI-03",
+   "kpiId": "PRO-KPI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-04",
+  "data": {
+   "kpiId": "PRO-KPI-04",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "urgent",
+   "name": "Urgent / Breakdown Purchase Ratio",
+   "definition": "Share of POs raised as urgent or breakdown purchases.",
+   "unit": "%",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-KPI-03"
+   ],
+   "kpiType": "Direct",
+   "formula": "Urgent POs \u00f7 total POs",
+   "source": "Fusion",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 7,
+   "baseline": 22,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-04",
+  "data": {
+   "targetId": "TGT-PRO-KPI-04",
+   "kpiId": "PRO-KPI-04",
+   "scope": "Company",
+   "period": "2026",
+   "green": "8",
+   "amber": "15",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-05",
+  "data": {
+   "kpiId": "PRO-KPI-05",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "doa",
+   "name": "Delegation of Authority Compliance",
+   "definition": "Share of procurement approvals made within the Delegation of Authority.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-KPI-01",
+    "15-030-KPI-05",
+    "15-028-KPI-05"
+   ],
+   "kpiType": "Direct",
+   "formula": "Compliant approvals \u00f7 total approvals",
+   "source": "Fusion approvals",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 95,
+   "baseline": 84,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-05",
+  "data": {
+   "targetId": "TGT-PRO-KPI-05",
+   "kpiId": "PRO-KPI-05",
+   "scope": "Company",
+   "period": "2026",
+   "green": "98",
+   "amber": "92",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-06",
+  "data": {
+   "kpiId": "PRO-KPI-06",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "returned",
+   "name": "Returned Material Percentage",
+   "definition": "Value of material returned to suppliers as a share of received value.",
+   "unit": "%",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-028-KPI-03",
+    "15-030-KPI-05"
+   ],
+   "kpiType": "Direct",
+   "formula": "Returned value \u00f7 received value",
+   "source": "Warehouse \u00b7 Fusion",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 3.6,
+   "baseline": 6.5,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-06",
+  "data": {
+   "targetId": "TGT-PRO-KPI-06",
+   "kpiId": "PRO-KPI-06",
+   "scope": "Company",
+   "period": "2026",
+   "green": "2.5",
+   "amber": "5",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PRO-KPI-07",
+  "data": {
+   "kpiId": "PRO-KPI-07",
+   "processId": "PRO",
+   "level": 2,
+   "ck": "local",
+   "name": "Local Content Reported Coverage",
+   "definition": "Share of POs with local content reported.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-028-KPI-01"
+   ],
+   "kpiType": "Direct",
+   "formula": "POs with local content \u00f7 total POs",
+   "source": "Fusion \u00b7 Local Content",
+   "owner": "Procurement Operations",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 62,
+   "baseline": 55,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Sub-functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-PRO-KPI-07",
+  "data": {
+   "targetId": "TGT-PRO-KPI-07",
+   "kpiId": "PRO-KPI-07",
+   "scope": "Company",
+   "period": "2026",
+   "green": "80",
+   "amber": "65",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-01",
+  "data": {
+   "kpiId": "SCM-KPI-01",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "reqpo",
+   "name": "Requisition-to-PO Cycle Time",
+   "definition": "Requisition-to-PO Cycle Time for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "working days",
+   "direction": "lower",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-01"
+   ],
+   "weights": {
+    "PRO-KPI-01": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 9,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-01",
+  "data": {
+   "targetId": "TGT-SCM-KPI-01",
+   "kpiId": "SCM-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "4",
+   "amber": "6",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-02",
+  "data": {
+   "kpiId": "SCM-KPI-02",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "otd",
+   "name": "On-Time Delivery Rate",
+   "definition": "On-Time Delivery Rate for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-02"
+   ],
+   "weights": {
+    "PRO-KPI-02": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 72,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-02",
+  "data": {
+   "targetId": "TGT-SCM-KPI-02",
+   "kpiId": "SCM-KPI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-03",
+  "data": {
+   "kpiId": "SCM-KPI-03",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "poclose",
+   "name": "PO Closure Rate",
+   "definition": "PO Closure Rate for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-03"
+   ],
+   "weights": {
+    "PRO-KPI-03": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 68,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-03",
+  "data": {
+   "targetId": "TGT-SCM-KPI-03",
+   "kpiId": "SCM-KPI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "90",
+   "amber": "80",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-04",
+  "data": {
+   "kpiId": "SCM-KPI-04",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "urgent",
+   "name": "Urgent / Breakdown Purchase Ratio",
+   "definition": "Urgent / Breakdown Purchase Ratio for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "lower",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-04"
+   ],
+   "weights": {
+    "PRO-KPI-04": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 22,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-04",
+  "data": {
+   "targetId": "TGT-SCM-KPI-04",
+   "kpiId": "SCM-KPI-04",
+   "scope": "Company",
+   "period": "2026",
+   "green": "8",
+   "amber": "15",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-05",
+  "data": {
+   "kpiId": "SCM-KPI-05",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "doa",
+   "name": "Delegation of Authority Compliance",
+   "definition": "Delegation of Authority Compliance for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Worst of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-05"
+   ],
+   "weights": {
+    "PRO-KPI-05": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Gate",
+   "formula": "Lowest result across SCM sub-functions (compliance gate)",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 84,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-05",
+  "data": {
+   "targetId": "TGT-SCM-KPI-05",
+   "kpiId": "SCM-KPI-05",
+   "scope": "Company",
+   "period": "2026",
+   "green": "98",
+   "amber": "92",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-06",
+  "data": {
+   "kpiId": "SCM-KPI-06",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "returned",
+   "name": "Returned Material Percentage",
+   "definition": "Returned Material Percentage for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "lower",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-06"
+   ],
+   "weights": {
+    "PRO-KPI-06": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 6.5,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-06",
+  "data": {
+   "targetId": "TGT-SCM-KPI-06",
+   "kpiId": "SCM-KPI-06",
+   "scope": "Company",
+   "period": "2026",
+   "green": "2.5",
+   "amber": "5",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/SCM-KPI-07",
+  "data": {
+   "kpiId": "SCM-KPI-07",
+   "processId": "SCM",
+   "level": 1,
+   "ck": "local",
+   "name": "Local Content Reported Coverage",
+   "definition": "Local Content Reported Coverage for Supply Chain Management, aggregated from its sub-functions.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Weighted average of contributing KPIs",
+   "rollsUp": [
+    "PRO-KPI-07"
+   ],
+   "weights": {
+    "PRO-KPI-07": 100
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "Volume-weighted across SCM sub-functions \u00b7 Procurement Operations 100% today",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "VP Supply Chain",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": 55,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Functional KPI"
+  }
+ },
+ {
+  "path": "targets/TGT-SCM-KPI-07",
+  "data": {
+   "targetId": "TGT-SCM-KPI-07",
+   "kpiId": "SCM-KPI-07",
+   "scope": "Company",
+   "period": "2026",
+   "green": "80",
+   "amber": "65",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/CSP-KPI-01",
+  "data": {
+   "kpiId": "CSP-KPI-01",
+   "processId": "CSP",
+   "level": 0,
+   "ck": "",
+   "name": "Construction Supply Efficiency Index",
+   "definition": "Composite index of on-time delivery, returned material and urgent purchases: how efficiently supply supports construction.",
+   "unit": "index",
+   "direction": "higher",
+   "aggregation": "Composite index of contributing KPI scores",
+   "rollsUp": [
+    "SCM-KPI-02",
+    "SCM-KPI-06",
+    "SCM-KPI-04"
+   ],
+   "weights": {
+    "SCM-KPI-02": 50,
+    "SCM-KPI-06": 25,
+    "SCM-KPI-04": 25
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (KPI score \u00d7 weight) \u00f7 \u03a3 weight",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Chief Operating Officer",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": null,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Strategic KPI",
+   "objectiveId": "OBJ-01"
+  }
+ },
+ {
+  "path": "targets/TGT-CSP-KPI-01",
+  "data": {
+   "targetId": "TGT-CSP-KPI-01",
+   "kpiId": "CSP-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "85",
+   "amber": "70",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/CSP-KPI-02",
+  "data": {
+   "kpiId": "CSP-KPI-02",
+   "processId": "CSP",
+   "level": 0,
+   "ck": "",
+   "name": "Support Service Level Index",
+   "definition": "Composite index of requisition-to-PO cycle time and PO closure: how well the support functions serve the core construction business.",
+   "unit": "index",
+   "direction": "higher",
+   "aggregation": "Composite index of contributing KPI scores",
+   "rollsUp": [
+    "SCM-KPI-01",
+    "SCM-KPI-03"
+   ],
+   "weights": {
+    "SCM-KPI-01": 50,
+    "SCM-KPI-03": 50
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (KPI score \u00d7 weight) \u00f7 \u03a3 weight",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Chief Operating Officer",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": null,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Strategic KPI",
+   "objectiveId": "OBJ-03"
+  }
+ },
+ {
+  "path": "targets/TGT-CSP-KPI-02",
+  "data": {
+   "targetId": "TGT-CSP-KPI-02",
+   "kpiId": "CSP-KPI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "85",
+   "amber": "70",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/CSP-KPI-03",
+  "data": {
+   "kpiId": "CSP-KPI-03",
+   "processId": "CSP",
+   "level": 0,
+   "ck": "",
+   "name": "Operating Model Agility Index",
+   "definition": "Composite index of Delegation of Authority compliance and local content coverage: controls and a supply base that scale with growth.",
+   "unit": "index",
+   "direction": "higher",
+   "aggregation": "Composite index of contributing KPI scores",
+   "rollsUp": [
+    "SCM-KPI-05",
+    "SCM-KPI-07"
+   ],
+   "weights": {
+    "SCM-KPI-05": 50,
+    "SCM-KPI-07": 50
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (KPI score \u00d7 weight) \u00f7 \u03a3 weight",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Chief Operating Officer",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": null,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Strategic KPI",
+   "objectiveId": "OBJ-04"
+  }
+ },
+ {
+  "path": "targets/TGT-CSP-KPI-03",
+  "data": {
+   "targetId": "TGT-CSP-KPI-03",
+   "kpiId": "CSP-KPI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "85",
+   "amber": "70",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/PMG-KPI-01",
+  "data": {
+   "kpiId": "PMG-KPI-01",
+   "processId": "PMG",
+   "level": 0,
+   "ck": "",
+   "name": "Project Management Capability Index",
+   "definition": "Composite index of project planning, controls and delivery capability across projects. Project Management processes are not modelled yet; long-lead planning on plan is the first driver.",
+   "unit": "index",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [
+    "15-030-KPI-03"
+   ],
+   "kpiType": "Direct",
+   "formula": "Assessed and measured across PMG processes (to be modelled)",
+   "source": "Project Controls \u00b7 PMO assessment",
+   "owner": "Project Management Executive",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 72,
+   "baseline": 60,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Strategic KPI",
+   "objectiveId": "OBJ-02"
+  }
+ },
+ {
+  "path": "targets/TGT-PMG-KPI-01",
+  "data": {
+   "targetId": "TGT-PMG-KPI-01",
+   "kpiId": "PMG-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "80",
+   "amber": "65",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/ENT-KPI-01",
+  "data": {
+   "kpiId": "ENT-KPI-01",
+   "processId": "CSP",
+   "level": 0,
+   "ck": "",
+   "name": "Sustainable Economic Results Index",
+   "definition": "Enterprise outcome: the combined result of the four strategic objectives (O1\u2013O4), each weighted equally.",
+   "unit": "index",
+   "direction": "higher",
+   "aggregation": "Composite index of contributing KPI scores",
+   "rollsUp": [
+    "CSP-KPI-01",
+    "PMG-KPI-01",
+    "CSP-KPI-02",
+    "CSP-KPI-03"
+   ],
+   "weights": {
+    "CSP-KPI-01": 25,
+    "PMG-KPI-01": 25,
+    "CSP-KPI-02": 25,
+    "CSP-KPI-03": 25
+   },
+   "explainedBy": [],
+   "kpiType": "Derived",
+   "formula": "\u03a3 (strategic KPI score \u00d7 weight) \u00f7 \u03a3 weight",
+   "source": "X-Core roll-up (Fabric)",
+   "owner": "Chief Executive Officer",
+   "fromTask": "",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": null,
+   "baseline": null,
+   "actualPeriod": "",
+   "sample": true,
+   "tier": "Strategic KPI \u00b7 enterprise outcome",
+   "objectiveId": "OBJ-05",
+   "outcome": true
+  }
+ },
+ {
+  "path": "targets/TGT-ENT-KPI-01",
+  "data": {
+   "targetId": "TGT-ENT-KPI-01",
+   "kpiId": "ENT-KPI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "85",
+   "amber": "70",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-OI-01",
+  "data": {
+   "kpiId": "15-030-OI-01",
+   "processId": "15-030",
+   "level": 4,
+   "ck": "",
+   "name": "Supplier Acknowledgement Time",
+   "definition": "Hours from PO release to the supplier acknowledging the delivery date.",
+   "unit": "hours",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "AVG(acknowledged \u2212 released)",
+   "source": "Supplier Portal",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-07",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 30,
+   "baseline": 40,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Operational Indicator"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-OI-01",
+  "data": {
+   "targetId": "TGT-15-030-OI-01",
+   "kpiId": "15-030-OI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "24",
+   "amber": "48",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-OI-02",
+  "data": {
+   "kpiId": "15-030-OI-02",
+   "processId": "15-030",
+   "level": 4,
+   "ck": "",
+   "name": "Three-Way Match First-Pass Rate",
+   "definition": "Share of invoices matched to PO and receipt on the first pass, without manual exception handling.",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "First-pass matches \u00f7 invoices matched",
+   "source": "Fusion Payables",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-16",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 88,
+   "baseline": 70,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Operational Indicator"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-OI-02",
+  "data": {
+   "targetId": "TGT-15-030-OI-02",
+   "kpiId": "15-030-OI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "92",
+   "amber": "85",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-030-OI-03",
+  "data": {
+   "kpiId": "15-030-OI-03",
+   "processId": "15-030",
+   "level": 4,
+   "ck": "",
+   "name": "Change Request Turnaround",
+   "definition": "Working days to process a PO change request through Procurement Change Control.",
+   "unit": "working days",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "AVG(change approved \u2212 change requested)",
+   "source": "Fusion Change Control",
+   "owner": "Procurement Operations",
+   "fromTask": "T-030-17",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 2.5,
+   "baseline": 5,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Operational Indicator"
+  }
+ },
+ {
+  "path": "targets/TGT-15-030-OI-03",
+  "data": {
+   "targetId": "TGT-15-030-OI-03",
+   "kpiId": "15-030-OI-03",
+   "scope": "Company",
+   "period": "2026",
+   "green": "2",
+   "amber": "4",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-OI-01",
+  "data": {
+   "kpiId": "15-028-OI-01",
+   "processId": "15-028",
+   "level": 4,
+   "ck": "",
+   "name": "Quotation Completeness Rate",
+   "definition": "Share of quotations received complete at first submission (all mandatory documents and the committed lead time).",
+   "unit": "%",
+   "direction": "higher",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "Complete quotations \u00f7 quotations received",
+   "source": "Supplier Portal",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-04",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 91,
+   "baseline": 75,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Operational Indicator"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-OI-01",
+  "data": {
+   "targetId": "TGT-15-028-OI-01",
+   "kpiId": "15-028-OI-01",
+   "scope": "Company",
+   "period": "2026",
+   "green": "95",
+   "amber": "85",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "kpis/15-028-OI-02",
+  "data": {
+   "kpiId": "15-028-OI-02",
+   "processId": "15-028",
+   "level": 4,
+   "ck": "",
+   "name": "Supplier Invitation Lead Time",
+   "definition": "Working days from an approved RFx package to the invitation being issued to suppliers.",
+   "unit": "working days",
+   "direction": "lower",
+   "aggregation": "Measured directly",
+   "rollsUp": [],
+   "weights": {},
+   "explainedBy": [],
+   "kpiType": "Measured",
+   "formula": "AVG(invited \u2212 package approved)",
+   "source": "Fusion Sourcing",
+   "owner": "Procurement Operations",
+   "fromTask": "T-028-03",
+   "toTask": "",
+   "measureProcess": "",
+   "actual": 1.5,
+   "baseline": 3,
+   "actualPeriod": "Oct 2026",
+   "sample": true,
+   "tier": "Operational Indicator"
+  }
+ },
+ {
+  "path": "targets/TGT-15-028-OI-02",
+  "data": {
+   "targetId": "TGT-15-028-OI-02",
+   "kpiId": "15-028-OI-02",
+   "scope": "Company",
+   "period": "2026",
+   "green": "1",
+   "amber": "2",
+   "reason": "Cockpit benchmark",
+   "status": "Active",
+   "approvedBy": "sample",
+   "approvedAt": "2026-01-15T09:00:00Z",
+   "sample": true
+  }
+ },
+ {
+  "path": "targets/TGT-DRAFT-01",
+  "data": {
+   "targetId": "TGT-DRAFT-01",
+   "kpiId": "PRO-KPI-01",
+   "scope": "Equipment BU",
+   "period": "2027",
+   "green": "3",
+   "amber": "5",
+   "reason": "Supplier-portal acknowledgement live",
+   "status": "Draft",
+   "sample": true
+  }
+ },
+ {
+  "path": "targets/TGT-DRAFT-02",
+  "data": {
+   "targetId": "TGT-DRAFT-02",
+   "kpiId": "15-030-KPI-02",
+   "scope": "Company",
+   "period": "2027",
+   "green": "93",
+   "amber": "85",
+   "reason": "To-Be v3.1 escalation agent",
+   "status": "Draft",
+   "sample": true
+  }
+ }
+]

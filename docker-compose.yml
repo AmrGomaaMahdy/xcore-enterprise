@@ -1,0 +1,64 @@
+# X-Core Process Hub — production-like stack: PostgreSQL + Django API + nginx/React.
+#   cp .env.example .env   # then set real secrets
+#   docker compose up -d --build
+#   open http://localhost:8080
+name: xcore
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-xcore}
+      POSTGRES_USER: ${POSTGRES_USER:-xcore}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [internal]
+    security_opt: ["no-new-privileges:true"]
+
+  backend:
+    build:
+      context: ./backend
+    image: xcore/backend:${XCORE_VERSION:-latest}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [internal]
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+
+  frontend:
+    build:
+      context: ./frontend
+    image: xcore/frontend:${XCORE_VERSION:-latest}
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${XCORE_HTTP_PORT:-8080}:8080"
+    networks: [internal]
+    read_only: true
+    tmpfs: ["/tmp", "/var/cache/nginx"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+
+networks:
+  internal: {}
+
+volumes:
+  pgdata: {}

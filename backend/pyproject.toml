@@ -1,0 +1,24 @@
+[project]
+name = "xcore-backend"
+version = "1.0.0"
+description = "X-Core Process Hub API (Django + DRF)"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+extend-exclude = ["**/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "DJ", "C4", "SIM"]
+ignore = ["S101", "E501", "S105", "S106", "DJ012", "SIM108"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "B"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py"]
+addopts = "-q --strict-markers"
+testpaths = ["tests"]
+filterwarnings = ["ignore:No directory at:UserWarning", "ignore::django.utils.deprecation.RemovedInDjango60Warning"]

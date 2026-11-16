@@ -1,0 +1,388 @@
+{
+ "rules": [
+  [
+   "Evidence-based generation",
+   "Every proposed service links to its source process, activity and business rules."
+  ],
+  [
+   "Reuse before creation",
+   "Search the existing catalog first; suggest updating a service rather than duplicating it."
+  ],
+  [
+   "No invented commitments",
+   "Missing owners, SLAs, eligibility or targets are flagged as unresolved — never fabricated."
+  ],
+  [
+   "Traceability",
+   "Source version and draft version are preserved, so a To-Be change can trigger a service review."
+  ],
+  [
+   "Human approval",
+   "Process owner validates the service; service owner confirms commitments; governance approves publication."
+  ],
+  [
+   "Controlled output",
+   "A structured, schema-validated record — not a paragraph of free text."
+  ]
+ ],
+ "pipeline": [
+  {
+   "ic": "🗄",
+   "t": "Governed inputs",
+   "d": "To-Be activities · owners · roles · business rules · proposed KPIs · systems"
+  },
+  {
+   "ic": "✦",
+   "t": "AI generation",
+   "d": "Identify candidates · group activities · draft definitions · propose inputs, outputs, SLAs"
+  },
+  {
+   "ic": "🛡",
+   "t": "Validation & governance",
+   "d": "Completeness · duplicates · evidence links · ownership · confidence flags"
+  },
+  {
+   "ic": "✍",
+   "t": "Process-owner approval",
+   "d": "Owner validates the service · confirms commitments · authorises publication"
+  },
+  {
+   "ic": "📤",
+   "t": "Published catalog",
+   "d": "Approved definitions · channels · SLAs · KPIs · automation opportunities"
+  }
+ ],
+ "catalog_types": [
+  [
+   "Business service catalog",
+   "Supplier onboarding · equipment mobilisation · employee onboarding",
+   "Business departments & recipients",
+   "on"
+  ],
+  [
+   "IT service catalog",
+   "Access request · application support · device provisioning",
+   "Employees & IT service management",
+   "off"
+  ],
+  [
+   "Process / activity catalog",
+   "Validate requisition · approve PO · reconcile cost",
+   "Process owners & operational teams",
+   "off"
+  ]
+ ],
+ "patterns": [
+  {
+   "process": "15-030",
+   "source_activity": "Review & validate purchase requisition",
+   "name": "Purchase Requisition Review",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 86,
+   "description": "Validate the completeness of a purchase requisition and route it for the appropriate next step.",
+   "reason": "",
+   "recipient": "Authorised employee / requesting department",
+   "trigger": "On requisition submission",
+   "inputs": "Requisition ref · business justification · budget line · supporting docs",
+   "output": "Validated requisition, or a request for corrections",
+   "owner": "Head of Procurement Operations",
+   "owner_confirmed": true,
+   "owner_note": "",
+   "roles": "Procurement Operations",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "Requisition-to-PO cycle time",
+     "k": true
+    },
+    {
+     "l": "First-time-right rate",
+     "k": true
+    },
+    {
+     "l": "Request completeness rate",
+     "k": false
+    },
+    {
+     "l": "Time to initial review",
+     "k": false
+    }
+   ],
+   "system": "Oracle Fusion Procurement",
+   "automation": "Workflow + validation agent (auto-checks completeness)"
+  },
+  {
+   "process": "15-030",
+   "source_activity": "Release PO at the agreed framework rate",
+   "name": "Purchase Order Issuance",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 90,
+   "description": "Release an approved purchase order against the agreed framework / contract rate.",
+   "reason": "",
+   "recipient": "Requesting department (via buyer)",
+   "trigger": "On approved, validated requisition",
+   "inputs": "Validated requisition · framework / contract reference",
+   "output": "Released purchase order at the agreed rate",
+   "owner": "Head of Procurement Operations",
+   "owner_confirmed": true,
+   "owner_note": "",
+   "roles": "Procurement Operations",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "PO price compliance",
+     "k": true
+    },
+    {
+     "l": "Requisition-to-PO cycle time",
+     "k": true
+    },
+    {
+     "l": "PO accuracy rate",
+     "k": false
+    }
+   ],
+   "system": "Oracle Fusion Procurement",
+   "automation": "Auto-release (RPA) + framework-rate check"
+  },
+  {
+   "process": "15-030",
+   "source_activity": "Supplier acknowledges date · long-lead expediting",
+   "name": "Supplier Delivery Confirmation & Expediting",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 78,
+   "description": "Confirm committed delivery dates and expedite at-risk or long-lead orders against the site schedule.",
+   "reason": "",
+   "recipient": "Project / site team",
+   "trigger": "On PO release or delivery-risk flag",
+   "inputs": "PO ref · delivery schedule · site need-by date",
+   "output": "Confirmed delivery date, or a recovery action",
+   "owner": null,
+   "owner_confirmed": false,
+   "owner_note": "Shared — Procurement & Project Controls",
+   "roles": "Procurement Operations · Project Controls",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "On-time delivery",
+     "k": true
+    },
+    {
+     "l": "Supplier OTIF",
+     "k": true
+    },
+    {
+     "l": "Long-lead items on plan",
+     "k": true
+    },
+    {
+     "l": "Expedite response time",
+     "k": false
+    }
+   ],
+   "system": "Supplier Portal · Oracle Fusion",
+   "automation": "Portal acknowledgement + monitoring / expediting agent"
+  },
+  {
+   "process": "15-030",
+   "source_activity": "Amendments via Procurement Change Control",
+   "name": "Purchase Order Change Request",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 80,
+   "description": "Request a controlled amendment to an existing purchase order (quantity, price or schedule).",
+   "reason": "",
+   "recipient": "Requesting department / buyer",
+   "trigger": "On a change need against a live PO",
+   "inputs": "PO ref · change reason · approval evidence",
+   "output": "Approved and applied PO amendment",
+   "owner": "Head of Procurement Operations",
+   "owner_confirmed": true,
+   "owner_note": "",
+   "roles": "Procurement Operations",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "Change control compliance",
+     "k": true
+    },
+    {
+     "l": "Amendment turnaround",
+     "k": false
+    }
+   ],
+   "system": "Oracle Fusion Change Control",
+   "automation": "Change-control workflow + policy-check agent"
+  },
+  {
+   "process": "15-030",
+   "source_activity": "Post goods receipt · PO–GRN–invoice match",
+   "name": "Goods Receipt & 3-Way Match",
+   "category": "Process activity",
+   "verdict": "activity",
+   "confidence": 72,
+   "description": "",
+   "reason": "Executed system-to-system as an internal control step within PO delivery — not independently requestable. Keep it as a process activity; its performance is already measured by the PO KPIs.",
+   "recipient": "",
+   "trigger": "",
+   "inputs": "",
+   "output": "",
+   "owner": "",
+   "owner_confirmed": false,
+   "owner_note": "",
+   "roles": "",
+   "sla": null,
+   "kpis": [],
+   "system": "",
+   "automation": ""
+  },
+  {
+   "process": "15-030",
+   "source_activity": "Close order + vendor performance review",
+   "name": "PO Closure & Vendor Performance",
+   "category": "Business",
+   "verdict": "enhance",
+   "confidence": 68,
+   "description": "",
+   "reason": "Overlaps an existing \"Order Administration / Closure\" service in the current catalog — recommend updating that record rather than creating a duplicate (reuse-before-create).",
+   "recipient": "",
+   "trigger": "",
+   "inputs": "",
+   "output": "",
+   "owner": "",
+   "owner_confirmed": false,
+   "owner_note": "",
+   "roles": "",
+   "sla": null,
+   "kpis": [],
+   "system": "",
+   "automation": ""
+  },
+  {
+   "process": "15-028",
+   "source_activity": "Issue RFx to approved suppliers",
+   "name": "Sourcing Request (RFx)",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 84,
+   "description": "Request a sourcing event (RFx) for a defined package, issued to approved suppliers via the portal.",
+   "reason": "",
+   "recipient": "Requesting department / package owner",
+   "trigger": "On an approved sourcing need",
+   "inputs": "Package scope · technical spec · approved supplier list · timeline",
+   "output": "Issued RFx with responses collected",
+   "owner": "Head of Procurement Operations",
+   "owner_confirmed": true,
+   "owner_note": "",
+   "roles": "Procurement Operations · Sourcing",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "Supplier response rate",
+     "k": true
+    },
+    {
+     "l": "RFx cycle time",
+     "k": true
+    },
+    {
+     "l": "Request completeness rate",
+     "k": false
+    }
+   ],
+   "system": "Oracle Fusion Sourcing · Supplier Portal",
+   "automation": "Portal RFx + supplier-selection copilot"
+  },
+  {
+   "process": "15-028",
+   "source_activity": "Technical compliance evaluation of submittals",
+   "name": "Technical Evaluation (TCS)",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 82,
+   "description": "Evaluate supplier technical submittals against the specification and produce the Technical Compliance Sheet.",
+   "reason": "",
+   "recipient": "Technical / engineering stakeholders",
+   "trigger": "On receipt of valid quotations",
+   "inputs": "Technical submittals · specification · evaluation criteria",
+   "output": "Completed TCS with scored compliance",
+   "owner": null,
+   "owner_confirmed": false,
+   "owner_note": "Technical Evaluation function — not in approved owner data",
+   "roles": "Technical Evaluation · Engineering",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "Technical evaluation turnaround",
+     "k": true
+    },
+    {
+     "l": "Quotation validity rate",
+     "k": true
+    },
+    {
+     "l": "Evaluation quality",
+     "k": false
+    }
+   ],
+   "system": "Oracle Fusion · TCS",
+   "automation": "AI evaluation agent drafts the TCS; engineers sign off exceptions"
+  },
+  {
+   "process": "15-028",
+   "source_activity": "New-supplier pre-qualification",
+   "name": "Supplier Qualification",
+   "category": "Business",
+   "verdict": "service",
+   "confidence": 75,
+   "description": "Qualify a new supplier (registration, compliance, financial screening) before they can be invited.",
+   "reason": "",
+   "recipient": "Buyer / sourcing lead",
+   "trigger": "On first-time supplier participation",
+   "inputs": "Supplier registration · compliance documents · financials",
+   "output": "Qualified supplier or a rejection with reason",
+   "owner": null,
+   "owner_confirmed": false,
+   "owner_note": "Vendor Management — confirm owner",
+   "roles": "Procurement Operations · Vendor Management",
+   "sla": null,
+   "kpis": [
+    {
+     "l": "Single-source justification rate",
+     "k": true
+    },
+    {
+     "l": "Qualification cycle time",
+     "k": false
+    }
+   ],
+   "system": "Supplier Portal · Oracle Fusion",
+   "automation": "Pre-screening agent recommends; buyer approves"
+  },
+  {
+   "process": "15-028",
+   "source_activity": "Open & log supplier quotations",
+   "name": "Quotation Intake & Logging",
+   "category": "Process activity",
+   "verdict": "activity",
+   "confidence": 70,
+   "description": "",
+   "reason": "An internal intake step inside the Sourcing Request service — not separately requestable. Keep as a process activity.",
+   "recipient": "",
+   "trigger": "",
+   "inputs": "",
+   "output": "",
+   "owner": "",
+   "owner_confirmed": false,
+   "owner_note": "",
+   "roles": "",
+   "sla": null,
+   "kpis": [],
+   "system": "",
+   "automation": ""
+  }
+ ]
+}
