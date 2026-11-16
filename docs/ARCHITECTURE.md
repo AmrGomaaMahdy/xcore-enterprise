@@ -106,10 +106,10 @@ Main endpoints:
 | Area | Endpoints |
 |---|---|
 | Auth | `GET auth/csrf/` · `POST auth/login/` · `POST auth/logout/` · `GET auth/me/` |
-| Library | `processes/nodes/` (+ `tree/`, `{code}/raci/`, `quality/`, `sod/`, `history/`) · `processes/versions/` (+ `new-draft/`, `model/`, `submit/`, `export/`, `parsed/`) · `processes/activities/` (+ `heatmap/`) · `processes/lanes/` · `processes/risks/` · `processes/documents/` · `processes/search/` |
+| Library | `processes/nodes/` (POST creates a child; a new L3 gets a To-Be v1.0 starter draft) (+ `tree/`, `{code}/raci/`, `quality/`, `sod/`, `history/`) · `processes/versions/` (+ `compare/?a=&b=`, `new-draft/`, `model/`, `submit/`, `export/`, `parsed/`) · `processes/activities/` (+ `heatmap/`) · `processes/lanes/` · `processes/risks/` · `processes/documents/` · `processes/search/` |
 | KPIs | `kpis/objectives/` · `kpis/library/` (+ `{id}/weights/`, `{id}/calculation/`) · `kpis/links/` · `kpis/targets/` (+ `submit/`) · `kpis/alignment/` · `kpis/cascade/` |
 | Catalog | `catalog/services/` (+ `submit/`) · `catalog/generator/?process=` · `catalog/generator/{code}/adopt/` |
-| Governance | `governance/approvals/` (+ `approve/`, `reject/`, `withdraw/`) · `governance/impact/?type=&ref=` · `governance/audit/` |
+| Governance | `governance/approvals/` (+ `stats/`, `{id}/context/`, `approve/`, `reject/`, `withdraw/`) · `governance/impact/?type=&ref=` · `governance/audit/` |
 | HCM | `hcm/business-units/` · `hcm/job-families/` · `hcm/sub-job-families/` · `hcm/jobs/` · `hcm/employees/` |
 | Ops | `health/` (public) · `overview/` |
 

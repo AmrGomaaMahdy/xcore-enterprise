@@ -20,6 +20,8 @@ export interface TreeNode {
   status: string;
   order: number;
   owner: string;
+  child_count?: number;
+  activity_count?: number;
 }
 
 export interface ProcessNode extends TreeNode {
@@ -360,6 +362,19 @@ export interface SubJobFamily {
 }
 
 export interface Overview {
+  processes: {
+    code: string;
+    name: string;
+    parent: string | null;
+    owner: string;
+    criticality: string;
+    activities: number;
+    kpis: number;
+    risks: number;
+    tobe: string | null;
+    quality: number;
+  }[];
+  domains: { code: string; name: string; functions: number; processes: number }[];
   nodes: Record<string, number>;
   versions: Record<string, number>;
   activities: { total: number; traceable: number; by_automation: Record<string, number> };
@@ -381,4 +396,70 @@ export interface HeatRow {
   Automated: number;
   traceable: number;
   total: number;
+}
+
+export interface DiffTask {
+  task_id: string;
+  name: string;
+  bpmn_type: string;
+  lane: string;
+  parent_name: string;
+}
+
+export interface VersionDiff {
+  base: { id: number; label: string; status: string; tasks: number; lanes: number };
+  target: { id: number; label: string; status: string; tasks: number; lanes: number };
+  added: DiffTask[];
+  removed: DiffTask[];
+  changed: {
+    task_id: string;
+    name: string;
+    fields: string[];
+    before: Record<string, string>;
+    after: Record<string, string>;
+  }[];
+  unchanged: number;
+  lanes_added: string[];
+  lanes_removed: string[];
+}
+
+export interface ApprovalContext {
+  entity_type: ApprovalRequest['entity_type'];
+  steps: { label: string; state: 'done' | 'current' | 'todo' | 'failed'; by?: string; at?: string | null }[];
+  version?: { id: number; label: string; status: string; note: string };
+  live?: { id: number; label: string } | null;
+  diff?: VersionDiff | null;
+  quality?: QualityCheck[];
+  target?: {
+    kpi: string;
+    kpi_name: string;
+    unit: string;
+    direction: string;
+    period: string;
+    green: string;
+    amber: string;
+    reason: string;
+    actual: string | null;
+    baseline: string | null;
+  };
+  live_target?: { period: string; green: string; amber: string } | null;
+  service?: {
+    service_id: string;
+    name: string;
+    owner: string;
+    sla: string;
+    description: string;
+    task_ids: string[];
+    kpis: string[];
+    open_issues: string[];
+  };
+}
+
+export interface ApprovalStats {
+  by_status: Record<string, number>;
+  pending_by_type: Record<string, number>;
+  pending_by_process: Record<string, number>;
+  oldest_pending_days: number;
+  avg_pending_days: number;
+  overdue: number;
 }

@@ -36,6 +36,37 @@ class ApprovalRequestViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, v
         self.get_object()
         return self._decide(request, pk, False)
 
+    @extend_schema(responses=OpenApiTypes.OBJECT)
+    @action(detail=True)
+    def context(self, request, pk=None):
+        """Decision context: diff against the live version, quality checks, current vs proposed target."""
+        return Response(services.context(self.get_object()))
+
+    @extend_schema(responses=OpenApiTypes.OBJECT)
+    @action(detail=False)
+    def stats(self, request):
+        from django.db.models import Count
+        from django.utils import timezone
+
+        qs = ApprovalRequest.objects.all()
+        pending = list(qs.filter(status="pending").values_list("submitted_at", flat=True))
+        now = timezone.now()
+        ages = [(now - at).total_seconds() / 86400 for at in pending]
+        return Response(
+            {
+                "by_status": {r["status"]: r["n"] for r in qs.values("status").annotate(n=Count("id"))},
+                "pending_by_type": {
+                    r["entity_type"]: r["n"] for r in qs.filter(status="pending").values("entity_type").annotate(n=Count("id"))
+                },
+                "pending_by_process": {
+                    r["process_code"]: r["n"] for r in qs.filter(status="pending").values("process_code").annotate(n=Count("id"))
+                },
+                "oldest_pending_days": round(max(ages), 1) if ages else 0,
+                "avg_pending_days": round(sum(ages) / len(ages), 1) if ages else 0,
+                "overdue": sum(1 for a in ages if a > 5),
+            }
+        )
+
     @action(detail=True, methods=["post"])
     def withdraw(self, request, pk=None):
         self.get_object()

@@ -8,14 +8,12 @@ import LoginPage from '@/pages/LoginPage';
 
 const OverviewPage = lazy(() => import('@/pages/OverviewPage'));
 const ProcessLibraryPage = lazy(() => import('@/pages/library/ProcessLibraryPage'));
-const ActivityMapPage = lazy(() => import('@/pages/ActivityMapPage'));
-const JobArchitecturePage = lazy(() => import('@/pages/JobArchitecturePage'));
 const KpiLibraryPage = lazy(() => import('@/pages/kpis/KpiLibraryPage'));
 const KpiAlignmentPage = lazy(() => import('@/pages/kpis/KpiAlignmentPage'));
 const KpiCascadePage = lazy(() => import('@/pages/kpis/KpiCascadePage'));
 const ServiceCatalogPage = lazy(() => import('@/pages/catalog/ServiceCatalogPage'));
 const ImpactPage = lazy(() => import('@/pages/ImpactPage'));
-const ApprovalsPage = lazy(() => import('@/pages/ApprovalsPage'));
+const GovernancePage = lazy(() => import('@/pages/governance/GovernancePage'));
 const AuditPage = lazy(() => import('@/pages/AuditPage'));
 
 export default function App() {
@@ -32,14 +30,13 @@ export default function App() {
                   <Route index element={<OverviewPage />} />
                   <Route path="library" element={<ProcessLibraryPage />} />
                   <Route path="library/:code" element={<ProcessLibraryPage />} />
-                  <Route path="activity-map" element={<ActivityMapPage />} />
-                  <Route path="job-architecture" element={<JobArchitecturePage />} />
                   <Route path="kpis" element={<KpiLibraryPage />} />
                   <Route path="kpis/alignment" element={<KpiAlignmentPage />} />
                   <Route path="kpis/cascade" element={<KpiCascadePage />} />
                   <Route path="catalog" element={<ServiceCatalogPage />} />
                   <Route path="impact" element={<ImpactPage />} />
-                  <Route path="approvals" element={<ApprovalsPage />} />
+                  <Route path="governance" element={<GovernancePage />} />
+                  <Route path="approvals" element={<GovernancePage />} />
                   <Route path="audit" element={<AuditPage />} />
                   <Route path="*" element={<div className="empty">Page not found.</div>} />
                 </Routes>

@@ -161,3 +161,70 @@ def withdraw(req_id: int, user) -> ApprovalRequest:
     req.save(update_fields=["status"])
     audit.record(user, "withdraw", req.entity_type, req.entity_pk, f"Withdrew: {req.title}", process_code=req.process_code)
     return req
+
+
+# ---------------------------------------------------------------- decision context
+def context(req: ApprovalRequest) -> dict:
+    """What exactly the approver is deciding on: the change against what is live today."""
+    out: dict = {"entity_type": req.entity_type, "steps": _steps(req)}
+    if req.entity_type == ET.PROCESS_VERSION:
+        version = ProcessVersion.objects.select_related("process", "based_on").filter(pk=req.entity_pk).first()
+        if version is None:
+            return out
+        live = process_services.current_version(version.process, version.kind)
+        base = version.based_on or live
+        out["version"] = {"id": version.pk, "label": f"{version.kind} v{version.version}", "status": version.status, "note": version.note}
+        out["live"] = {"id": live.pk, "label": f"{live.kind} v{live.version}"} if live else None
+        if base and base.pk != version.pk:
+            try:
+                out["diff"] = process_services.compare_versions(base, version)
+            except Exception:  # noqa: BLE001 — an unparsable draft still shows the request
+                out["diff"] = None
+        out["quality"] = process_services.quality_checklist(version.process)
+    elif req.entity_type == ET.KPI_TARGET:
+        t = KpiTarget.objects.select_related("kpi").filter(pk=req.entity_pk).first()
+        if t:
+            live = KpiTarget.objects.filter(kpi=t.kpi, scope=t.scope, status=KpiTarget.Status.ACTIVE).order_by("-period").first()
+            out["target"] = {
+                "kpi": t.kpi.kpi_id,
+                "kpi_name": t.kpi.name,
+                "unit": t.kpi.unit,
+                "direction": t.kpi.direction,
+                "period": t.period,
+                "green": t.green,
+                "amber": t.amber,
+                "reason": t.reason,
+                "actual": t.kpi.actual,
+                "baseline": t.kpi.baseline,
+            }
+            out["live_target"] = {"period": live.period, "green": live.green, "amber": live.amber} if live else None
+    elif req.entity_type == ET.SERVICE:
+        s = Service.objects.filter(pk=req.entity_pk).first()
+        if s:
+            out["service"] = {
+                "service_id": s.service_id,
+                "name": s.name,
+                "owner": s.owner,
+                "sla": s.sla,
+                "description": s.description,
+                "task_ids": s.task_ids,
+                "kpis": list(s.kpis.values_list("kpi_id", flat=True)),
+                "open_issues": s.open_issues,
+            }
+    return out
+
+
+def _steps(req: ApprovalRequest) -> list[dict]:
+    done = req.status != ApprovalRequest.Status.PENDING
+    final = {"approved": "Approved", "rejected": "Rejected", "withdrawn": "Withdrawn"}.get(req.status, "Decision")
+    return [
+        {"label": "Drafted", "state": "done"},
+        {"label": "Submitted", "state": "done", "by": req.submitted_label, "at": req.submitted_at},
+        {"label": "Under review", "state": "done" if done else "current"},
+        {
+            "label": final,
+            "state": ("done" if req.status == "approved" else "failed") if done else "todo",
+            "by": req.decided_label,
+            "at": req.decided_at,
+        },
+    ]

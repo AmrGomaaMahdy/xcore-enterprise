@@ -4,9 +4,12 @@ from .models import Activity, Lane, ProcessDocument, ProcessNode, ProcessVersion
 
 
 class ProcessNodeTreeSerializer(serializers.ModelSerializer):
+    child_count = serializers.IntegerField(read_only=True, default=0)
+    activity_count = serializers.IntegerField(read_only=True, default=0)
+
     class Meta:
         model = ProcessNode
-        fields = ["id", "code", "level", "parent", "name", "status", "order", "owner"]
+        fields = ["id", "code", "level", "parent", "name", "status", "order", "owner", "child_count", "activity_count"]
 
 
 class ProcessNodeSerializer(serializers.ModelSerializer):

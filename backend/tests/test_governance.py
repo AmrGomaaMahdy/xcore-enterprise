@@ -59,3 +59,14 @@ def test_impact_kpi_reaches_objective(viewer):
     data = viewer.get("/api/v1/governance/impact/", {"type": "kpi", "ref": "15-030-KPI-02"}).json()
     objectives = next(s for s in data["sections"] if s["title"].startswith("Strategic"))
     assert {"code": "OBJ-01"} in objectives["items"]
+
+
+@pytest.mark.django_db
+def test_approval_context_shows_model_diff(approver):
+    req = ApprovalRequest.objects.get(entity_type="process_version", status="pending")
+    ctx = approver.get(f"/api/v1/governance/approvals/{req.pk}/context/").json()
+    assert ctx["version"]["label"] == "To-Be v3.1"
+    assert ctx["diff"]["base"]["label"] == "To-Be v3.0"
+    assert ctx["steps"][2]["state"] == "current"
+    stats = approver.get("/api/v1/governance/approvals/stats/").json()
+    assert stats["by_status"]["pending"] == 3

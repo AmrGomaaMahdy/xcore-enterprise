@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import {
   Boxes,
-  CheckSquare,
   ClipboardList,
   GitBranch,
-  Grid3x3,
   History,
   LayoutDashboard,
   Library,
@@ -12,8 +10,8 @@ import {
   Network,
   PanelLeft,
   Radar,
+  ShieldCheck,
   Target,
-  Users,
 } from 'lucide-react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 
@@ -27,8 +25,14 @@ const NAV = [
     items: [
       { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
       { to: '/library', label: 'Business Process Library', icon: Library },
-      { to: '/activity-map', label: 'Activity automation map', icon: Grid3x3 },
-      { to: '/job-architecture', label: 'Job architecture', icon: Users },
+    ],
+  },
+  {
+    group: 'Process Governance',
+    items: [
+      { to: '/governance', label: 'Governance & approvals', icon: ShieldCheck, badge: true },
+      { to: '/impact', label: 'Impact analysis', icon: Radar },
+      { to: '/audit', label: 'Audit trail', icon: History },
     ],
   },
   {
@@ -40,14 +44,6 @@ const NAV = [
     ],
   },
   { group: 'Services', items: [{ to: '/catalog', label: 'Service Catalog', icon: Boxes }] },
-  {
-    group: 'Governance',
-    items: [
-      { to: '/impact', label: 'Impact analysis', icon: Radar },
-      { to: '/approvals', label: 'Approvals', icon: CheckSquare, badge: true },
-      { to: '/audit', label: 'Audit trail', icon: History },
-    ],
-  },
 ];
 
 export function AppShell() {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, Download, FilePlus2, Pencil, Plus, Send, Trash2, XCircle } from 'lucide-react';
+import { CheckCircle2, FilePlus2, Pencil, Plus, Send, Trash2, XCircle } from 'lucide-react';
 
 import { api, errorText } from '@/api/client';
 import {
@@ -12,7 +12,6 @@ import {
   useRisks,
   useSubJobFamilies,
   useTargets,
-  useVersion,
   useVersions,
 } from '@/api/hooks';
 import type {
@@ -28,9 +27,20 @@ import type {
   Risk,
   SodRow,
 } from '@/api/types';
-import { Badge, Empty, ErrorBox, fmtDate, fmtDateTime, KV, Modal, SearchBox, Select, Spinner } from '@/components/ui';
-
-import { BpmnPanel } from './BpmnPanel';
+import { Donut, Gauge, HBars } from '@/components/charts';
+import {
+  Badge,
+  Empty,
+  ErrorBox,
+  fmtDate,
+  fmtDateTime,
+  KV,
+  Modal,
+  SearchBox,
+  Select,
+  Spinner,
+  Stat,
+} from '@/components/ui';
 
 const AUTOMATIONS: Automation[] = ['Manual', 'Workflow', 'Assisted', 'Automated'];
 
@@ -178,56 +188,7 @@ function NodeForm({ node, onClose }: { node: ProcessNode; onClose: () => void })
 }
 
 // =============================================================== Model
-export function ModelTab({ node, canEdit }: { node: ProcessNode; canEdit: boolean }) {
-  const versions = useVersions(node.code);
-  const list = versions.data ?? [];
-  const pick = list.find((v) => v.kind === 'To-Be' && v.status === 'Approved') ?? list[0];
-  const [chosen, setChosen] = useState<number | null>(null);
-  const id = chosen ?? pick?.id ?? null;
-  const version = useVersion(id);
-  const save = useAction(
-    (xml: string) => api.put(`/processes/versions/${id}/model/`, { bpmn_xml: xml }),
-    [['version'], ['versions']],
-  );
-  const [ok, setOk] = useState<string | null>(null);
-
-  if (versions.isLoading) return <Spinner />;
-  if (!list.length) return <Empty>No BPMN model yet.</Empty>;
-  const v = version.data;
-  return (
-    <section className="card">
-      <div className="card__head">
-        <h3>BPMN 2.0 model</h3>
-        <div className="toolbar" style={{ margin: 0 }}>
-          <Select
-            label="Version"
-            allLabel={null}
-            value={String(id ?? '')}
-            onChange={(x) => setChosen(Number(x))}
-            options={list.map((x) => ({ value: String(x.id), label: `${x.kind} v${x.version} · ${x.status}` }))}
-          />
-          {v && (
-            <a className="btn btn--ghost btn--sm" href={api.url(`/processes/versions/${v.id}/export/`)}>
-              <Download size={14} /> Export .bpmn
-            </a>
-          )}
-        </div>
-      </div>
-      <Feedback error={save.error} ok={ok} />
-      {v?.bpmn_xml ? (
-        <BpmnPanel
-          xml={v.bpmn_xml}
-          editable={canEdit && v.status === 'Draft'}
-          saving={save.isPending}
-          onSave={(xml) => save.mutate(xml, { onSuccess: () => setOk('Model saved to the draft.') })}
-        />
-      ) : (
-        <Spinner />
-      )}
-      {v?.note && <p className="muted small">{v.note}</p>}
-    </section>
-  );
-}
+export { ModelTab } from './ModelTab';
 
 // =============================================================== Activities (L4)
 export function ActivitiesTab({ node, canEdit }: { node: ProcessNode; canEdit: boolean }) {
@@ -680,6 +641,7 @@ export function RisksTab({ node, canEdit }: { node: ProcessNode; canEdit: boolea
           </button>
         </div>
       )}
+      {data && data.length > 0 && <RiskInsights risks={data} />}
       {!data?.length ? (
         <Empty>No risks recorded.</Empty>
       ) : (
@@ -805,6 +767,119 @@ function RiskForm({ risk, onClose }: { risk: Partial<Risk>; onClose: () => void 
   );
 }
 
+const RISK_STATUS_COLOR: Record<string, string> = {
+  Open: 'var(--bad)',
+  Mitigated: 'var(--ok)',
+  Accepted: 'var(--info)',
+};
+const CONTROL_COLOR: Record<string, string> = {
+  Preventive: 'var(--l1)',
+  Detective: 'var(--l2)',
+  Corrective: 'var(--l3)',
+};
+
+function band(score: number) {
+  return score >= 15 ? 'critical' : score >= 10 ? 'high' : score >= 5 ? 'medium' : 'low';
+}
+
+/** Likelihood × impact heat map, status donut and control mix. */
+function RiskInsights({ risks }: { risks: Risk[] }) {
+  const [hover, setHover] = useState<string | null>(null);
+  const avg = risks.reduce((a, r) => a + r.rating, 0) / risks.length;
+  const high = risks.filter((r) => r.rating >= 10).length;
+  const mitigated = risks.filter((r) => r.status === 'Mitigated').length;
+  return (
+    <div className="risk-insights">
+      <div className="card risk-matrix">
+        <div className="card__head">
+          <h3>Risk heat map</h3>
+          <span className="small muted">likelihood × impact</span>
+        </div>
+        <div className="heatmap">
+          <div className="heatmap__ylabel">Likelihood</div>
+          <div className="heatmap__grid">
+            {[5, 4, 3, 2, 1].map((l) => (
+              <div key={l} className="heatmap__row">
+                <span className="heatmap__axis">{l}</span>
+                {[1, 2, 3, 4, 5].map((i) => {
+                  const here = risks.filter((r) => r.likelihood === l && r.impact === i);
+                  return (
+                    <div
+                      key={i}
+                      className={`heatmap__cell heatmap__cell--${band(l * i)} ${here.length ? 'has-risk' : ''}`}
+                      title={`Likelihood ${l} × impact ${i} = ${l * i}`}
+                    >
+                      {here.map((r) => (
+                        <span
+                          key={r.id}
+                          className={`risk-dot ${hover === r.risk_id ? 'is-hover' : ''}`}
+                          onMouseEnter={() => setHover(r.risk_id)}
+                          onMouseLeave={() => setHover(null)}
+                          title={`${r.risk_id} · ${r.title}`}
+                        >
+                          {r.risk_id.replace(/^R-/, '')}
+                        </span>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+            <div className="heatmap__row heatmap__row--axis">
+              <span className="heatmap__axis" />
+              {[1, 2, 3, 4, 5].map((i) => (
+                <span key={i} className="heatmap__axis">
+                  {i}
+                </span>
+              ))}
+            </div>
+            <div className="heatmap__xlabel">Impact</div>
+          </div>
+        </div>
+        <div className="legend">
+          {['low', 'medium', 'high', 'critical'].map((b) => (
+            <span key={b}>
+              <i className={`heatmap__cell--${b}`} />
+              {b}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="risk-side">
+        <div className="grid grid--stats">
+          <Stat label="Risks" value={risks.length} />
+          <Stat label="High / critical" value={high} tone={high ? 'warn' : undefined} />
+          <Stat label="Avg. rating" value={avg.toFixed(1)} hint="of 25" />
+          <Stat label="Mitigated" value={`${Math.round((mitigated / risks.length) * 100)}%`} tone="gold" />
+        </div>
+        <div className="card">
+          <h3>By status</h3>
+          <Donut
+            size={130}
+            thickness={18}
+            data={['Open', 'Mitigated', 'Accepted'].map((s) => ({
+              label: s,
+              value: risks.filter((r) => r.status === s).length,
+              color: RISK_STATUS_COLOR[s],
+            }))}
+            sub="risks"
+          />
+        </div>
+        <div className="card">
+          <h3>Control mix</h3>
+          <HBars
+            data={['Preventive', 'Detective', 'Corrective'].map((c) => ({
+              label: c,
+              value: risks.filter((r) => r.control_type === c).length,
+              color: CONTROL_COLOR[c],
+            }))}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // =============================================================== Documents
 export function DocumentsTab({ node, canEdit }: { node: ProcessNode; canEdit: boolean }) {
   const { data, isLoading } = useDocuments(node.code);
@@ -903,31 +978,69 @@ export function DocumentsTab({ node, canEdit }: { node: ProcessNode; canEdit: bo
 }
 
 // =============================================================== Quality
+const QUALITY_GROUPS: { name: string; ids: string[] }[] = [
+  { name: 'Ownership', ids: ['owner'] },
+  { name: 'Model', ids: ['tobe', 'lanes', 'lane_use'] },
+  { name: 'Systems', ids: ['systems'] },
+  { name: 'Measurement', ids: ['kpi', 'measure', 'targets'] },
+  { name: 'Controls', ids: ['risks', 'sod'] },
+];
+
 export function QualityTab({ node }: { node: ProcessNode }) {
   const { data, isLoading } = useNodeAction<QualityCheck[]>(node.code, 'quality');
   if (isLoading) return <Spinner />;
-  const passed = (data ?? []).filter((c) => c.ok).length;
+  const checks = data ?? [];
+  const passed = checks.filter((c) => c.ok).length;
+  const score = checks.length ? Math.round((passed / checks.length) * 100) : 0;
+  const verdict = score >= 90 ? 'Release-ready' : score >= 60 ? 'Needs attention' : 'Not ready';
   return (
-    <section className="card">
-      <div className="card__head">
-        <h3>Release-readiness checklist</h3>
-        <Badge tone={passed === data?.length ? 'ok' : 'warn'}>
-          {passed} / {data?.length} passed
-        </Badge>
-      </div>
-      {(data ?? []).map((c) => (
-        <div className="check" key={c.id}>
-          {c.ok ? (
-            <CheckCircle2 className="check__icon--ok" size={18} />
-          ) : (
-            <XCircle className="check__icon--bad" size={18} />
-          )}
-          <div>
-            <div>{c.label}</div>
-            {c.detail && <div className="small muted">{c.detail}</div>}
+    <section className="quality">
+      <div className="quality__top">
+        <div className="card quality__gauge">
+          <Gauge value={score} label="Quality score" size={220} />
+          <div className="quality__verdict">
+            <Badge tone={score >= 90 ? 'ok' : score >= 60 ? 'warn' : 'bad'}>{verdict}</Badge>
+            <span className="muted small">
+              {passed} of {checks.length} checks passed
+            </span>
           </div>
         </div>
-      ))}
+        <div className="card quality__groups">
+          <h3>Score by area</h3>
+          {QUALITY_GROUPS.map((g) => {
+            const items = checks.filter((c) => g.ids.includes(c.id));
+            const ok = items.filter((c) => c.ok).length;
+            const pct = items.length ? Math.round((ok / items.length) * 100) : 100;
+            return (
+              <div key={g.name} className="qgroup">
+                <span className="qgroup__name">{g.name}</span>
+                <div className="qgroup__track">
+                  <span
+                    style={{
+                      width: `${pct}%`,
+                      background: pct === 100 ? 'var(--ok)' : pct >= 50 ? 'var(--warn)' : 'var(--bad)',
+                    }}
+                  />
+                </div>
+                <span className="qgroup__val">
+                  {ok}/{items.length}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="check-grid">
+        {checks.map((c) => (
+          <div className={`check-card ${c.ok ? 'is-ok' : 'is-bad'}`} key={c.id}>
+            {c.ok ? <CheckCircle2 size={20} /> : <XCircle size={20} />}
+            <div>
+              <div className="check-card__label">{c.label}</div>
+              {c.detail && <div className="small muted">{c.detail}</div>}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

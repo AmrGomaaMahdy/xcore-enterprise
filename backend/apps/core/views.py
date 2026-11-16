@@ -39,9 +39,40 @@ class OverviewView(APIView):
         def counts(qs, field):
             return {row[field]: row["n"] for row in qs.values(field).annotate(n=Count("id"))}
 
+        from apps.processes.services import current_version, quality_checklist
+
         acts = Activity.objects.filter(in_current_model=True)
+        processes = []
+        for p in ProcessNode.objects.filter(level=3).select_related("parent"):
+            checks = quality_checklist(p)
+            tobe = current_version(p)
+            processes.append(
+                {
+                    "code": p.code,
+                    "name": p.name,
+                    "parent": p.parent.code if p.parent else None,
+                    "owner": p.owner,
+                    "criticality": p.criticality,
+                    "activities": p.activities.filter(in_current_model=True).count(),
+                    "kpis": Kpi.objects.filter(node=p).count(),
+                    "risks": p.risks.count(),
+                    "tobe": f"v{tobe.version}" if tobe else None,
+                    "quality": round(100 * sum(c["ok"] for c in checks) / len(checks)) if checks else 0,
+                }
+            )
+        domains = [
+            {
+                "code": d.code,
+                "name": d.name,
+                "functions": d.children.count(),
+                "processes": ProcessNode.objects.filter(level=3, parent__parent__parent=d).count(),
+            }
+            for d in ProcessNode.objects.filter(level=0)
+        ]
         return Response(
             {
+                "processes": processes,
+                "domains": domains,
                 "nodes": {str(k): v for k, v in counts(ProcessNode.objects.all(), "level").items()},
                 "versions": counts(ProcessVersion.objects.all(), "status"),
                 "activities": {

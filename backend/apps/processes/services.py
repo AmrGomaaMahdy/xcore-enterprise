@@ -196,3 +196,82 @@ def quality_checklist(process: ProcessNode) -> list[dict]:
         check("risks", "Every risk has a control", not no_control, ", ".join(no_control)),
         check("sod", "No segregation-of-duties conflict", not conflicts, ", ".join(c["rule"] for c in conflicts)),
     ]
+
+
+# ---------------------------------------------------------------- new nodes & starter models
+LEVEL_CHILD = {0: "function", 1: "sub-function", 2: "process"}
+
+
+def starter_bpmn(code: str, name: str) -> str:
+    """A minimal, valid BPMN 2.0 model (start → first activity → end) with diagram layout."""
+    from xml.sax.saxutils import escape
+
+    pid = "P_" + "".join(ch if ch.isalnum() else "_" for ch in code)
+    n = escape(name, {'"': "&quot;"})
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Defs_{pid}" targetNamespace="http://al-ayuni.com/xcore" exporter="X-Core" exporterVersion="1.1">
+  <bpmn:process id="{pid}" name="{n}" isExecutable="false">
+    <bpmn:startEvent id="S-{code}" name="Trigger"><bpmn:outgoing>F1</bpmn:outgoing></bpmn:startEvent>
+    <bpmn:userTask id="T-{code}-01" name="First activity"><bpmn:incoming>F1</bpmn:incoming><bpmn:outgoing>F2</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="E-{code}" name="Outcome"><bpmn:incoming>F2</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="F1" sourceRef="S-{code}" targetRef="T-{code}-01" />
+    <bpmn:sequenceFlow id="F2" sourceRef="T-{code}-01" targetRef="E-{code}" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="D_{pid}"><bpmndi:BPMNPlane id="PL_{pid}" bpmnElement="{pid}">
+    <bpmndi:BPMNShape id="S-{code}_di" bpmnElement="S-{code}"><dc:Bounds x="160" y="122" width="36" height="36" /></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="T-{code}-01_di" bpmnElement="T-{code}-01"><dc:Bounds x="250" y="100" width="120" height="80" /></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="E-{code}_di" bpmnElement="E-{code}"><dc:Bounds x="432" y="122" width="36" height="36" /></bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="F1_di" bpmnElement="F1"><di:waypoint x="196" y="140" /><di:waypoint x="250" y="140" /></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="F2_di" bpmnElement="F2"><di:waypoint x="370" y="140" /><di:waypoint x="432" y="140" /></bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>
+</bpmn:definitions>
+"""
+
+
+def on_node_created(node: ProcessNode, user) -> None:
+    """New L3 processes start with a To-Be 1.0 draft so the owner can model immediately."""
+    if node.level == ProcessNode.Level.PROCESS and not node.versions.exists():
+        ProcessVersion.objects.create(
+            process=node,
+            kind=ProcessVersion.Kind.TO_BE,
+            version="1.0",
+            status=ProcessVersion.Status.DRAFT,
+            note="Starter model created with the process",
+            bpmn_xml=starter_bpmn(node.code, node.name),
+            created_by=user,
+            updated_by=user,
+        )
+
+
+# ---------------------------------------------------------------- compare two models
+def compare_versions(a: ProcessVersion, b: ProcessVersion) -> dict:
+    """Activity-level diff from version a (base) to version b (target)."""
+    ma, mb = bpmn.parse(a.bpmn_xml), bpmn.parse(b.bpmn_xml)
+    ta = {t.task_id: t for t in ma.tasks}
+    tb = {t.task_id: t for t in mb.tasks}
+    added = [tb[k].__dict__ for k in tb if k not in ta]
+    removed = [ta[k].__dict__ for k in ta if k not in tb]
+    changed = []
+    for k in ta.keys() & tb.keys():
+        fields = [f for f in ("name", "bpmn_type", "lane", "parent_name") if getattr(ta[k], f) != getattr(tb[k], f)]
+        if fields:
+            changed.append(
+                {
+                    "task_id": k,
+                    "fields": fields,
+                    "before": {f: getattr(ta[k], f) for f in fields},
+                    "after": {f: getattr(tb[k], f) for f in fields},
+                    "name": tb[k].name,
+                }
+            )
+    changed.sort(key=lambda c: c["task_id"])
+    return {
+        "base": {"id": a.pk, "label": f"{a.kind} v{a.version}", "status": a.status, "tasks": len(ma.tasks), "lanes": len(ma.lanes)},
+        "target": {"id": b.pk, "label": f"{b.kind} v{b.version}", "status": b.status, "tasks": len(mb.tasks), "lanes": len(mb.lanes)},
+        "added": added,
+        "removed": removed,
+        "changed": changed,
+        "unchanged": len(ta.keys() & tb.keys()) - len(changed),
+        "lanes_added": [x for x in mb.lanes if x not in ma.lanes],
+        "lanes_removed": [x for x in ma.lanes if x not in mb.lanes],
+    }

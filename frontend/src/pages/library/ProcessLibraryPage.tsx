@@ -1,12 +1,27 @@
-import { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
+import {
+  Activity as ActivityIcon,
+  BadgeCheck,
+  ChevronRight,
+  FileText,
+  GitCompareArrows,
+  History,
+  Info,
+  Plus,
+  ShieldAlert,
+  Target,
+  Users,
+  Workflow,
+} from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useNode, useTree } from '@/api/hooks';
+import type { TreeNode } from '@/api/types';
 import { useAuth } from '@/auth/AuthContext';
-import { Badge, Empty, ErrorBox, PageHeader, Spinner, Tabs } from '@/components/ui';
+import { Badge, Empty, ErrorBox, Spinner, Tabs } from '@/components/ui';
 
-import { ProcessTree } from './ProcessTree';
+import { AddNodeModal } from './AddNodeModal';
+import { LEVEL_META, ProcessTree } from './ProcessTree';
 import {
   ActivitiesTab,
   DocumentsTab,
@@ -34,6 +49,8 @@ type TabId =
   | 'versions'
   | 'history';
 
+const I = 15;
+
 export default function ProcessLibraryPage() {
   const { code } = useParams();
   const navigate = useNavigate();
@@ -44,96 +61,175 @@ export default function ProcessLibraryPage() {
   const { user } = useAuth();
   const canEdit = !!user?.can_edit;
   const [tab, setTab] = useState<TabId>('main');
+  const [adding, setAdding] = useState<{ parent: TreeNode | null } | null>(null);
 
   if (tree.isLoading) return <Spinner />;
   if (tree.error) return <ErrorBox error={tree.error} />;
 
   const n = node.data;
   const isProcess = n?.level === 3;
-  const tabs: { id: TabId; label: string; count?: number }[] = isProcess
+  const tabs: { id: TabId; label: string; count?: number; icon?: ReactNode }[] = isProcess
     ? [
-        { id: 'main', label: 'Main data' },
-        { id: 'model', label: 'Model' },
-        { id: 'activities', label: 'Activities (L4)', count: n?.counts.activities },
-        { id: 'lanes', label: 'Lanes' },
-        { id: 'kpis', label: 'KPIs & targets' },
-        { id: 'raci', label: 'RACI' },
-        { id: 'risks', label: 'Risks & controls', count: n?.counts.risks },
-        { id: 'documents', label: 'Documents', count: n?.counts.documents },
-        { id: 'quality', label: 'Quality' },
-        { id: 'versions', label: 'Versions', count: n?.counts.versions },
-        { id: 'history', label: 'History' },
+        { id: 'main', label: 'Main data', icon: <Info size={I} /> },
+        { id: 'model', label: 'Model', icon: <Workflow size={I} /> },
+        { id: 'activities', label: 'Activities (L4)', count: n?.counts.activities, icon: <ActivityIcon size={I} /> },
+        { id: 'lanes', label: 'Lanes', icon: <Users size={I} /> },
+        { id: 'kpis', label: 'KPIs & targets', icon: <Target size={I} /> },
+        { id: 'raci', label: 'RACI', icon: <GitCompareArrows size={I} /> },
+        { id: 'risks', label: 'Risks & controls', count: n?.counts.risks, icon: <ShieldAlert size={I} /> },
+        { id: 'documents', label: 'Documents', count: n?.counts.documents, icon: <FileText size={I} /> },
+        { id: 'quality', label: 'Quality', icon: <BadgeCheck size={I} /> },
+        { id: 'versions', label: 'Versions', count: n?.counts.versions, icon: <GitCompareArrows size={I} /> },
+        { id: 'history', label: 'History', icon: <History size={I} /> },
       ]
     : [
-        { id: 'main', label: 'Main data' },
-        { id: 'kpis', label: 'KPIs' },
-        { id: 'history', label: 'History' },
+        { id: 'main', label: 'Overview', icon: <Info size={I} /> },
+        { id: 'kpis', label: 'KPIs', icon: <Target size={I} /> },
+        { id: 'history', label: 'History', icon: <History size={I} /> },
       ];
   const active = tabs.some((t) => t.id === tab) ? tab : 'main';
-  const children = (tree.data ?? []).filter((x) => n && x.parent === n.id);
+  const all = tree.data ?? [];
+  const children = all.filter((x) => n && x.parent === n.id).sort((a, b) => a.order - b.order);
+  const treeNode = all.find((x) => x.code === n?.code) ?? null;
+  const meta = n ? LEVEL_META[n.level] : null;
+  const childName = meta?.child;
+  const Icon = meta?.icon ?? Workflow;
 
   return (
     <>
-      <PageHeader
-        eyebrow="Repository 1 of 3"
-        title="Business Process Library"
-        subtitle="L0 domain → L1 function → L2 sub-function → L3 process (BPMN 2.0 As-Is / To-Be) → L4 activities. Lanes are sub job families."
-      />
       <div className="library">
-        <ProcessTree nodes={tree.data ?? []} selected={selected} onSelect={(c) => navigate(`/library/${c}`)} />
-        <div>
+        <ProcessTree
+          nodes={all}
+          selected={selected}
+          onSelect={(c) => navigate(`/library/${c}`)}
+          canEdit={canEdit}
+          onAdd={(parent) => setAdding({ parent })}
+        />
+        <div className="library__main">
           {node.isLoading && <Spinner />}
           <ErrorBox error={node.error} />
           {!n && !node.isLoading && <Empty>Select a node in the repository.</Empty>}
           {n && (
             <>
-              <div className="breadcrumb">
-                {n.path.map((p) => (
-                  <span key={p.code} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                    <a
-                      href={`/library/${p.code}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        navigate(`/library/${p.code}`);
-                      }}
-                    >
-                      {p.code} {p.name}
-                    </a>
-                    <ChevronRight size={12} />
+              {/* ---------------------------------------- node hero */}
+              <section className={`node-hero node-hero--l${n.level}`}>
+                <div className="node-hero__crumbs">
+                  <span className="muted">Business Process Library</span>
+                  {n.path.map((p) => (
+                    <span key={p.code} className="node-hero__crumb">
+                      <ChevronRight size={12} />
+                      <a
+                        href={`/library/${p.code}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/library/${p.code}`);
+                        }}
+                      >
+                        {p.code} · {p.name}
+                      </a>
+                    </span>
+                  ))}
+                </div>
+                <div className="node-hero__main">
+                  <span className="node-hero__icon">
+                    <Icon size={26} />
                   </span>
-                ))}
-              </div>
-              <div className="card__head">
-                <h2>
-                  <span className={`lvl lvl--${n.level}`}>L{n.level}</span> <code>{n.code}</code> {n.name}
-                </h2>
-                <Badge>{n.status}</Badge>
-              </div>
+                  <div className="node-hero__title">
+                    <div className="node-hero__kicker">
+                      L{n.level} · {meta?.name} <code>{n.code}</code>
+                    </div>
+                    <h1>{n.name}</h1>
+                    <div className="node-hero__meta">
+                      <Badge>{n.status}</Badge>
+                      {n.owner && <span>Owner · {n.owner}</span>}
+                      {n.owner_job && <span className="mono">{n.owner_job}</span>}
+                      {isProcess && n.criticality && (
+                        <Badge tone={n.criticality === 'High' ? 'bad' : 'warn'}>{n.criticality} criticality</Badge>
+                      )}
+                    </div>
+                  </div>
+                  {canEdit && childName && treeNode && (
+                    <button className="btn btn--hero-add" onClick={() => setAdding({ parent: treeNode })}>
+                      <Plus size={16} /> Add {childName}
+                    </button>
+                  )}
+                </div>
+                <div className="node-hero__stats">
+                  {isProcess ? (
+                    <>
+                      <span>
+                        <strong>{n.counts.activities}</strong> activities
+                      </span>
+                      <span>
+                        <strong>{n.counts.versions}</strong> model versions
+                      </span>
+                      <span>
+                        <strong>{n.counts.risks}</strong> risks
+                      </span>
+                      <span>
+                        <strong>{n.counts.documents}</strong> documents
+                      </span>
+                    </>
+                  ) : (
+                    <span>
+                      <strong>{children.length}</strong> {childName}
+                      {children.length === 1 ? '' : childName === 'process' ? 'es' : 's'}
+                    </span>
+                  )}
+                </div>
+              </section>
+
               <Tabs tabs={tabs} value={active} onChange={setTab} />
               {active === 'main' && (
                 <>
-                  <MainDataTab node={n} canEdit={canEdit} />
-                  {!isProcess && children.length > 0 && (
+                  {!isProcess && (
                     <section className="card">
-                      <h3>Children</h3>
-                      <div className="table-wrap" style={{ marginTop: 10 }}>
-                        <table>
-                          <tbody>
-                            {children.map((c) => (
-                              <tr key={c.id} className="clickable" onClick={() => navigate(`/library/${c.code}`)}>
-                                <td>
-                                  <span className={`lvl lvl--${c.level}`}>L{c.level}</span>
-                                </td>
-                                <td className="mono">{c.code}</td>
-                                <td>{c.name}</td>
-                                <td className="muted">{c.owner}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                      <div className="card__head">
+                        <h3>
+                          {childName
+                            ? `${childName[0].toUpperCase()}${childName.slice(1)}${childName === 'process' ? 'es' : 's'}`
+                            : 'Children'}{' '}
+                          in {n.code}
+                        </h3>
+                      </div>
+                      <div className="child-grid">
+                        {children.map((c) => {
+                          const CIcon = LEVEL_META[c.level].icon;
+                          return (
+                            <button
+                              key={c.id}
+                              className={`child-card child-card--l${c.level}`}
+                              onClick={() => navigate(`/library/${c.code}`)}
+                            >
+                              <span className={`ptree__icon ptree__icon--l${c.level}`}>
+                                <CIcon size={16} />
+                              </span>
+                              <span className="child-card__code">{c.code}</span>
+                              <strong>{c.name}</strong>
+                              <span className="small muted">
+                                {c.level === 3
+                                  ? `${c.activity_count ?? 0} activities`
+                                  : `${c.child_count ?? 0} ${LEVEL_META[c.level].child === 'process' ? 'processes' : `${LEVEL_META[c.level].child}s`}`}
+                                {c.owner && ` · ${c.owner}`}
+                              </span>
+                            </button>
+                          );
+                        })}
+                        {canEdit && treeNode && childName && (
+                          <button
+                            className="child-card child-card--add"
+                            onClick={() => setAdding({ parent: treeNode })}
+                          >
+                            <Plus size={22} />
+                            <strong>Add {childName}</strong>
+                            <span className="small muted">under {n.code}</span>
+                          </button>
+                        )}
+                        {!children.length && !canEdit && <Empty>No {childName}s yet.</Empty>}
                       </div>
                     </section>
                   )}
+                  <MainDataTab node={n} canEdit={canEdit} />
                 </>
               )}
               {active === 'model' && <ModelTab node={n} canEdit={canEdit} />}
@@ -150,6 +246,17 @@ export default function ProcessLibraryPage() {
           )}
         </div>
       </div>
+      {adding && (
+        <AddNodeModal
+          parent={adding.parent}
+          onClose={() => setAdding(null)}
+          onCreated={(c) => {
+            setAdding(null);
+            setTab('main');
+            navigate(`/library/${c}`);
+          }}
+        />
+      )}
     </>
   );
 }

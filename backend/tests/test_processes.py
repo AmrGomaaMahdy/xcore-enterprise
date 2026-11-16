@@ -70,3 +70,34 @@ def test_export_bpmn(editor):
     v = editor.get("/api/v1/processes/versions/", {"process__code": "15-028"}).json()[0]
     r = editor.get(f"/api/v1/processes/versions/{v['id']}/export/")
     assert r.status_code == 200 and b"bpmn:definitions" in r.content
+
+
+@pytest.mark.django_db
+def test_add_child_nodes_and_starter_model(editor):
+    pro = editor.get("/api/v1/processes/nodes/PRO/").json()
+    r = editor.post(
+        "/api/v1/processes/nodes/", {"code": "15-031", "level": 3, "parent": pro["id"], "name": "Manage Supplier Returns"}, format="json"
+    )
+    assert r.status_code == 201, r.content
+    versions = editor.get("/api/v1/processes/versions/", {"process__code": "15-031"}).json()
+    assert versions[0]["status"] == "Draft" and versions[0]["version"] == "1.0"
+    # wrong level under the parent is rejected
+    bad = editor.post("/api/v1/processes/nodes/", {"code": "XX-1", "level": 2, "parent": pro["id"], "name": "x"}, format="json")
+    assert bad.status_code == 400
+    tree = {n["code"]: n for n in editor.get("/api/v1/processes/nodes/tree/").json()}
+    assert tree["PRO"]["child_count"] == 3
+
+
+@pytest.mark.django_db
+def test_compare_versions(editor):
+    vs = {f"{v['kind']} {v['version']}": v["id"] for v in editor.get("/api/v1/processes/versions/", {"process__code": "15-030"}).json()}
+    d = editor.get("/api/v1/processes/versions/compare/", {"a": vs["As-Is 2.0"], "b": vs["To-Be 3.0"]}).json()
+    assert d["added"] and d["removed"]
+
+
+@pytest.mark.django_db
+def test_overview_lists_processes_and_domains(viewer):
+    data = viewer.get("/api/v1/overview/").json()
+    assert {p["code"] for p in data["processes"]} == {"15-028", "15-030"}
+    assert all(0 <= p["quality"] <= 100 for p in data["processes"])
+    assert len(data["domains"]) == 6

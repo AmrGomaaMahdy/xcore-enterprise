@@ -1,7 +1,7 @@
-from django.db.models import Q
+from django.db.models import Count, Max, Q
 from django.http import HttpResponse
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -44,6 +44,14 @@ class ProcessNodeViewSet(AuditedViewSetMixin, viewsets.ModelViewSet):
     def get_serializer_class(self):
         return ProcessNodeTreeSerializer if self.action == "tree" else ProcessNodeSerializer
 
+    def perform_create(self, serializer):
+        parent = serializer.validated_data.get("parent")
+        if "order" not in self.request.data:
+            siblings = ProcessNode.objects.filter(parent=parent)
+            serializer.validated_data["order"] = (siblings.aggregate(m=Max("order"))["m"] or 0) + 10
+        super().perform_create(serializer)
+        services.on_node_created(serializer.instance, self.request.user)
+
     def perform_destroy(self, instance):
         if instance.children.exists() or instance.versions.exists():
             raise DomainError("Retire the node instead: it still has children or model versions.", code="in_use")
@@ -53,7 +61,11 @@ class ProcessNodeViewSet(AuditedViewSetMixin, viewsets.ModelViewSet):
     @action(detail=False)
     def tree(self, request):
         """Flat list for the repository tree; the client nests it by `parent`."""
-        return Response(ProcessNodeTreeSerializer(ProcessNode.objects.all(), many=True).data)
+        qs = ProcessNode.objects.annotate(
+            child_count=Count("children", distinct=True),
+            activity_count=Count("activities", filter=Q(activities__in_current_model=True), distinct=True),
+        )
+        return Response(ProcessNodeTreeSerializer(qs, many=True).data)
 
     @action(detail=True)
     def raci(self, request, code=None):
@@ -133,6 +145,22 @@ class ProcessVersionViewSet(
         response["Content-Disposition"] = f'attachment; filename="{name}"'
         response["X-Content-Type-Options"] = "nosniff"
         return response
+
+    @extend_schema(parameters=[OpenApiParameter("a", int), OpenApiParameter("b", int)])
+    @action(detail=False)
+    def compare(self, request):
+        """Activity-level diff between two versions of the same process (a = base, b = target)."""
+        try:
+            a = ProcessVersion.objects.select_related("process").get(pk=int(request.query_params.get("a", 0)))
+            b = ProcessVersion.objects.select_related("process").get(pk=int(request.query_params.get("b", 0)))
+        except (ValueError, ProcessVersion.DoesNotExist) as exc:
+            raise DomainError("Choose two existing versions to compare.", code="not_found") from exc
+        if a.process_id != b.process_id:
+            raise DomainError("Both versions must belong to the same process.", code="different_process")
+        try:
+            return Response(services.compare_versions(a, b))
+        except bpmn.BpmnError as exc:
+            raise DomainError(str(exc), code="invalid_bpmn") from exc
 
     @action(detail=True)
     def parsed(self, request, pk=None):

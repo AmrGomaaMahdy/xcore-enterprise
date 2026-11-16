@@ -72,7 +72,7 @@ export function Tabs<T extends string>({
   value,
   onChange,
 }: {
-  tabs: { id: T; label: string; count?: number }[];
+  tabs: { id: T; label: string; count?: number; icon?: ReactNode }[];
   value: T;
   onChange: (t: T) => void;
 }) {
@@ -86,6 +86,7 @@ export function Tabs<T extends string>({
           className={value === t.id ? 'tab tab--active' : 'tab'}
           onClick={() => onChange(t.id)}
         >
+          {t.icon}
           {t.label}
           {t.count !== undefined && <span className="tab__count">{t.count}</span>}
         </button>
