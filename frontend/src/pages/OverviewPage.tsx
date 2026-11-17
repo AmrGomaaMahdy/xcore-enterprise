@@ -1,4 +1,4 @@
-import { ArrowRight, Boxes, GitBranch, Library, Network, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
+import { ArrowRight, GitBranch, Library, Network, ShieldCheck, Sparkles, Target, Workflow } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useOverview } from '@/api/hooks';
@@ -249,9 +249,6 @@ export default function OverviewPage() {
           <div className="quick">
             <Link to="/kpis/cascade">
               <Network size={18} /> KPI hierarchy & cascade
-            </Link>
-            <Link to="/catalog">
-              <Boxes size={18} /> Service catalog ({Object.values(data.services).reduce((a, b) => a + b, 0)})
             </Link>
             <Link to="/impact">
               <ShieldCheck size={18} /> Impact analysis

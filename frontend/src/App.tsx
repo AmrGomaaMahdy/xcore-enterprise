@@ -11,7 +11,6 @@ const ProcessLibraryPage = lazy(() => import('@/pages/library/ProcessLibraryPage
 const KpiLibraryPage = lazy(() => import('@/pages/kpis/KpiLibraryPage'));
 const KpiAlignmentPage = lazy(() => import('@/pages/kpis/KpiAlignmentPage'));
 const KpiCascadePage = lazy(() => import('@/pages/kpis/KpiCascadePage'));
-const ServiceCatalogPage = lazy(() => import('@/pages/catalog/ServiceCatalogPage'));
 const ImpactPage = lazy(() => import('@/pages/ImpactPage'));
 const GovernancePage = lazy(() => import('@/pages/governance/GovernancePage'));
 const AuditPage = lazy(() => import('@/pages/AuditPage'));
@@ -33,7 +32,6 @@ export default function App() {
                   <Route path="kpis" element={<KpiLibraryPage />} />
                   <Route path="kpis/alignment" element={<KpiAlignmentPage />} />
                   <Route path="kpis/cascade" element={<KpiCascadePage />} />
-                  <Route path="catalog" element={<ServiceCatalogPage />} />
                   <Route path="impact" element={<ImpactPage />} />
                   <Route path="governance" element={<GovernancePage />} />
                   <Route path="approvals" element={<GovernancePage />} />

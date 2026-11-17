@@ -3373,3 +3373,205 @@ a.btn,
 .gauge {
   flex: none;
 }
+
+/* =====================================================================
+   v1.1 — calm KPI cascade (no jitter) and the branded header
+   ===================================================================== */
+
+/* KPI cascade: nodes never move or scale — focus is shown with colour, ring and opacity only,
+   so the pointer never leaves/enters a node because of its own animation. */
+.kpi-node,
+.kpi-node:hover,
+.kpi-node--focus,
+.kpi-node--up,
+.kpi-node--down {
+  transform: none !important;
+  animation: none !important;
+}
+.kpi-node {
+  transition:
+    opacity 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    filter 0.22s ease;
+}
+.kpi-node:hover {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--lvl-color) 45%, transparent),
+    var(--shadow);
+}
+.kpi-node--focus {
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--gold) 60%, transparent),
+    0 0 22px color-mix(in srgb, var(--gold) 45%, transparent);
+}
+.cascade .react-flow__renderer {
+  animation: fade-in 0.6s ease-out both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- header */
+.topbar {
+  height: 68px;
+  gap: 14px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--l0) 6%, var(--surface)), var(--surface) 45%),
+    var(--surface);
+  box-shadow:
+    0 1px 0 var(--border),
+    0 6px 18px rgb(15 31 51 / 5%);
+}
+.shell {
+  grid-template-rows: 68px 1fr;
+}
+.brand {
+  gap: 12px;
+}
+.brand__mark-wrap {
+  position: relative;
+  display: block;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow:
+    0 6px 16px rgb(11 31 51 / 35%),
+    0 0 0 1px rgb(255 255 255 / 6%);
+}
+.brand__mark-wrap .brand__mark {
+  width: 46px;
+  height: 46px;
+  display: block;
+}
+/* light sweep across the X-Core mark and the Al-Ayuni tile */
+.brand__mark-wrap::after,
+.brand__logo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -40% auto -40% -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 55%), transparent);
+  transform: skewX(-18deg);
+  animation: sheen 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.brand__logo-wrap::after {
+  animation-delay: 0.5s;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 75%), transparent);
+}
+@keyframes sheen {
+  0%,
+  62% {
+    left: -60%;
+  }
+  85%,
+  100% {
+    left: 130%;
+  }
+}
+.brand__name {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--text), color-mix(in srgb, var(--accent) 70%, var(--text)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brand__tag {
+  font-size: 11.5px;
+}
+.brand__divider {
+  height: 38px;
+}
+.brand__logo-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 52px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgb(15 31 51 / 8%);
+}
+.brand__logo-wrap .brand__logo {
+  height: 44px;
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  image-rendering: auto;
+}
+.module-title {
+  display: grid;
+  line-height: 1;
+}
+.module-title__eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.module-title__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 25%,
+    var(--gold) 50%,
+    var(--accent) 75%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: title-flow 7s linear infinite;
+  filter: drop-shadow(0 1px 0 rgb(0 0 0 / 6%));
+}
+@keyframes title-flow {
+  to {
+    background-position: 200% center;
+  }
+}
+.topbar__module {
+  display: none;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__version {
+  margin-top: auto;
+  padding: 16px 10px 4px;
+  font-size: 11px;
+  opacity: 0.55;
+}
+.shell--collapsed .sidebar__version {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .module-title__name {
+    font-size: 22px;
+  }
+  .brand__tag {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .brand__logo-wrap,
+  .module-title__eyebrow {
+    display: none;
+  }
+}

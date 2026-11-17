@@ -1,8 +1,8 @@
 {
   "name": "xcore-frontend",
   "private": true,
-  "version": "1.0.0",
-  "description": "X-Core Process Hub — React SPA",
+  "version": "1.1.0",
+  "description": "X-Core Process Hub \u2014 React SPA",
   "type": "module",
   "engines": {
     "node": ">=20"

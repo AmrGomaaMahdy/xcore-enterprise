@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Background,
   BackgroundVariant,
@@ -136,6 +136,13 @@ function CascadeInner() {
   const [q, setQ] = useState('');
   const [filters, setFilters] = useState({ domain: '', function: '', sub: '', process: '' });
   const [hover, setHover] = useState<string | null>(null);
+  // debounce hover so moving across neighbouring KPIs doesn't make the whole network flicker
+  const hoverTimer = useRef<ReturnType<typeof setTimeout>>();
+  const hoverTo = useCallback((id: string | null) => {
+    clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => setHover(id), id ? 140 : 220);
+  }, []);
+  useEffect(() => () => clearTimeout(hoverTimer.current), []);
   const [selected, setSelected] = useState<string | null>(null);
   const { up, down, pos, weight } = useGraph(cascade.data);
 
@@ -211,7 +218,7 @@ function CascadeInner() {
           label: lit ? (e.relation === 'rolls_up' ? `${e.weight}%` : 'driver') : undefined,
           labelStyle: { fill: color, fontWeight: 700, fontSize: 11 },
           labelBgStyle: { fill: 'var(--surface)' },
-          animated: !!lit || e.relation === 'explains',
+          animated: !!lit,
           className: lit ? 'edge--lit' : '',
           style: {
             stroke: color,
@@ -314,8 +321,8 @@ function CascadeInner() {
             minZoom={0.15}
             nodesConnectable={false}
             nodesDraggable={false}
-            onNodeMouseEnter={(_, n) => setHover(n.id)}
-            onNodeMouseLeave={() => setHover(null)}
+            onNodeMouseEnter={(_, n) => hoverTo(n.id)}
+            onNodeMouseLeave={() => hoverTo(null)}
             onNodeClick={(_, n) => setSelected(n.id === selected ? null : n.id)}
             onPaneClick={() => setSelected(null)}
           >

@@ -1,5 +1,7 @@
 # X-Core · Process Hub
 
+**Version 1.1** — see [CHANGELOG.md](CHANGELOG.md).
+
 **X-Core — The Business Excellence Platform.** This repository contains the first module, **Process Hub**:
 one governed source for business processes, the KPIs that measure them, the services they deliver, and
 the approvals that keep all of it trustworthy. (The second module, **Performance Center**, will consume
@@ -12,7 +14,7 @@ the same KPI library and is out of scope here.)
 | **Enterprise KPI Library** | Five tiers (Strategic → Functional → Sub-functional → Process → Operational indicator), enforced naming convention, the five strategic objectives, calculation types (Measured, Derived, Gate, Direct), roll-up weights that must add up to 100, targets under maker-checker. |
 | **KPI Alignment Matrix** | Objective ↔ function ↔ process ↔ KPI ↔ activity indicator, contribution % (product of weights along the path), explanatory drivers, line of sight. |
 | **KPI hierarchy & cascade** | Animated network (React Flow): hover or click a KPI to light up its full path — upstream KPIs in gold, contributing KPIs in teal, everything else dimmed — with a side panel showing the path to the top, contributors by tier and the definition. Filters by KPI name / domain / function / sub-function / process, mini-map, full screen. Metadata only — no values. |
-| **Service Catalog** | Catalog of services traced to activities and KPIs, plus a rule-based **generator** that proposes services from approved To-Be models (evidence-based, reuse before creation, no invented commitments, traceable, human-approved, schema-validated). |
+| **Service catalog (API only)** | The catalog page was removed from the UI in v1.1. The service records, the rule-based service generator and their approvals remain available through the API (`/api/v1/catalog/…`) for future use. |
 | **Impact analysis** | "Where used" for an activity, process, KPI, sub job family or system before you change it. |
 | **Process Governance** | Governance & approvals workspace at the top of the menu: decision queue with ageing and overdue flags, filters by type and process, lifecycle stepper, decision context (activity diff against the live model, quality checks, proposed vs. live target), approve / reject with notes, withdraw, governance policy; plus impact analysis and the immutable audit trail. |
 | **Sign-in** | Animated network background, glass card, session cookie + CSRF, lockout after repeated failures. |
@@ -53,7 +55,7 @@ docker compose exec backend python manage.py createsuperuser
 Useful commands (`make help` lists them all): `make up`, `make logs`, `make demo` (reload demo data),
 `make superuser`, `make clean` (removes the database volume).
 
-API documentation (OpenAPI / Swagger UI, signed-in users only): **http://localhost:8080/api/v1/docs/**
+API documentation (OpenAPI / Swagger UI, signed-in users only) is served at **http://localhost:8080/api/v1/docs/** — it is no longer linked from the app header.
 
 ## Local development without Docker
 

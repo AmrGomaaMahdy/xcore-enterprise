@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import {
-  Boxes,
-  ClipboardList,
   GitBranch,
   History,
   LayoutDashboard,
@@ -43,7 +41,6 @@ const NAV = [
       { to: '/kpis/cascade', label: 'KPI hierarchy & cascade', icon: Network },
     ],
   },
-  { group: 'Services', items: [{ to: '/catalog', label: 'Service Catalog', icon: Boxes }] },
 ];
 
 export function AppShell() {
@@ -64,16 +61,24 @@ export function AppShell() {
         <button className="icon-btn" onClick={() => setCollapsed((c) => !c)} aria-label="Toggle menu">
           <PanelLeft size={18} />
         </button>
-        <Link to="/" className="brand">
-          <img className="brand__mark" src="/xcore-mark.svg" alt="" />
+        <Link to="/" className="brand" aria-label="X-Core home">
+          <span className="brand__mark-wrap">
+            <img className="brand__mark" src="/xcore-mark.svg" alt="" />
+          </span>
           <div>
             <div className="brand__name">X-Core</div>
             <div className="brand__tag">The Business Excellence Platform</div>
           </div>
         </Link>
         <span className="brand__divider" />
-        <img className="brand__logo" src="/al-ayuni-logo.png" alt="Al-Ayuni" />
-        <span className="topbar__module">Process Hub</span>
+        <span className="brand__logo-wrap">
+          <img className="brand__logo" src="/al-ayuni-logo.png" alt="Al-Ayuni" />
+        </span>
+        <span className="brand__divider" />
+        <div className="module-title" aria-label="Process Hub">
+          <span className="module-title__eyebrow">Module</span>
+          <span className="module-title__name">Process Hub</span>
+        </div>
         <span className="topbar__spacer" />
         <label className="field field--inline small">
           <span>Theme</span>
@@ -85,9 +90,6 @@ export function AppShell() {
             ))}
           </select>
         </label>
-        <a className="btn btn--ghost btn--sm" href="/api/v1/docs/" target="_blank" rel="noreferrer">
-          <ClipboardList size={14} /> API docs
-        </a>
         <div className="topbar__user">
           <div className="avatar" aria-hidden>
             {initials}
@@ -122,6 +124,7 @@ export function AppShell() {
             ))}
           </div>
         ))}
+        <div className="sidebar__version">X-Core Process Hub · v{__APP_VERSION__}</div>
       </nav>
       <main className="main">
         <Outlet />
