@@ -5,8 +5,9 @@ from django.core.exceptions import ImproperlyConfigured
 from .base import *  # noqa: F403
 from .base import SECRET_KEY, env, env_bool
 
-if not SECRET_KEY or len(SECRET_KEY) < 50:
-    raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set to a random value of at least 50 characters.")
+# 40+ characters: Render's generateValue produces a 256-bit base64 value (44 characters).
+if not SECRET_KEY or len(SECRET_KEY) < 40:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set to a random value of at least 40 characters.")
 
 DEBUG = False
 SESSION_COOKIE_SECURE = env_bool("DJANGO_SECURE_COOKIES", True)

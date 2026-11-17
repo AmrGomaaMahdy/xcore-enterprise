@@ -31,6 +31,12 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", "")
 DEBUG = env_bool("DJANGO_DEBUG", False)
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1")
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost:8080,http://localhost:5173")
+if _render_host := env("RENDER_EXTERNAL_HOSTNAME", ""):
+    ALLOWED_HOSTS.append(_render_host)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{_render_host}")
+
+# Single-service mode (Render): Django also serves the built React app from this folder.
+SPA_DIR = env("XCORE_SPA_DIR", "")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -55,6 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "apps.core.middleware.HealthCheckMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -64,6 +71,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "apps.core.middleware.RequestIdMiddleware",
+    "apps.core.middleware.SecurityHeadersMiddleware",
     # django-axes must be last: it inspects failed logins and locks out brute force attempts
     "axes.middleware.AxesMiddleware",
 ]
@@ -87,9 +95,33 @@ TEMPLATES = [
     }
 ]
 
+
 # ---------------------------------------------------------------- database
+def _database_from_url(url: str) -> dict:
+    """postgres://user:pass@host:port/db?sslmode=require  (Render, Heroku-style DATABASE_URL)."""
+    from urllib.parse import parse_qs, unquote, urlparse
+
+    u = urlparse(url)
+    if u.scheme not in {"postgres", "postgresql"}:
+        raise ValueError("DATABASE_URL must be a postgres:// URL")
+    query = {k: v[-1] for k, v in parse_qs(u.query).items()}
+    return {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": unquote(u.path.lstrip("/")),
+        "USER": unquote(u.username or ""),
+        "PASSWORD": unquote(u.password or ""),
+        "HOST": u.hostname or "",
+        "PORT": str(u.port or 5432),
+        "CONN_MAX_AGE": int(env("DB_CONN_MAX_AGE", "60") or 60),
+        "CONN_HEALTH_CHECKS": True,
+        "OPTIONS": {"sslmode": query.get("sslmode", env("POSTGRES_SSLMODE", "prefer"))},
+    }
+
+
 if env("DB_ENGINE", "postgres") == "sqlite":
     DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+elif env("DATABASE_URL", ""):
+    DATABASES = {"default": _database_from_url(env("DATABASE_URL", ""))}
 else:
     DATABASES = {
         "default": {
@@ -221,6 +253,15 @@ LOGGING = {
 # ---------------------------------------------------------------- X-Core domain settings
 XCORE = {
     "TRUST_PROXY_HEADER": env_bool("XCORE_TRUST_PROXY_HEADER", True),
+    # number of trusted proxies appending to X-Forwarded-For (Render edge = 1)
+    "PROXY_COUNT": int(env("XCORE_PROXY_COUNT", "1") or 1),
+    # Content-Security-Policy added by Django when nginx is not in front (Render single service)
+    "CSP": env(
+        "XCORE_CSP",
+        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; "
+        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+    ),
     "HCM_SYNC_LABEL": env("XCORE_HCM_SYNC_LABEL", "Oracle Fusion HCM · nightly 02:00"),
     # segregation-of-duties rules: two activities must not be performed by the same sub job family
     "SOD_RULES": [
@@ -230,3 +271,14 @@ XCORE = {
     ],
 }
 ADMIN_URL = env("DJANGO_ADMIN_URL", "admin/")
+
+if SPA_DIR:
+    WHITENOISE_ROOT = SPA_DIR  # /assets/*, /xcore-mark.svg, /al-ayuni-logo.png …
+
+
+def _immutable_vite_asset(path: str, url: str) -> bool:
+    """Vite puts a content hash in every file under /assets/ — cache those for a year."""
+    return url.startswith("/assets/")
+
+
+WHITENOISE_IMMUTABLE_FILE_TEST = _immutable_vite_asset

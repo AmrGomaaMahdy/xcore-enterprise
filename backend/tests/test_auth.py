@@ -55,3 +55,31 @@ def test_lockout_after_repeated_failures(demo, settings):
     r = c.post("/api/v1/auth/login/", {"username": "process.editor", "password": PASSWORD}, format="json")
     assert r.status_code == 403
     assert r.json()["error"]["code"] == "locked_out"
+
+
+@pytest.mark.django_db
+def test_health_ignores_unknown_host(settings):
+    settings.ALLOWED_HOSTS = ["xcore.example.com"]
+    r = APIClient().get("/api/v1/health/", HTTP_HOST="10.0.0.12:10000")
+    assert r.status_code == 200 and r.json() == {"status": "ok"}
+
+
+def test_database_url_parsing():
+    from config.settings.base import _database_from_url
+
+    db = _database_from_url("postgresql://xcore:p%40ss@dpg-abc.frankfurt-postgres.render.com:5432/xcore?sslmode=require")
+    assert db["USER"] == "xcore" and db["PASSWORD"] == "p@ss" and db["HOST"].startswith("dpg-")
+    assert db["NAME"] == "xcore" and db["OPTIONS"]["sslmode"] == "require"
+
+
+@pytest.mark.django_db
+def test_ensure_admin(monkeypatch):
+    from django.core.management import call_command
+
+    from apps.accounts.models import User
+
+    monkeypatch.setenv("XCORE_ADMIN_USERNAME", "admin")
+    monkeypatch.setenv("XCORE_ADMIN_PASSWORD", "Render-Admin-Passw0rd!")
+    call_command("ensure_admin", verbosity=0)
+    u = User.objects.get(username="admin")
+    assert u.is_superuser and u.role == "admin" and u.check_password("Render-Admin-Passw0rd!")

@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.2.0 — 2026-11-17
+
+### Added
+- **Render deployment:** `render.yaml` Blueprint (PostgreSQL + one Docker web service) and
+  `Dockerfile.render`, which bundles the React app into the Django image (single HTTPS origin).
+- `DATABASE_URL` support, automatic `RENDER_EXTERNAL_HOSTNAME` in allowed hosts / CSRF origins.
+- Django serves the SPA (deep links → `index.html`, WhiteNoise for hashed assets) when `XCORE_SPA_DIR` is set.
+- `SecurityHeadersMiddleware` (CSP, Permissions-Policy) for deployments without nginx.
+- `HealthCheckMiddleware`: health probe answered before host validation and HTTPS redirects.
+- `ensure_admin` command: creates the administrator from `XCORE_ADMIN_USERNAME` / `XCORE_ADMIN_PASSWORD`
+  (works on hosts without a shell).
+- Client IP for lock-outs read from `X-Forwarded-For` behind the Render edge (`XCORE_PROXY_COUNT`).
+
+### Changed
+- Production secret key minimum is 40 characters (Render generates 44).
+
 ## v1.1.0 — 2026-11-17
 
 ### Fixed

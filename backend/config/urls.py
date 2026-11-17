@@ -22,3 +22,11 @@ urlpatterns = [
     path(settings.ADMIN_URL if hasattr(settings, "ADMIN_URL") else "admin/", admin.site.urls),
     path("api/v1/", include(api)),
 ]
+
+if settings.SPA_DIR:
+    # every other URL belongs to the React router (assets are served by WhiteNoise before this)
+    from django.urls import re_path
+
+    from apps.core.spa import spa_index
+
+    urlpatterns.append(re_path(r"^(?!api/|static/)(?P<path>.*)$", spa_index, name="spa"))

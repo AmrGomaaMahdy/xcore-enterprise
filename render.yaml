@@ -1,0 +1,69 @@
+# Render Blueprint — X-Core Process Hub v1.1
+# https://render.com/docs/blueprint-spec
+#
+# One Docker web service (Django API + React app on the same origin) and one PostgreSQL database.
+# Deploy: Render Dashboard → New → Blueprint → pick this repository → fill the prompted secrets → Apply.
+#
+# Plans: the defaults below are the smallest paid instances (always on, no expiry).
+# For a quick trial you can set both `plan:` values to `free` — note that free web services sleep
+# when idle (slow first request) and free Postgres databases expire after a limited period.
+
+databases:
+  - name: xcore-db
+    plan: 0.1c-256mb
+    region: frankfurt            # closest Render region to Riyadh; cannot be changed later
+    databaseName: xcore
+    user: xcore
+    postgresMajorVersion: "16"
+    ipAllowList: []              # private network only — the database is not reachable from the internet
+
+services:
+  - type: web
+    name: xcore-process-hub
+    runtime: docker
+    dockerfilePath: ./Dockerfile.render
+    dockerContext: .
+    plan: 0.5c-512mb
+    region: frankfurt
+    healthCheckPath: /api/v1/health/
+    autoDeploy: true             # redeploy on every push to the connected branch
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: xcore-db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        generateValue: true      # random 256-bit value, created once
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.prod
+      # Render adds RENDER_EXTERNAL_HOSTNAME automatically; it is appended to ALLOWED_HOSTS and
+      # CSRF_TRUSTED_ORIGINS. Add a custom domain here too, e.g. "xcore.al-ayuni.com".
+      - key: DJANGO_ALLOWED_HOSTS
+        value: localhost,127.0.0.1
+      - key: DJANGO_CSRF_TRUSTED_ORIGINS
+        value: ""
+      - key: DJANGO_SECURE_COOKIES
+        value: "true"
+      - key: DJANGO_HSTS_SECONDS
+        value: "31536000"
+      - key: DJANGO_SSL_REDIRECT     # Render already redirects http → https at its edge
+        value: "false"
+      - key: DJANGO_ADMIN_URL
+        value: manage-xcore/
+      - key: POSTGRES_SSLMODE
+        value: prefer
+      - key: WEB_CONCURRENCY
+        value: "2"
+      - key: XCORE_PROXY_COUNT
+        value: "1"
+      - key: LOG_LEVEL
+        value: INFO
+      # ---- first-run data and accounts
+      - key: XCORE_LOAD_DEMO        # loads the prototype library once (skipped when data exists)
+        value: "true"
+      - key: XCORE_ADMIN_USERNAME
+        value: admin
+      - key: XCORE_ADMIN_PASSWORD   # prompted on first deploy: 12+ chars, not common, not all digits
+        sync: false
+      - key: XCORE_DEMO_PASSWORD    # prompted: leave empty for production (no demo sign-ins created)
+        sync: false

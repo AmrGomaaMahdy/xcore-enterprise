@@ -21,6 +21,8 @@ if [ "${DJANGO_MIGRATE:-true}" = "true" ]; then
   python manage.py migrate --noinput
 fi
 
+python manage.py ensure_admin
+
 if [ "${XCORE_LOAD_DEMO:-false}" = "true" ]; then
   python manage.py load_demo_data
 fi

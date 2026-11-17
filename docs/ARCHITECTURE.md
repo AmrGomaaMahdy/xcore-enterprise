@@ -23,6 +23,13 @@
 The SPA and the API share one origin, so the session cookie can stay `HttpOnly` + `SameSite=Lax` and no
 CORS is needed. Containers run as non-root, read-only, with all Linux capabilities dropped.
 
+### Deployment variants
+
+| Variant | Files | Topology |
+|---|---|---|
+| Docker Compose (on-premises / VM) | `docker-compose.yml`, `backend/Dockerfile`, `frontend/Dockerfile` | nginx (SPA + security headers + `/api` proxy) → gunicorn/Django → PostgreSQL |
+| Render (PaaS) | `render.yaml`, `Dockerfile.render` | Render edge (TLS) → one container: gunicorn/Django serving the API **and** the built SPA (WhiteNoise) → Render PostgreSQL |
+
 ## 2. Backend modules (Django apps)
 
 | App | Responsibility | Key objects |

@@ -93,6 +93,7 @@ jobs:
         run: |
           cp .env.example .env
           docker compose build
+          docker build -f Dockerfile.render -t xcore/render:ci .
       - name: Smoke test the stack
         run: |
           sed -i 's/^XCORE_DEMO_PASSWORD=.*/XCORE_DEMO_PASSWORD=Ci-Demo-Passw0rd!/; s/CHANGE_ME_strong_db_password/ci-db-password/' .env
