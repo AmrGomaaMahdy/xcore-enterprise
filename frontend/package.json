@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "5.62.0",
-    "@xyflow/react": "12.3.6",
+    "@xyflow/react": "12.12.1",
     "bpmn-js": "17.11.1",
     "lucide-react": "0.460.0",
     "react": "18.3.1",
