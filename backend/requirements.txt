@@ -1,5 +1,5 @@
 # Runtime — pinned; upgrade through Dependabot PRs with CI green (pip-audit runs in CI)
-Django==5.2.19
+Django==6.1.3
 djangorestframework==3.18.3
 django-filter==26.2
 drf-spectacular==0.30.0
